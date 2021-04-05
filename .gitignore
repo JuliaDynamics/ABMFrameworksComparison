@@ -1,0 +1,5 @@
+Manifest.toml
+*.pyc
+*.code-workspace
+.*.tmp.nlogo
+

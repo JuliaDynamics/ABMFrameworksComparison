@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Benchmarking Julia"
-julia --project=../../ benchmark.jl
+julia --project=@. Agents/benchmark.jl
 
 echo "Benchmarking NetLogo"
 # Don't run above 8 threads otherwise errors will spit once the JVMs try
