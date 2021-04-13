@@ -1,5 +1,4 @@
 using Agents
-using Agents.Models: Wolf, Sheep
 using BenchmarkTools
 using Test
 
@@ -14,8 +13,7 @@ a = @benchmark step!(model, agent_step!, model_step!, 500) setup = (
         wolf_reproduce = 0.1,
         regrowth_time = 20,
     )
-) samples = 100 teardown = (@test count(i -> i isa Sheep, allagents(model)) > 0 &&
-       count(i -> i isa Wolf, allagents(model)) > 0)
+) samples = 100
 println("Agents.jl WolfSheep (ms): ", minimum(a.times) * 1e-6)
 
 a = @benchmark step!(model, agent_step!, model_step!, 100) setup = (
