@@ -1,10 +1,7 @@
-# This example deviates from Mesa's Schelling in that it uses BaseScheduler
-# instead of RandomActivation.
-
 import random
 
 from mesa import Model, Agent
-from mesa.time import BaseScheduler
+from mesa.time import RandomActivation
 from mesa.space import SingleGrid
 
 
@@ -52,7 +49,7 @@ class SchellingModel(Model):
         self.minority_pc = minority_pc
         self.homophily = homophily
 
-        self.schedule = BaseScheduler(self)
+        self.schedule = RandomActivation(self)
         self.grid = SingleGrid(height, width, torus=True)
 
         self.happy = 0
