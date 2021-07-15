@@ -1,14 +1,12 @@
 extensions [profiler]
 
 globals [
-  percent-similar  ; on the average, what percent of a turtle's neighbors
-                   ; are the same color as that turtle?
+  percent-similar  ; on the average, what percent of a turtle's neighbors are the same color as that turtle?
   percent-unhappy  ; what percent of the turtles are unhappy?
 ]
 
 turtles-own [
-  happy?           ; for each turtle, indicates whether at least %-similar-wanted percent of
-                   ;   that turtle's neighbors are the same color as the turtle
+  happy?           ; for each turtle, indicates whether at least %-similar-wanted percent of that turtle's neighbors are the same color as the turtle
   similar-nearby   ; how many neighboring patches have a turtle with my color?
   other-nearby     ; how many have a turtle of another color?
   total-nearby     ; sum of previous two variables
@@ -17,9 +15,7 @@ turtles-own [
 to setup
   clear-all
   ; create turtles on random patches.
-  ask patches [
-    set pcolor white
-  ]
+  ask patches [ set pcolor white ]
   create-turtles agents [
     ; 105 is the color number for "blue"
     ; 27 is the color number for "orange"
@@ -27,7 +23,6 @@ to setup
     set size 1
     setxy random-pxcor random-pycor
   ]
-
   update-turtles
   update-globals
   reset-ticks
@@ -56,12 +51,8 @@ to move-unhappy-turtles
     [ find-new-spot ]
 end
 
-; move until we find an unoccupied spot
 to find-new-spot
-  rt random-float 360
-  fd random-float 10
-  if any? other turtles-here [ find-new-spot ] ; keep going until we find an unoccupied patch
-  move-to patch-here  ; move to center of patch
+  move-to one-of patches with [not any? turtles-here]
 end
 
 to update-turtles
@@ -715,7 +706,7 @@ false
 Polygon -7500403 true true 300 60 225 0 0 225 60 300
 Polygon -7500403 true true 0 60 75 0 300 240 225 300
 @#$#@#$#@
-NetLogo 6.1.1
+NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
