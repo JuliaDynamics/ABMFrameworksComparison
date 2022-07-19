@@ -9,14 +9,12 @@ Replication of the model found in NetLogo:
     Northwestern University, Evanston, IL.
 """
 
-from mesa import Model
-from mesa.space import MultiGrid
+import mesa
 
 from agents import Sheep, Wolf, GrassPatch
-from schedule import RandomActivationByBreed
 
 
-class WolfSheep(Model):
+class WolfSheep(mesa.Model):
     """
     Wolf-Sheep Predation Model
     """
@@ -80,8 +78,8 @@ class WolfSheep(Model):
         self.grass_regrowth_time = grass_regrowth_time
         self.sheep_gain_from_food = sheep_gain_from_food
 
-        self.schedule = RandomActivationByBreed(self)
-        self.grid = MultiGrid(self.height, self.width, torus=True)
+        self.schedule = mesa.time.RandomActivationByType(self)
+        self.grid = mesa.space.MultiGrid(self.height, self.width, torus=True)
 
         # Create sheep:
         for i in range(self.initial_sheep):
@@ -104,18 +102,14 @@ class WolfSheep(Model):
         # Create grass patches
         if self.grass:
             for agent, x, y in self.grid.coord_iter():
-
                 fully_grown = self.random.choice([True, False])
-
                 if fully_grown:
                     countdown = self.grass_regrowth_time
                 else:
                     countdown = self.random.randrange(self.grass_regrowth_time)
-
                 patch = GrassPatch(self.next_id(), (x, y), self, fully_grown, countdown)
                 self.grid.place_agent(patch, (x, y))
                 self.schedule.add(patch)
 
     def step(self):
         self.schedule.step()
-

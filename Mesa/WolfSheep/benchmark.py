@@ -11,7 +11,6 @@ import os, sys
 sys.path.insert(0, os.path.abspath("."))
 
 from agents import Sheep, Wolf, GrassPatch
-from schedule import RandomActivationByBreed
 from model import WolfSheep
 
 def runthemodel(wolfsheep):
