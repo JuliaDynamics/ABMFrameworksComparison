@@ -3,7 +3,7 @@
 
 from mesa import Model
 from mesa import Agent
-from mesa.space import Grid
+from mesa.space import SingleGrid
 from mesa.time import BaseScheduler
 
 class TreeCell(Agent):
@@ -33,7 +33,7 @@ class TreeCell(Agent):
         If the tree is on fire, spread it to fine trees nearby.
         """
         if self.condition == "On Fire":
-            for neighbor in self.model.grid.neighbor_iter(self.pos, moore=False):
+            for neighbor in self.model.grid.iter_neighbors(self.pos, moore=False):
                 if neighbor.condition == "Fine":
                     neighbor.condition = "On Fire"
             self.condition = "Burned Out"
@@ -52,17 +52,18 @@ class ForestFire(Model):
         """
         # Set up model objects
         self.schedule = BaseScheduler(self)
-        self.grid = Grid(height, width, torus=False)
+        self.grid = SingleGrid(height, width, torus=False)
 
         # Place a tree in each cell with Prob = density
-        for (contents, x, y) in self.grid.coord_iter():
+        for contents, x, y in self.grid.coord_iter():
             if self.random.random() < density:
+                pos = (x, y)
                 # Create a tree
-                new_tree = TreeCell((x, y), self)
+                new_tree = TreeCell(pos, self)
                 # Set all trees in the first column on fire.
                 if x == 0:
                     new_tree.condition = "On Fire"
-                self.grid._place_agent((x, y), new_tree)
+                self.grid.place_agent(new_tree, pos)
                 self.schedule.add(new_tree)
 
     def step(self):
