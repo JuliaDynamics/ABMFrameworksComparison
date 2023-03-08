@@ -23,7 +23,7 @@ class SchellingAgent(Agent):
 
     def step(self):
         similar = 0
-        for neighbor in self.model.grid.neighbor_iter(self.pos):
+        for neighbor in self.model.grid.iter_neighbors(self.pos, moore=True):
             if neighbor.type == self.type:
                 similar += 1
 
@@ -42,7 +42,6 @@ class SchellingModel(Model):
     def __init__(self, height=50, width=50, density=0.8, minority_pc=0.5, homophily=3):
         '''
         '''
-
         self.height = height
         self.width = width
         self.density = density
@@ -58,17 +57,16 @@ class SchellingModel(Model):
         # We use a grid iterator that returns
         # the coordinates of a cell as well as
         # its contents. (coord_iter)
-        for cell in self.grid.coord_iter():
-            x = cell[1]
-            y = cell[2]
+        for cont, x, y in self.grid.coord_iter():
             if random.random() < self.density:
                 if random.random() < self.minority_pc:
                     agent_type = 1
                 else:
                     agent_type = 0
-
-                agent = SchellingAgent((x, y), self, agent_type)
-                self.grid.position_agent(agent, (x, y))
+                
+                pos = (x, y)
+                agent = SchellingAgent(pos, self, agent_type)
+                self.grid.place_agent(agent, pos)
                 self.schedule.add(agent)
 
     def step(self):
