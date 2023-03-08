@@ -55,7 +55,7 @@ class ForestFire(Model):
         self.grid = SingleGrid(height, width, torus=False)
 
         # Place a tree in each cell with Prob = density
-        for contents, x, y in self.grid.coord_iter():
+        for cont, x, y in self.grid.coord_iter():
             if self.random.random() < density:
                 pos = (x, y)
                 # Create a tree
