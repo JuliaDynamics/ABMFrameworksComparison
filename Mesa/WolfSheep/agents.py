@@ -8,9 +8,7 @@ class Sheep(RandomWalker):
 
     The init is the same as the RandomWalker.
     """
-
-    energy = None
-
+    
     def __init__(self, unique_id, pos, model, moore, energy=None):
         super().__init__(unique_id, pos, model, moore=moore)
         self.energy = energy
@@ -27,8 +25,8 @@ class Sheep(RandomWalker):
             self.energy -= 1
 
             # If there is grass available, eat it
-            this_cell = self.model.grid.get_cell_list_contents([self.pos])
-            grass_patch = [obj for obj in this_cell if isinstance(obj, GrassPatch)][0]
+            this_cell = self.model.grid.get_cell_list_contents(self.pos)
+            grass_patch = next(obj for obj in this_cell if isinstance(obj, GrassPatch))
             if grass_patch.fully_grown:
                 self.energy += self.model.sheep_gain_from_food
                 grass_patch.fully_grown = False
