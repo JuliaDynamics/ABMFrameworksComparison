@@ -63,7 +63,7 @@ class Boid(Agent):
 
         neighbors = self.model.space.get_neighbors(self.pos, self.vision, False)
         N = 0
-        match_vector, separation_vector, cohere = np.zeros((3,2))
+        match_vector, separation_vector, cohere = np.zeros((3, 2))
         for neighbor in neighbors:
             N += 1
             heading = self.model.space.get_heading(self.pos, neighbor.pos)
