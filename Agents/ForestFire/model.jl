@@ -29,11 +29,3 @@ function tree_step!(forest)
         forest.trees[I] = 3
     end
 end
-
-
-
-
-
-
-
-
