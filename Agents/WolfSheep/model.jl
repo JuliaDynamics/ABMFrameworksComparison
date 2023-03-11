@@ -12,7 +12,7 @@ function predator_prey(;
     n_sheep = 60,
     n_wolves = 40,
     dims = (25, 25),
-    regrowth_time = 30,
+    regrowth_time = 20,
     Δenergy_sheep = 5,
     Δenergy_wolf = 13,
     sheep_reproduce = 0.2,
