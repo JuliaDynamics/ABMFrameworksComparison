@@ -2,7 +2,7 @@ using Agents, Random
 
 @agent Automata GridAgent{2} begin end
 
-function forest_fire(; density = 1, griddims = (100, 100))
+function forest_fire(; density = 0.7, griddims = (100, 100))
     space = GridSpaceSingle(griddims; periodic = false, metric = :manhattan)
     rng = Random.MersenneTwister()
     ## Empty = 0, Green = 1, Burning = 2, Burnt = 3
