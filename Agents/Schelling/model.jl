@@ -15,7 +15,7 @@ schelling(;
 ```
 Same as in [Schelling's segregation model](@ref).
 """
-function schelling(; numagents = 400, griddims = (50, 50), min_to_be_happy = 3)
+function schelling(; numagents = 2000, griddims = (50, 50), min_to_be_happy = 3)
     @assert numagents < prod(griddims)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = Dict(:min_to_be_happy => min_to_be_happy)
