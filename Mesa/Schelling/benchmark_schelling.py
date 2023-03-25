@@ -8,7 +8,7 @@ gc.enable()
 import os, sys
 sys.path.insert(0, os.path.abspath("."))
 
-from model import SchellingModel
+from Schelling import SchellingModel
 
 import random
 random.seed(2)
