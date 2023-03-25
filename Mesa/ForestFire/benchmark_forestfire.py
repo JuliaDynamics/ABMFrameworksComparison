@@ -8,7 +8,7 @@ gc.enable()
 import os, sys
 sys.path.insert(0, os.path.abspath("."))
 
-from model import ForestFire
+from ForestFire import ForestFire
 
 import random
 random.seed(2)
