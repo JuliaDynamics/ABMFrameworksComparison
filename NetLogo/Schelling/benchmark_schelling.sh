@@ -3,4 +3,5 @@
 # NetLogo's profiler sucks in the sense that it times one run, then spits out a bunch of junk
 # to either a file or stdout. There's no easy abilitiy to parse it.
 
-bash path/to/netlogo/netlogo-headless.sh --model "Schelling.nlogo" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
+# the netlogo folder is assumed to be inside the NetLogo folder of this repository, which contains the models
+bash NetLogo/netlogo/netlogo-headless.sh --model "NetLogo/Schelling/Schelling.nlogo" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
