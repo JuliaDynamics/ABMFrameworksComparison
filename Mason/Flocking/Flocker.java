@@ -1,5 +1,3 @@
-package sim.app.flockers;
-
 import sim.engine.SimState;
 import ec.util.MersenneTwisterFast;
 import sim.util.Bag;
@@ -14,7 +12,7 @@ public class Flocker implements Steppable, Orientable2D
     public Double2D loc;
     public Double2D lastd;
     public Continuous2D flockers;
-    public FlockersBenchmark theFlock;
+    public Flockers theFlock;
     public boolean dead;
     
     public Flocker(final Double2D location) {
@@ -141,7 +139,7 @@ public class Flocker implements Steppable, Orientable2D
     }
     
     public void step(final SimState state) {
-        final FlockersBenchmark flock = (FlockersBenchmark)state;
+        final Flockers flock = (Flockers)state;
         this.loc = flock.flockers.getObjectLocation((Object)this);
         if (this.dead) {
             return;

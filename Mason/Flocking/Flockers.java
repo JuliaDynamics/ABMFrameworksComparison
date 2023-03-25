@@ -1,12 +1,10 @@
-package sim.app.flockers;
-
 import sim.engine.Steppable;
 import sim.util.Bag;
 import sim.util.Double2D;
 import sim.field.continuous.Continuous2D;
 import sim.engine.SimState;
 
-public class FlockersBenchmark extends SimState
+public class Flockers extends SimState
 {
     private static final long serialVersionUID = 1L;
     public Continuous2D flockers;
@@ -165,7 +163,7 @@ public class FlockersBenchmark extends SimState
         return locs;
     }
 
-    public FlockersBenchmark(final long seed) {
+    public Flockers(final long seed) {
         super(seed);
         this.width = 100.0; //
         this.height = 100.0; //
@@ -198,7 +196,7 @@ public class FlockersBenchmark extends SimState
     }
 
     public static void main(final String[] args) {
-        doLoop((Class)FlockersBenchmark.class, args);
+        doLoop((Class)Flockers.class, args);
         System.exit(0);
     }
 }

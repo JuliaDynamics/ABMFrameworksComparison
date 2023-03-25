@@ -1,13 +1,15 @@
 #!/bin/bash
 
-#export CLASSPATH mason.20.jar
+export CLASSPATH=Mason/Flocking:Mason/mason.21.jar
+javac Mason/Flocking/Flockers.java Mason/Flocking/Flocker.java
 times=()
 for i in {1..100}
 do
     startt=`date +%s%N`
-    java sim.app.flockers.FlockersBenchmark -for 100 -quiet
+    java Flockers -for 100 -quiet
     endt=`date +%s%N`
     times+=(`expr $endt - $startt`)
 done
 readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+echo -n "Mason Flocking (ms): "
 echo "${sorted[0]} * 0.000001" | bc

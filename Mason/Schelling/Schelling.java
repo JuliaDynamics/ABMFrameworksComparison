@@ -1,5 +1,3 @@
-package sim.app.schelling;
-
 import sim.engine.Steppable;
 import sim.util.Int2D;
 import sim.util.Interval;

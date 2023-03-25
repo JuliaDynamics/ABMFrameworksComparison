@@ -1,5 +1,3 @@
-package sim.app.schelling;
-
 import sim.field.grid.IntGrid2D;
 import sim.engine.SimState;
 import sim.util.IntBag;
