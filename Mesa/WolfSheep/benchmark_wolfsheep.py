@@ -11,7 +11,7 @@ import os, sys
 sys.path.insert(0, os.path.abspath("."))
 
 from agents import Sheep, Wolf, GrassPatch
-from model import WolfSheep
+from WolfSheep import WolfSheep
 
 def runthemodel(wolfsheep):
     for i in range(0, 500):

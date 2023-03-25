@@ -1,7 +1,7 @@
 using Agents
 using BenchmarkTools
 
-include("model.jl")
+include("WolfSheep.jl")
 
 a = @benchmark step!(model, agent_step!, model_step!, 500) setup = (
     (model, agent_step!, model_step!) = predator_prey()) samples = 100

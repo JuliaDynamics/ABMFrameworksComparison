@@ -4,7 +4,7 @@ import sim.util.Double2D;
 import sim.field.continuous.Continuous2D;
 import sim.engine.SimState;
 
-public class Flockers extends SimState
+public class Flocking extends SimState
 {
     private static final long serialVersionUID = 1L;
     public Continuous2D flockers;
@@ -163,7 +163,7 @@ public class Flockers extends SimState
         return locs;
     }
 
-    public Flockers(final long seed) {
+    public Flocking(final long seed) {
         super(seed);
         this.width = 100.0; //
         this.height = 100.0; //
@@ -196,7 +196,7 @@ public class Flockers extends SimState
     }
 
     public static void main(final String[] args) {
-        doLoop((Class)Flockers.class, args);
+        doLoop((Class)Flocking.class, args);
         System.exit(0);
     }
 }

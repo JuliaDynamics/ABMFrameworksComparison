@@ -12,7 +12,7 @@ public class Flocker implements Steppable, Orientable2D
     public Double2D loc;
     public Double2D lastd;
     public Continuous2D flockers;
-    public Flockers theFlock;
+    public Flocking theFlock;
     public boolean dead;
     
     public Flocker(final Double2D location) {
@@ -139,7 +139,7 @@ public class Flocker implements Steppable, Orientable2D
     }
     
     public void step(final SimState state) {
-        final Flockers flock = (Flockers)state;
+        final Flocking flock = (Flocking)state;
         this.loc = flock.flockers.getObjectLocation((Object)this);
         if (this.dead) {
             return;

@@ -10,7 +10,7 @@ gc.enable()
 import os, sys
 sys.path.insert(0, os.path.abspath("."))
 
-from model import BoidFlockers
+from Flocking import BoidFlockers
 
 def runthemodel(flock):
     for i in range(0, 100):

@@ -1,7 +1,7 @@
 using Agents
 using BenchmarkTools
 
-include("model.jl")
+include("ForestFire.jl")
 
 a = @benchmark step!(model, agent_step!, model_step!, 100) setup =
     ((model, agent_step!, model_step!) = forest_fire()) samples=100
