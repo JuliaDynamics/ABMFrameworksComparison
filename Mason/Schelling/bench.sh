@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CLASSPATH=Mason/Schelling:Mason/mason.21.jar
-javac Mason/Schelling/Schelling.java Mason/Schelling/Agent.java
+javac Mason/Schelling/model.java Mason/Schelling/agent.java
 times=()
 for i in {1..100}
 do
