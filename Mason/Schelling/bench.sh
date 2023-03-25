@@ -6,7 +6,7 @@ times=()
 for i in {1..100}
 do
     startt=`date +%s%N`
-    java Schelling -for 100 -quiet
+    java Schelling -for 10 -quiet
     endt=`date +%s%N`
     times+=(`expr $endt - $startt`)
 done
