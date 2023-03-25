@@ -6,7 +6,7 @@ times=()
 for i in {1..100}
 do
     startt=`date +%s%N`
-    java Flockers -for 100 -quiet
+    java Flocking -for 100 -quiet
     endt=`date +%s%N`
     times+=(`expr $endt - $startt`)
 done
