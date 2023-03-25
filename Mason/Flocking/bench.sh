@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export CLASSPATH=Mason/Flocking:Mason/mason.21.jar
-javac Mason/Flocking/model.java Mason/Flocking/agent.java
+javac Mason/Flocking/Flocking.java Mason/Flocking/Flocker.java
 times=()
 for i in {1..100}
 do
