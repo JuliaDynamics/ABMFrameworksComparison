@@ -6,6 +6,16 @@ julia --project=@. Agents/Flocking/benchmark.jl
 julia --project=@. Agents/Schelling/benchmark.jl
 julia --project=@. Agents/ForestFire/benchmark.jl
 
+echo "Benchmarking Mason"
+bash Mason/Flocking/bench.sh
+bash Mason/Schelling/bench.sh
+
+echo "Benchmarking Mesa"
+python Mesa/WolfSheep/benchmark.py
+python Mesa/Flocking/benchmark.py
+python Mesa/Schelling/benchmark.py
+python Mesa/ForestFire/benchmark.py
+
 echo "Benchmarking NetLogo"
 # Don't run above 8 threads otherwise errors will spit once the JVMs try
 # to share the Backing Store and lock it
@@ -20,11 +30,3 @@ echo "NetLogo Schelling (ms): "$ws
 
 ws=$(parallel -j8 ::: $(printf './netlogo_forest.sh %.0s' {1..100}) | sort | head -n1)
 echo "NetLogo ForestFire (ms): "$ws
-
-echo "Benchmarking Mesa"
-python Mesa/WolfSheep/benchmark.py
-python Mesa/Flocking/benchmark.py
-python Mesa/Schelling/benchmark.py
-python Mesa/ForestFire/benchmark.py
-
-echo "Mason Benchmarks must be run manually"
