@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Benchmarking Julia"
+(echo "Benchmarking Julia"
 julia --project=@. Agents/WolfSheep/benchmark_wolfsheep.jl
 julia --project=@. Agents/Flocking/benchmark_flocking.jl
 julia --project=@. Agents/Schelling/benchmark_schelling.jl
@@ -29,4 +29,4 @@ ws=$(parallel -j1 ::: $(printf 'NetLogo/Schelling/benchmark_schelling.sh %.0s' {
 echo "NetLogo Schelling (ms): "$ws
 
 ws=$(parallel -j1 ::: $(printf 'NetLogo/ForestFire/benchmark_forestfire.sh %.0s' {1..100}) | sort | head -n1)
-echo "NetLogo ForestFire (ms): "$ws
+echo "NetLogo ForestFire (ms): "$ws) | tee benchmark_results.txt
