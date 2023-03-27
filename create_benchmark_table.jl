@@ -19,12 +19,9 @@ for m in models
         if f == "Agents.jl"
             frameworks_comparison[m][f] = 1
         else
-            if frameworks_times[m][f] == 0.0
-                continue
-            else
-                v = round(frameworks_times[m][f]/frameworks_times[m]["Agents.jl"], digits=1)
-                frameworks_comparison[m][f] = v
-            end
+            frameworks_times[m][f] == 0.0 && continue
+            v = round(frameworks_times[m][f]/frameworks_times[m]["Agents.jl"], digits=1)
+            frameworks_comparison[m][f] = v
         end
     end
 end
