@@ -18,7 +18,7 @@ To do this you can run the `runall.sh` file with `bash runall.sh`. It is easier 
 - To run the file on a bash shell;
 - To install the tested frameworks (except for Mason which is already provided);
 - To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel tool available;
-- Move the folder where NetLogo is installed inside the folder where the Netlogo benchmarks reside. 
+- To Move the folder where NetLogo is installed inside the folder where the Netlogo benchmarks reside and rename it as `netlogo`. 
 
 ## Contributions from other Frameworks
 
