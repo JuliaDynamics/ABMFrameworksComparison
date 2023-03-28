@@ -1,6 +1,0 @@
-GrayBinaryChromosome
-StandardBinaryChromosome
-MixedTypeChromosome
-RealHypercubeChromosome
-
-
