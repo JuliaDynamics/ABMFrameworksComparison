@@ -11,6 +11,15 @@ We used the following models for the comparison:
 - **Forest fire**, provides comparisons for cellular automata type ABMs (i.e. when agents do not move and every location in space contains exactly one agent). NOTE: The Agents.jl implementation of this model has been changed in v4.0 to be directly comparable to Mesa and NetLogo. As a consequence it no longer follows the [original rule-set](https://en.wikipedia.org/wiki/Forest-fire_model).
 - **Schelling's-segregation-model**, an additional `GridSpace` model to compare with MASON. Simpler rules than Wolf Sheep Grass.
 
+## How to run the benchmarks locally
+
+To do this you can run the `runall.sh` file with `bash runall.sh`. It is easier to run the file with a Linux OS, but you can emulate the same behaviour on other systems. The requirements to do so are:
+
+- To run the file on a bash shell;
+- To install the tested frameworks (except for Mason which is already provided);
+- To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel tool available;
+- To Move the folder where NetLogo is installed inside the folder where the Netlogo benchmarks reside and rename it as `netlogo`. 
+
 ## Contributions from other Frameworks
 
 We welcome improvements from other framework contributors, either with new code that beats the implementation provided here with updated improvements from your framework's development process.
@@ -18,3 +27,4 @@ We welcome improvements from other framework contributors, either with new code 
 Frameworks not included in the comparison are invited to provide code for the above, standardised comparison models.
 
 All are welcome to suggest better 'standard candle' models to test framework capability.
+

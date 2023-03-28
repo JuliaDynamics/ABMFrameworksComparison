@@ -30,3 +30,5 @@ echo "NetLogo Schelling (ms): "$ws
 
 ws=$(parallel -j1 ::: $(printf 'NetLogo/ForestFire/benchmark_forestfire.sh %.0s' {1..100}) | sort | head -n1)
 echo "NetLogo ForestFire (ms): "$ws) | tee benchmark_results.txt
+
+julia create_benchmark_table.jl
