@@ -1,12 +1,14 @@
-@agent SheepWolf GridAgent{2} begin
-    type::Symbol # :sheep or :wolf
+@agent Wolf GridAgent{2} begin
     energy::Float64
     reproduction_prob::Float64
     Δenergy::Float64
 end
 
-Sheep(id, pos, energy, repr, Δe) = SheepWolf(id, pos, :sheep, energy, repr, Δe)
-Wolf(id, pos, energy, repr, Δe) = SheepWolf(id, pos, :wolf, energy, repr, Δe)
+@agent Sheep GridAgent{2} begin
+    energy::Float64
+    reproduction_prob::Float64
+    Δenergy::Float64
+end
 
 function predator_prey(;
     n_sheep = 60,
@@ -24,7 +26,13 @@ function predator_prey(;
         countdown = zeros(Int, dims),
         regrowth_time = regrowth_time,
     )
-    model = ABM(SheepWolf, space; properties, scheduler = Schedulers.by_property(:type))
+    model = ABM(
+        Union{Wolf, Sheep},
+        space,
+        scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep}),
+        properties = properties,
+        warn=false
+    )
     id = 0
     for _ in 1:n_sheep
         id += 1
@@ -44,13 +52,10 @@ function predator_prey(;
         model.countdown[p...] = countdown
         model.fully_grown[p...] = fully_grown
     end
-    return model, predator_agent_step!, predator_model_step!
+    return model, agent_step!, model_step!
 end
 
-predator_agent_step!(agent::SheepWolf, model) =
-    agent.type == :sheep ? sheep_step!(agent, model) : wolf_step!(agent, model)
-
-function sheep_step!(sheep, model)
+function agent_step!(sheep::Sheep, model)
     randomwalk!(sheep, model, 1)
     sheep.energy -= 1
     sheep_eat!(sheep, model)
@@ -59,22 +64,22 @@ function sheep_step!(sheep, model)
         return
     end
     if rand(abmrng(model)) <= sheep.reproduction_prob
-        wolfsheep_reproduce!(sheep, model)
+        reproduce!(sheep, model)
     end
 end
 
-function wolf_step!(wolf, model)
+function agent_step!(wolf::Wolf, model)
     randomwalk!(wolf, model, 1)
     wolf.energy -= 1
-    agents = collect(agents_in_position(wolf.pos, model))
-    dinner = filter!(x -> x.type == :sheep, agents)
+    agents = agents_in_position(wolf.pos, model)
+    dinner = Iterators.filter(x -> typeof(x) == Sheep, agents)
     wolf_eat!(wolf, dinner, model)
     if wolf.energy < 0
         kill_agent!(wolf, model)
         return
     end
     if rand(abmrng(model)) <= wolf.reproduction_prob
-        wolfsheep_reproduce!(wolf, model)
+        reproduce!(wolf, model)
     end
 end
 
@@ -87,19 +92,17 @@ end
 
 function wolf_eat!(wolf, sheep, model)
     if !isempty(sheep)
-        dinner = rand(abmrng(model), sheep)
+        dinner = rand(abmrng(model), collect(sheep))
         kill_agent!(dinner, model)
         wolf.energy += wolf.Δenergy
     end
 end
 
-function wolfsheep_reproduce!(agent, model)
+function reproduce!(agent, model)
     agent.energy /= 2
-    id = nextid(model)
-    offspring = SheepWolf(
-        id,
+    offspring = typeof(agent)(
+        nextid(model),
         agent.pos,
-        agent.type,
         agent.energy,
         agent.reproduction_prob,
         agent.Δenergy,
@@ -108,7 +111,7 @@ function wolfsheep_reproduce!(agent, model)
     return
 end
 
-function predator_model_step!(model)
+function model_step!(model)
     @inbounds for p in positions(model)
         if !(model.fully_grown[p...])
             if model.countdown[p...] ≤ 0
@@ -120,5 +123,3 @@ function predator_model_step!(model)
         end
     end
 end
-
-
