@@ -5,16 +5,6 @@ using Agents
     group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
-"""
-```julia
-schelling(;
-    numagents = 320,
-    griddims = (20, 20),
-    min_to_be_happy = 3,
-)
-```
-Same as in [Schelling's segregation model](@ref).
-"""
 function schelling(; numagents = 2000, griddims = (50, 50), min_to_be_happy = 3)
     @assert numagents < prod(griddims)
     space = GridSpaceSingle(griddims, periodic = false)
