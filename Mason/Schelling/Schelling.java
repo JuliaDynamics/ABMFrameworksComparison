@@ -127,16 +127,16 @@ public class Schelling extends SimState
     }
     
     public Schelling(final long seed) {
-        this(seed, 50, 50);
+        this(seed, 1131, 1131);
     }
     
     public Schelling(final long seed, final int width, final int height) {
         super(seed);
         this.neighborhood = 1;
         this.threshold = 3;
-        this.redProbability = 0.4;
-        this.blueProbability = 0.4;
-        this.emptyProbability = 0.2;
+        this.redProbability = 0.050033;
+        this.blueProbability = 0.050033;
+        this.emptyProbability = 0.899934;
         this.unavailableProbability = 0.0;
         this.emptySpaces = new Bag();
         this.gridWidth = width;

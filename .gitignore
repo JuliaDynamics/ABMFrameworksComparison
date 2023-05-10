@@ -3,3 +3,4 @@ Manifest.toml
 *.code-workspace
 .*.tmp.nlogo
 __pycache__
+*.class

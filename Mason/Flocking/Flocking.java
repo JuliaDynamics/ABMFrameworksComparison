@@ -165,9 +165,9 @@ public class Flocking extends SimState
 
     public Flocking(final long seed) {
         super(seed);
-        this.width = 100.0; //
-        this.height = 100.0; //
-        this.numFlockers = 300; //
+        this.width = 1131.0; //
+        this.height = 1131.0; //
+        this.numFlockers = 128000; //
         this.cohesion = 0.03; //
         this.avoidance = 0.015; //
         this.randomness = 1.0; //

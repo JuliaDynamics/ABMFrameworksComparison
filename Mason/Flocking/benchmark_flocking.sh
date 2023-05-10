@@ -3,10 +3,10 @@
 export CLASSPATH=Mason/Flocking:Mason/mason.21.jar
 javac Mason/Flocking/Flocking.java Mason/Flocking/Flocker.java
 times=()
-for i in {1..100}
+for i in {1..2}
 do
     startt=`date +%s%N`
-    java Flocking -for 100 -quiet
+    java Flocking -for 200 -quiet
     endt=`date +%s%N`
     times+=(`expr $endt - $startt`)
 done
