@@ -1,4 +1,4 @@
-# Wolf Sheep Grass model
+# Wolf Sheep Grass model - Configuration tested
 
 - number of sheeps: 60
 - number of wolves: 40
