@@ -1,7 +1,12 @@
-# Flocking model
+# Flocking model - Configuration tested
 
-a `ContinuousSpace` model, chosen over other models to include a MASON benchmark. 
-
-Agents must move in accordance with social rules over the space.
+- n_birds = 300
+- speed = 1.0
+- cohere_factor = 0.03
+- separation = 1.0
+- separate_factor = 0.015
+- match_factor = 0.05
+- visual_distance = 5.0
+- extent = (100, 100)
 
 
