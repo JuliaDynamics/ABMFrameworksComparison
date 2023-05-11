@@ -4,4 +4,4 @@
 # to either a file or stdout. There's no easy abilitiy to parse it.
 
 # the netlogo folder is assumed to be inside the NetLogo folder of this repository, which contains the models
-bash NetLogo/netlogo/netlogo-headless.sh --model "NetLogo/Flocking/Flocking.nlogo" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
+bash ABM_Framework_Comparisons-main/netlogo/netlogo-headless.sh --model "Schelling/NetLogo/Schelling.nlogo" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
