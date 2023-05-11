@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CLASSPATH=Flocking/Mason:Flocking/Mason/mason.21.jar
+export CLASSPATH=Flocking/Mason:./mason.21.jar
 javac Flocking/Mason/Flocking.java Flocking/Mason/Flocker.java
 times=()
 for i in {1..100}

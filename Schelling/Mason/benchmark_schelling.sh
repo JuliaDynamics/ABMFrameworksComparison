@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CLASSPATH=Schelling/Mason:Schelling/Mason/mason.21.jar
+export CLASSPATH=Schelling/Mason:./mason.21.jar
 javac Schelling/Mason/Schelling.java Schelling/Mason/Agent.java
 times=()
 for i in {1..100}
