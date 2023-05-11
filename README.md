@@ -15,7 +15,7 @@ The results of the latest comparison are presented [here](https://juliadynamics.
 
 ## How to run the benchmarks locally
 
-To reproduce the results you can run the `runall.sh` file with `bash runall.sh`. It is easier to run the file with a Linux OS, but you can emulate the same behaviour on other systems. The requirements to do so are:
+To reproduce the results you can run the `runall.sh` file with `bash runall.sh`. It is easier to run the file with a Linux OS, but you can emulate the same behaviour on Windows using WSL. The requirements to do so are:
 
 - To run the file on a bash shell;
 - To install the tested frameworks (except for Mason which is already provided);
