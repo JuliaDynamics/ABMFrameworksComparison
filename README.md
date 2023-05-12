@@ -47,6 +47,7 @@ printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.0/bin\"" >> ~/.bashrc
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
 
 # install mesa
+sudo apt install python3-pip
 pip install mesa==1.2.1
 
 # install netlogo
