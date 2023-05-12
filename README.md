@@ -22,7 +22,44 @@ The requirements to run the benchmark file are:
 - To run the file on a bash shell;
 - To install the tested frameworks (except for Mason which is already provided);
 - To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel tool available;
-- To Move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder.
+- To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder.
+
+This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work on another enviroments too, copy-paste it on a bash shell to set up everything automatically for the benchmark:
+
+```bash
+
+# fetch update software list
+sudo apt-get update
+
+# clone the repository
+git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
+
+# install java
+sudo apt install default-jre-headless
+sudo apt install default-jdk-headless
+
+# install julia
+sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
+sudo tar zxvf julia-1.9.0-linux-x86_64.tar.gz
+printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.0/bin\"" >> ~/.bashrc
+
+# install agents
+julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
+
+# install mesa
+pip install mesa==1.2.1
+
+# install netlogo
+sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
+sudo tar -xzf NetLogo-6.3.0-64.tgz
+
+# move netlogo inside repository
+mv "NetLogo 6.3.0" netlogo
+mv netlogo ABM_Framework_Comparisons
+
+# install parallel tool
+sudo apt install parallel
+```
 
 ## Contributions from other Frameworks
 
