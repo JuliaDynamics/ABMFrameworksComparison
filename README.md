@@ -32,7 +32,7 @@ This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also o
 sudo apt-get update
 
 # clone the repository
-git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
+sudo git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
 
 # install java
 sudo apt install default-jre-headless
