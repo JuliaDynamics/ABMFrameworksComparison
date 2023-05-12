@@ -31,7 +31,7 @@ This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also o
 # fetch update software list
 sudo apt-get update
 
-# clone the repository
+# clone the repository and give permissions
 sudo git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
 sudo chmod a+rwx ABM_Framework_Comparisons
 
