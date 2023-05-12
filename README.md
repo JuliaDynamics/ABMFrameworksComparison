@@ -55,8 +55,8 @@ sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
 sudo tar -xzf NetLogo-6.3.0-64.tgz
 
 # move netlogo inside repository
-mv "NetLogo 6.3.0" netlogo
-mv netlogo ABM_Framework_Comparisons
+sudo mv "NetLogo 6.3.0" netlogo
+sudo mv netlogo ABM_Framework_Comparisons
 
 # install parallel tool
 sudo apt install parallel
