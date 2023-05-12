@@ -33,4 +33,4 @@ ws=$(parallel -j1 ::: $(printf 'ForestFire/NetLogo/benchmark_forestfire.sh %.0s'
 echo "NetLogo ForestFire (ms): "$ws
 ) | tee benchmark_results.txt
 
-julia create_benchmark_table.jl
+julia --project=@. create_benchmark_table.jl
