@@ -60,6 +60,9 @@ sudo mv netlogo ABM_Framework_Comparisons
 
 # install parallel tool
 sudo apt install parallel
+
+# move to repo folder
+cd ABM_Framework_Comparisons
 ```
 
 ## Contributions from other Frameworks
