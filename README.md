@@ -34,6 +34,7 @@ sudo apt-get update
 # clone the repository and give permissions
 sudo git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
 sudo chmod a+rwx ABM_Framework_Comparisons
+sudo chmod -R 777 ABM_Framework_Comparisons
 
 # install java
 sudo apt install default-jre-headless
