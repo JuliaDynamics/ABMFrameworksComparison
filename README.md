@@ -24,7 +24,7 @@ The requirements to run the benchmark file are:
 - To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel tool available;
 - To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder.
 
-This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work on another enviroments too, copy-paste it on a bash shell to set up everything automatically for the benchmark:
+This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other enviroments too, copy-paste it on a bash shell to set up everything automatically for the benchmark:
 
 ```bash
 
