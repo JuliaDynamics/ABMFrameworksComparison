@@ -42,6 +42,7 @@ sudo apt install default-jdk-headless
 sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
 sudo tar zxvf julia-1.9.0-linux-x86_64.tar.gz
 printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.0/bin\"" >> ~/.bashrc
+exec bash
 
 # install agents
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
