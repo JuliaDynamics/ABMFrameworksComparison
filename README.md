@@ -27,7 +27,6 @@ The requirements to run the benchmark file are:
 This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other similar enviroments, copy-paste it on a bash shell to set up everything automatically for the benchmark:
 
 ```bash
-
 # fetch update software list
 sudo apt-get update
 
@@ -43,8 +42,8 @@ sudo apt install default-jdk-headless
 # install julia
 sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.0-linux-x86_64.tar.gz
 sudo tar zxvf julia-1.9.0-linux-x86_64.tar.gz
+export PATH=$PATH:$(pwd)"/julia-1.9.0/bin"
 printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.0/bin\"" >> ~/.bashrc
-exec bash
 
 # install agents
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
