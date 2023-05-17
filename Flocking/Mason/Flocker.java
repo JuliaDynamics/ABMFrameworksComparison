@@ -23,7 +23,7 @@ public class Flocker implements Steppable, Orientable2D
     }
     
     public Bag getNeighbors() {
-        return this.flockers.getNeighborsExactlyWithinDistance(this.loc, this.theFlock.neighborhood, true);
+        return this.flockers.getNeighborsWithinDistance(this.loc, this.theFlock.neighborhood, true);
     }
     
     public double getOrientation() {
