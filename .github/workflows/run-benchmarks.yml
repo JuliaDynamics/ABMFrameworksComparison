@@ -1,0 +1,10 @@
+name: run-benchmarks
+on: push
+
+jobs:
+  Run-benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+       - name: setup-and-run-benchmarks
+         uses: actions/checkout@v3
+       - run: bash ./.github/setup.sh
