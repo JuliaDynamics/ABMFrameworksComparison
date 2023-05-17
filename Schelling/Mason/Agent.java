@@ -6,7 +6,6 @@ import sim.engine.Steppable;
 
 public class Agent implements Steppable
 {
-    private static final long serialVersionUID = 1L;
     Int2D loc;
     IntBag neighborsX;
     IntBag neighborsY;
@@ -57,3 +56,4 @@ public class Agent implements Steppable
         this.loc = newLoc;
     }
 }
+
