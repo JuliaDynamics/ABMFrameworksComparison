@@ -6,7 +6,6 @@ import sim.engine.SimState;
 
 public class Flocking extends SimState
 {
-    private static final long serialVersionUID = 1L;
     public Continuous2D flockers;
     public double width;
     public double height;
@@ -16,22 +15,20 @@ public class Flocking extends SimState
     public double randomness;
     public double consistency;
     public double momentum;
-    public double deadFlockerProbability;
     public double neighborhood;
     public double jump;
 
     public Flocking(final long seed) {
         super(seed);
-        this.width = 100.0; //
-        this.height = 100.0; //
-        this.numFlockers = 300; //
-        this.cohesion = 0.03; //
-        this.avoidance = 0.015; //
-        this.randomness = 1.0; //
-        this.consistency = 0.05; //
-        this.momentum = 1.0; //
-        this.deadFlockerProbability = 0.0; //
-        this.neighborhood = 5.0; //
+        this.width = 100.0;
+        this.height = 100.0;
+        this.numFlockers = 300;
+        this.cohesion = 0.03;
+        this.avoidance = 0.015;
+        this.randomness = 1.0;
+        this.consistency = 0.05;
+        this.momentum = 1.0;
+        this.neighborhood = 5.0;
         this.jump = 0.7;
     }
 
@@ -42,9 +39,6 @@ public class Flocking extends SimState
         for (int x = 0; x < this.numFlockers; ++x) {
             final Double2D location = new Double2D(this.random.nextDouble() * this.width, this.random.nextDouble() * this.height);
             final Flocker flocker = new Flocker(location);
-            if (this.random.nextBoolean(this.deadFlockerProbability)) {
-                flocker.dead = true;
-            }
             this.flockers.setObjectLocation((Object)flocker, location);
             flocker.flockers = this.flockers;
             flocker.theFlock = this;
