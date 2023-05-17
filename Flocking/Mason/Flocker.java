@@ -7,7 +7,6 @@ import sim.engine.Steppable;
 
 public class Flocker implements Steppable
 {
-    private static final long serialVersionUID = 1L;
     public Double2D loc;
     public Double2D lastd;
     public Continuous2D flockers;
