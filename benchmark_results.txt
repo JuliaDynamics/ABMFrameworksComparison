@@ -1,2 +1,0 @@
-Benchmarking NetLogo
-NetLogo WolfSheep (ms): 1054.989
