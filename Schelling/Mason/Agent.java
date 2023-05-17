@@ -42,7 +42,7 @@ public class Agent implements Steppable
         final int myVal = locs[x][y];
         for (int i = 0; i < numObjs; ++i) {
             if (locs[objsX[i]][objsY[i]] == myVal && (objsX[i] != x || objsY[i] != y)) {
-                val += 1.0
+                val += 1.0;
                 if (val >= threshold) {
                     return;
                 }
