@@ -7,7 +7,6 @@ import sim.engine.SimState;
 
 public class Schelling extends SimState
 {
-    private static final long serialVersionUID = 1L;
     public int gridHeight;
     public int gridWidth;
     public int neighborhood;
