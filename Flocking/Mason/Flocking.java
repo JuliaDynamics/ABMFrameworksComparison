@@ -18,7 +18,6 @@ public class Flocking extends SimState
     public double momentum;
     public double deadFlockerProbability;
     public double neighborhood;
-    public double jump;
 
     public double getCohesion() {
         return this.cohesion;
