@@ -125,24 +125,16 @@ public class Flocker implements Steppable, Orientable2D
         return new Double2D(400.0 * x, 400.0 * y);
     }
     
-    public Double2D randomness(final MersenneTwisterFast r) {
-        final double x = r.nextDouble() * 2.0 - 1.0;
-        final double y = r.nextDouble() * 2.0 - 1.0;
-        final double l = Math.sqrt(x * x + y * y);
-        return new Double2D(0.05 * x / l, 0.05 * y / l);
-    }
-    
     public void step(final SimState state) {
         final Flocking flock = (Flocking)state;
         this.loc = flock.flockers.getObjectLocation((Object)this);
         final Bag b = this.getNeighbors();
         final Double2D avoid = this.avoidance(b, flock.flockers);
         final Double2D cohe = this.cohesion(b, flock.flockers);
-        final Double2D rand = this.randomness(flock.random);
         final Double2D cons = this.consistency(b, flock.flockers);
         final Double2D mome = this.momentum();
-        double dx = flock.cohesion * cohe.x + flock.avoidance * avoid.x + flock.consistency * cons.x + flock.randomness * rand.x + flock.momentum * mome.x;
-        double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + flock.randomness * rand.y + flock.momentum * mome.y;
+        double dx = flock.cohesion * cohe.x + flock.avoidance * avoid.x + flock.consistency * cons.x + flock.momentum * mome.x;
+        double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + flock.momentum * mome.y;
         final double dis = Math.sqrt(dx * dx + dy * dy);
         if (dis > 0.0) {
             dx = dx / dis * flock.jump;
