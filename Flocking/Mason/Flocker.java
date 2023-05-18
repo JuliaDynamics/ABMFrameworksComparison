@@ -3,12 +3,10 @@ import ec.util.MersenneTwisterFast;
 import sim.util.Bag;
 import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
-import sim.portrayal.Orientable2D;
 import sim.engine.Steppable;
 
-public class Flocker implements Steppable, Orientable2D
+public class Flocker implements Steppable
 {
-    private static final long serialVersionUID = 1L;
     public Double2D loc;
     public Double2D lastd;
     public Continuous2D flockers;
@@ -24,29 +22,6 @@ public class Flocker implements Steppable, Orientable2D
     
     public Bag getNeighbors() {
         return this.flockers.getNeighborsExactlyWithinDistance(this.loc, this.theFlock.neighborhood, true);
-    }
-    
-    public double getOrientation() {
-        return this.orientation2D();
-    }
-    
-    public boolean isDead() {
-        return this.dead;
-    }
-    
-    public void setDead(final boolean val) {
-        this.dead = val;
-    }
-    
-    public void setOrientation2D(final double val) {
-        this.lastd = new Double2D(Math.cos(val), Math.sin(val));
-    }
-    
-    public double orientation2D() {
-        if (this.lastd.x == 0.0 && this.lastd.y == 0.0) {
-            return 0.0;
-        }
-        return Math.atan2(this.lastd.y, this.lastd.x);
     }
     
     public Double2D momentum() {
@@ -162,3 +137,4 @@ public class Flocker implements Steppable, Orientable2D
         flock.flockers.setObjectLocation((Object)this, this.loc);
     }
 }
+
