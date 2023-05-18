@@ -13,12 +13,10 @@ public class Flocker implements Steppable, Orientable2D
     public Double2D lastd;
     public Continuous2D flockers;
     public Flocking theFlock;
-    public boolean dead;
     
     public Flocker(final Double2D location) {
         this.loc = new Double2D(0.0, 0.0);
         this.lastd = new Double2D(0.0, 0.0);
-        this.dead = false;
         this.loc = location;
     }
     
@@ -63,12 +61,10 @@ public class Flocker implements Steppable, Orientable2D
         int count = 0;
         for (i = 0; i < b.numObjs; ++i) {
             final Flocker other = (Flocker)b.objs[i];
-            if (!other.dead) {
-                final Double2D m = ((Flocker)b.objs[i]).momentum();
-                ++count;
-                x += m.x;
-                y += m.y;
-            }
+            final Double2D m = ((Flocker)b.objs[i]).momentum();
+            ++count;
+            x += m.x;
+            y += m.y;
         }
         if (count > 0) {
             x /= count;
@@ -90,13 +86,11 @@ public class Flocker implements Steppable, Orientable2D
         double dy;
         for (i = 0, i = 0; i < b.numObjs; ++i) {
             other = (Flocker)b.objs[i];
-            if (!other.dead) {
-                dx = flockers.tdx(this.loc.x, other.loc.x);
-                dy = flockers.tdy(this.loc.y, other.loc.y);
-                ++count;
-                x += dx;
-                y += dy;
-            }
+            dx = flockers.tdx(this.loc.x, other.loc.x);
+            dy = flockers.tdy(this.loc.y, other.loc.y);
+            ++count;
+            x += dx;
+            y += dy;
         }
         if (count > 0) {
             x /= count;
@@ -141,9 +135,6 @@ public class Flocker implements Steppable, Orientable2D
     public void step(final SimState state) {
         final Flocking flock = (Flocking)state;
         this.loc = flock.flockers.getObjectLocation((Object)this);
-        if (this.dead) {
-            return;
-        }
         final Bag b = this.getNeighbors();
         final Double2D avoid = this.avoidance(b, flock.flockers);
         final Double2D cohe = this.cohesion(b, flock.flockers);
