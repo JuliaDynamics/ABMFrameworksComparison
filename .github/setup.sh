@@ -2,7 +2,7 @@
 sudo apt-get update
 
 # clone the repository and give permissions
-sudo git clone https://github.com/Tortar/test_comp.git
+sudo git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
 sudo cd test_comp
 sudo chmod a+rwx ./
 sudo chmod -R 777 ./
