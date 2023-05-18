@@ -11,17 +11,15 @@ public class Flocker implements Steppable
     public Double2D lastd;
     public Continuous2D flockers;
     public Flocking theFlock;
-    public boolean dead;
     
     public Flocker(final Double2D location) {
         this.loc = new Double2D(0.0, 0.0);
         this.lastd = new Double2D(0.0, 0.0);
-        this.dead = false;
         this.loc = location;
     }
     
     public Bag getNeighbors() {
-        return this.flockers.getNeighborsExactlyWithinDistance(this.loc, this.theFlock.neighborhood, true);
+        return this.flockers.getNeighborsWithinDistance(this.loc, this.theFlock.neighborhood, true);
     }
     
     public Double2D momentum() {
@@ -38,12 +36,10 @@ public class Flocker implements Steppable
         int count = 0;
         for (i = 0; i < b.numObjs; ++i) {
             final Flocker other = (Flocker)b.objs[i];
-            if (!other.dead) {
-                final Double2D m = ((Flocker)b.objs[i]).momentum();
-                ++count;
-                x += m.x;
-                y += m.y;
-            }
+            final Double2D m = ((Flocker)b.objs[i]).momentum();
+            ++count;
+            x += m.x;
+            y += m.y;
         }
         if (count > 0) {
             x /= count;
@@ -65,13 +61,11 @@ public class Flocker implements Steppable
         double dy;
         for (i = 0, i = 0; i < b.numObjs; ++i) {
             other = (Flocker)b.objs[i];
-            if (!other.dead) {
-                dx = flockers.tdx(this.loc.x, other.loc.x);
-                dy = flockers.tdy(this.loc.y, other.loc.y);
-                ++count;
-                x += dx;
-                y += dy;
-            }
+            dx = flockers.tdx(this.loc.x, other.loc.x);
+            dy = flockers.tdy(this.loc.y, other.loc.y);
+            ++count;
+            x += dx;
+            y += dy;
         }
         if (count > 0) {
             x /= count;
@@ -106,31 +100,20 @@ public class Flocker implements Steppable
         return new Double2D(400.0 * x, 400.0 * y);
     }
     
-    public Double2D randomness(final MersenneTwisterFast r) {
-        final double x = r.nextDouble() * 2.0 - 1.0;
-        final double y = r.nextDouble() * 2.0 - 1.0;
-        final double l = Math.sqrt(x * x + y * y);
-        return new Double2D(0.05 * x / l, 0.05 * y / l);
-    }
-    
     public void step(final SimState state) {
         final Flocking flock = (Flocking)state;
         this.loc = flock.flockers.getObjectLocation((Object)this);
-        if (this.dead) {
-            return;
-        }
         final Bag b = this.getNeighbors();
         final Double2D avoid = this.avoidance(b, flock.flockers);
         final Double2D cohe = this.cohesion(b, flock.flockers);
-        final Double2D rand = this.randomness(flock.random);
         final Double2D cons = this.consistency(b, flock.flockers);
         final Double2D mome = this.momentum();
-        double dx = flock.cohesion * cohe.x + flock.avoidance * avoid.x + flock.consistency * cons.x + flock.randomness * rand.x + flock.momentum * mome.x;
-        double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + flock.randomness * rand.y + flock.momentum * mome.y;
+        double dx = flock.cohesion * cohe.x + flock.avoidance * avoid.x + flock.consistency * cons.x + flock.momentum * mome.x;
+        double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + flock.momentum * mome.y;
         final double dis = Math.sqrt(dx * dx + dy * dy);
         if (dis > 0.0) {
-            dx = dx / dis * flock.jump;
-            dy = dy / dis * flock.jump;
+            dx = dx / dis;
+            dy = dy / dis;
         }
         this.lastd = new Double2D(dx, dy);
         this.loc = new Double2D(flock.flockers.stx(this.loc.x + dx), flock.flockers.sty(this.loc.y + dy));

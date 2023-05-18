@@ -12,11 +12,9 @@ public class Flocking extends SimState
     public int numFlockers;
     public double cohesion;
     public double avoidance;
-    public double randomness;
     public double consistency;
     public double momentum;
     public double neighborhood;
-    public double jump;
 
     public Flocking(final long seed) {
         super(seed);
@@ -25,11 +23,9 @@ public class Flocking extends SimState
         this.numFlockers = 300;
         this.cohesion = 0.03;
         this.avoidance = 0.015;
-        this.randomness = 1.0;
         this.consistency = 0.05;
         this.momentum = 1.0;
         this.neighborhood = 5.0;
-        this.jump = 0.7;
     }
 
     public void start() {
