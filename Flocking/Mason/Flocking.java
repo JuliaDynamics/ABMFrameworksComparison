@@ -175,7 +175,6 @@ public class Flocking extends SimState
         this.momentum = 1.0; //
         this.deadFlockerProbability = 0.0; //
         this.neighborhood = 5.0; //
-        this.jump = 0.7;
     }
 
     public void start() {
@@ -185,9 +184,6 @@ public class Flocking extends SimState
         for (int x = 0; x < this.numFlockers; ++x) {
             final Double2D location = new Double2D(this.random.nextDouble() * this.width, this.random.nextDouble() * this.height);
             final Flocker flocker = new Flocker(location);
-            if (this.random.nextBoolean(this.deadFlockerProbability)) {
-                flocker.dead = true;
-            }
             this.flockers.setObjectLocation((Object)flocker, location);
             flocker.flockers = this.flockers;
             flocker.theFlock = this;
