@@ -137,8 +137,8 @@ public class Flocker implements Steppable, Orientable2D
         double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + flock.momentum * mome.y;
         final double dis = Math.sqrt(dx * dx + dy * dy);
         if (dis > 0.0) {
-            dx = dx / dis * flock.jump;
-            dy = dy / dis * flock.jump;
+            dx = dx / dis;
+            dy = dy / dis;
         }
         this.lastd = new Double2D(dx, dy);
         this.loc = new Double2D(flock.flockers.stx(this.loc.x + dx), flock.flockers.sty(this.loc.y + dy));
