@@ -1,74 +1,30 @@
-# This example deviates from Mesa's ForestFire in that it uses BaseScheduler
-# instead of RandomActivation.
+using Agents, Random
 
-from mesa import Model
-from mesa import Agent
-from mesa.space import SingleGrid
-from mesa.time import BaseScheduler
+@agent Automata GridAgent{2} begin end
 
-class TreeCell(Agent):
-    """
-    A tree cell.
-    Attributes:
-        x, y: Grid coordinates
-        condition: Can be "Fine", "On Fire", or "Burned Out"
-        unique_id: (x,y) tuple.
-    unique_id isn't strictly necessary here, but it's good
-    practice to give one to each agent anyway.
-    """
+function forest_fire(rng; density = 0.7, griddims = (100, 100))
+    space = GridSpaceSingle(griddims; periodic = false, metric = :manhattan)
+    ## Empty = 0, Green = 1, Burning = 2, Burnt = 3
+    forest = UnremovableABM(Automata, space; rng, properties = (trees = zeros(Int, griddims),))
+    for I in CartesianIndices(forest.trees)
+        if rand(abmrng(forest)) < density
+            ## Set the trees at the left edge on fire
+            forest.trees[I] = I[1] == 1 ? 2 : 1
+        end
+    end
+    return forest, dummystep, tree_step!
+end
 
-    def __init__(self, pos, model):
-        """
-        Create a new tree.
-        Args:
-            pos: The tree's coordinates on the grid.
-            model: standard model reference for agent.
-        """
-        super().__init__(pos, model)
-        self.pos = pos
-        self.condition = "Fine"
-
-    def step(self):
-        """
-        If the tree is on fire, spread it to fine trees nearby.
-        """
-        if self.condition == "On Fire":
-            for neighbor in self.model.grid.iter_neighbors(self.pos, moore=False):
-                if neighbor.condition == "Fine":
-                    neighbor.condition = "On Fire"
-            self.condition = "Burned Out"
-
-class ForestFire(Model):
-    """
-    Simple Forest Fire model.
-    """
-
-    def __init__(self, seed, height=100, width=100, density=0.7):
-        """
-        Create a new forest fire model.
-        Args:
-            height, width: The size of the grid to model
-            density: What fraction of grid cells have a tree in them.
-        """
-        # Set up model objects
-        super().__init__(seed=seed)
-        self.schedule = BaseScheduler(self)
-        self.grid = SingleGrid(height, width, torus=False)
-
-        # Place a tree in each cell with Prob = density
-        for cont, x, y in self.grid.coord_iter():
-            if self.random.random() < density:
-                pos = (x, y)
-                # Create a tree
-                new_tree = TreeCell(pos, self)
-                # Set all trees in the first column on fire.
-                if x == 0:
-                    new_tree.condition = "On Fire"
-                self.grid.place_agent(new_tree, pos)
-                self.schedule.add(new_tree)
-
-    def step(self):
-        """
-        Advance the model by one step.
-        """
-        self.schedule.step()
+function tree_step!(forest)
+    ## Find trees that are burning (coded as 2)
+    for I in findall(isequal(2), forest.trees)
+        for idx in nearby_positions(I.I, forest)
+            ## If a neighbor is Green (1), set it on fire (2)
+            if forest.trees[idx...] == 1
+                forest.trees[idx...] = 2
+            end
+        end
+        ## Finally, any burning tree is burnt out (3)
+        forest.trees[I] = 3
+    end
+end
