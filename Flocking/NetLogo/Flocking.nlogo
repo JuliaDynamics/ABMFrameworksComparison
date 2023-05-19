@@ -678,31 +678,6 @@ setup
 repeat 200 [ go ]
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>benchmark</go>
-    <exitCondition>ticks = 100</exitCondition>
-    <enumeratedValueSet variable="max-cohere-turn">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-separate-turn">
-      <value value="1.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="vision">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="minimum-separation">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="population">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-align-turn">
-      <value value="5"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

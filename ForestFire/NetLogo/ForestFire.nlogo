@@ -535,16 +535,6 @@ setup
 repeat 180 [ go ]
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>benchmark</go>
-    <exitCondition>ticks = 700</exitCondition>
-    <enumeratedValueSet variable="density">
-      <value value="60"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

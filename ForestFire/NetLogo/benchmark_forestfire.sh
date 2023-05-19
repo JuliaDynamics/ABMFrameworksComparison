@@ -4,4 +4,4 @@
 # to either a file or stdout. There's no easy abilitiy to parse it.
 
 # the netlogo folder is assumed to be inside the NetLogo folder of this repository, which contains the models
-bash ./netlogo/netlogo-headless.sh --model "ForestFire/NetLogo/ForestFire.nlogo" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
+bash ./netlogo/netlogo-headless.sh --model "ForestFire/NetLogo/ForestFire.nlogo" --setup-file "ForestFire/NetLogo/parameters_forestfire.xml" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
