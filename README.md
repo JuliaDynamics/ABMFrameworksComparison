@@ -1,28 +1,39 @@
-# Benchmarks and comparisons of leading ABM frameworks and Agents.jl
+# Agent based modelling frameworks comparison
 
-Many agent-based modeling frameworks have been constructed to ease the process of building and analyzing ABMs (see [here](http://dx.doi.org/10.1016/j.cosrev.2017.03.001) for a review).
-Notable examples are [NetLogo](https://ccl.northwestern.edu/netlogo/), [Repast](https://repast.github.io/index.html), [MASON](https://journals.sagepub.com/doi/10.1177/0037549705058073), and [Mesa](https://github.com/projectmesa/mesa).
+This repository contains code used to compare performance and features between various agent based modelling **(ABM)** frameworks. Currently, frameworks compared are [Agents.jl](https://github.com/JuliaDynamics/Agents.jl), [NetLogo](https://ccl.northwestern.edu/netlogo/), [MASON](https://journals.sagepub.com/doi/10.1177/0037549705058073) and [Mesa](https://github.com/projectmesa/mesa). We happily welcome more frameworks to join the comparison.
 
-This repository contains examples to compare [Agents.jl](https://github.com/JuliaDynamics/Agents.jl) with Mesa, Netlogo and Mason, to assess where Agents.jl excels and also may need some future improvement.
-We used the following models for the comparison:
+**This repository establishes objectively that Agents.jl is the fastest open source agent based modelling framework and that Agents.jl has the simplest source code for a given model specification.**
 
-- **Wolf Sheep Grass**, a `GridSpace` model, which requires agents to be added, removed and moved; as well as identify properties of neighbouring positions.
-- **Flocking**, a `ContinuousSpace` model, chosen over other models to include a MASON benchmark. Agents must move in accordance with social rules over the space.
-- **Forest fire**, provides comparisons for cellular automata type ABMs (i.e. when agents do not move and every location in space contains exactly one agent). NOTE: The Agents.jl implementation of this model has been changed in v4.0 to be directly comparable to Mesa and NetLogo. As a consequence it no longer follows the [original rule-set](https://en.wikipedia.org/wiki/Forest-fire_model).
-- **Schelling's-segregation-model**, an additional `GridSpace` model to compare with MASON. Simpler rules than Wolf Sheep Grass.
+This repository has been initiated and maintained by the developers of Agents.jl However, it strongly welcomes contributions (in the form of Pull Requests) from developers or users of other modelling frameworks. Contributions may improve performance of a model implementation, or simplify the code of the implementation, provided that they still abide the model declaration, see below for more information. Note that this repository is fully open source, hence any Pull Request and discussion done here will be forever visible openly. Furthermore, we also welcome contributions that may implement a comparison across a new agent based model not yet considered in this comparison.
 
-The results of the latest comparison are presented [here](https://juliadynamics.github.io/Agents.jl/stable/comparison/). The hardware configuration used for the benchmark is a Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
+**The performance benchmark comparison is run automatically during continuous integration, and hence the comparison is updated after every pull request to this repo.**
+
+## How it works
+
+Various agent based models have been selected to compare performance, such as the Schelling model for example. This repository is structured as follows
+
+1. Each selected ABM is contained in a dedicated folder of this repo.
+1. Inside the ABM folder there is a DECLARATION.md markdown file. In declares both the scientific as well as technical implementation of the ABM.
+1. In the same folder there are subfolders named after the frameworks. Each contains the files that implement and benchmark the ABM implementation.
+1. The implementation must be written in the same way a typical user will use the respective software. The implementations must only use the documented API of the respective software.
+1. The benchmark step operates as follows: all models must be seeded with a given random number generator seed. At the start of the process, _`S` random seeds are generated in a reproducible way (or, alternatively, a random number generator that generates seeds is initialized with a specified seed)_. `S` is the amount of random seeds and hence also the amount of simulations performed for a given model. Unless stated otherwise in the declaration file of an ABM, `S` has been arbitrarily decided to be `100`.
+1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
+1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
+
+The results of the latest comparison are presented here: TODO: provide link to a CI log.
+
+[Here are the old benchmarks](https://juliadynamics.github.io/Agents.jl/stable/comparison/). The hardware configuration used for the benchmark is a Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
 
 ## How to run the benchmarks locally
 
-To reproduce the results you can run the `runall.sh` file with `bash runall.sh`. It is easier to run the file with a Linux OS, but you can emulate the same behaviour on Windows using WSL. 
+To reproduce the results you can run the `runall.sh` file with `bash runall.sh`. It is easier to run the file with a Linux OS, but you can emulate the same behaviour on Windows using WSL.
 
 The requirements to run the benchmark file are:
 
-- To run the file on a bash shell;
-- To install the tested frameworks (except for Mason which is already provided);
-- To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel and bc tools available;
-- To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder.
+1. To run the file on a bash shell;
+1. To install the tested frameworks (except for Mason which is already provided);
+1. To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel and bc tools available;
+1. To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder.
 
 This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other similar enviroments, copy-paste it on a bash shell to set up everything automatically for the benchmark:
 
@@ -67,12 +78,3 @@ sudo apt install bc
 # move to repo folder
 cd ABM_Framework_Comparisons
 ```
-
-## Contributions from other Frameworks
-
-We welcome improvements from other framework contributors, either with new code that beats the implementation provided here with updated improvements from your framework's development process.
-
-Frameworks not included in the comparison are invited to provide code for the above, standardised comparison models.
-
-All are welcome to suggest better 'standard candle' models to test framework capability.
-
