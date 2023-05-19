@@ -4,7 +4,7 @@ An archetypical example of an agent based model with very simple dynamics.
 
 ## Rules of the ABM
 
-- Agents live in a 40 by 40 rectangular discrete space.
+- Agents live in a 40 by 40 rectangular discrete space. The space is finite, not periodic.
 - There is a model level property "minimum to be happy" that is by default 3.
 - Only a single agent can occupy a position in the grid.
 - Agents must have at least the following properties: a unique id identifying them, their position, an integer specifying which group agents belong to, and a boolean flag indicating whether an agent is happy.
