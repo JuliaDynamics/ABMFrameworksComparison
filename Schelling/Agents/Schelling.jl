@@ -5,7 +5,7 @@ using Agents
     group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
-function schelling(; numagents = 2000, griddims = (50, 50), min_to_be_happy = 3)
+function schelling(; numagents = 1000, griddims = (40, 40), min_to_be_happy = 3)
     @assert numagents < prod(griddims)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = (min_to_be_happy = min_to_be_happy,)

@@ -13,11 +13,11 @@ This repository has been initiated and maintained by the developers of Agents.jl
 Various agent based models have been selected to compare performance, such as the Schelling model for example. This repository is structured as follows
 
 1. Each selected ABM is contained in a dedicated folder of this repo.
-1. Inside the ABM folder there is a DECLARATION.md markdown file. In declares both the scientific as well as technical implementation of the ABM.
+1. Inside the ABM folder there is a DECLARATION.md markdown file. In declares both the scientific as well as technical implementation of the ABM. We tried our best to make the declaration as clear and as specific as possible, but we welcome Pull Requests that may clarify the declaration even more.
 1. In the same folder there are subfolders named after the frameworks. Each contains the files that implement and benchmark the ABM implementation.
 1. The implementation must be written in the same way a typical user will use the respective software. The implementations must only use the documented API of the respective software.
-1. The benchmark step operates as follows: all models must be seeded with a given random number generator seed. At the start of the process, _`S` random seeds are generated in a reproducible way (or, alternatively, a random number generator that generates seeds is initialized with a specified seed)_. `S` is the amount of random seeds and hence also the amount of simulations performed for a given model. Unless stated otherwise in the declaration file of an ABM, `S` has been arbitrarily decided to be `100`.
-1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
+1. The benchmark step operates as follows: all models must be seeded with a given random number generator seed. At the start of the process, _`S` random seeds are generated in a reproducible way (or, alternatively, a random number generator that generates seeds is initialized with a specified seed)_. `S` is the amount of random seeds and hence also the amount of simulations performed for a given model. Unless stated otherwise in the declaration file of an ABM, `S` has been arbitrarily decided to be `1000`.
+1. From these `1000` random (but reproducibly random) model runs, the median is used as the performance of each software.
 1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
 
 The results of the latest comparison are presented here: TODO: provide link to a CI log.
