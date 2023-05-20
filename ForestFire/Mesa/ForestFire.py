@@ -43,13 +43,14 @@ class ForestFire(Model):
     Simple Forest Fire model.
     """
 
-    def __init__(self, height=100, width=100, density=0.7):
+    def __init__(self, seed, height=100, width=100, density=0.7):
         """
         Create a new forest fire model.
         Args:
             height, width: The size of the grid to model
             density: What fraction of grid cells have a tree in them.
         """
+        super().__init__(seed=seed)
         # Set up model objects
         self.schedule = BaseScheduler(self)
         self.grid = SingleGrid(height, width, torus=False)

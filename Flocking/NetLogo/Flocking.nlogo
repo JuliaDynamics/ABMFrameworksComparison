@@ -15,6 +15,7 @@ end
 
 to setup
   clear-all
+  random-seed seed
   create-turtles population
     [ set color yellow - 2 + random 7  ;; random shades look nice
       set size 2  ;; easier to see
@@ -187,6 +188,21 @@ population
 1.0
 1000.0
 300.0
+1.0
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+196
+179
+229
+seed
+seed
+0.0
+50000.0
+1.0
 1.0
 1
 NIL
@@ -678,31 +694,6 @@ setup
 repeat 200 [ go ]
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>benchmark</go>
-    <exitCondition>ticks = 100</exitCondition>
-    <enumeratedValueSet variable="max-cohere-turn">
-      <value value="3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-separate-turn">
-      <value value="1.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="vision">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="minimum-separation">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="population">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="max-align-turn">
-      <value value="5"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

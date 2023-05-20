@@ -10,7 +10,8 @@ end
     Δenergy::Float64
 end
 
-function predator_prey(;
+function predator_prey(
+    rng;
     n_sheep = 60,
     n_wolves = 40,
     dims = (25, 25),
@@ -31,6 +32,7 @@ function predator_prey(;
         space,
         scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep}),
         properties = properties,
+        rng = rng,
         warn=false
     )
     id = 0

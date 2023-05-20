@@ -1,6 +1,7 @@
 #!/bin/bash
 
 (
+
 echo "Benchmarking Julia"
 julia --project=@. WolfSheep/Agents/benchmark_wolfsheep.jl
 julia --project=@. Flocking/Agents/benchmark_flocking.jl
@@ -18,19 +19,11 @@ python3 Schelling/Mesa/benchmark_schelling.py
 python3 ForestFire/Mesa/benchmark_forestfire.py
 
 echo "Benchmarking NetLogo"
-# Don't run above 8 threads otherwise errors will spit once the JVMs try
-# to share the Backing Store and lock it
-ws=$(parallel -j1 ::: $(printf 'WolfSheep/NetLogo/benchmark_wolfsheep.sh %.0s' {1..100}) | sort | head -n1)
-echo "NetLogo WolfSheep (ms): "$ws
+bash WolfSheep/NetLogo/benchmark_wolfsheep.sh
+bash Flocking/NetLogo/benchmark_flocking.sh
+bash Schelling/NetLogo/benchmark_schelling.sh
+bash ForestFire/NetLogo/benchmark_forestfire.sh
 
-ws=$(parallel -j1 ::: $(printf 'Flocking/NetLogo/benchmark_flocking.sh %.0s' {1..100}) | sort | head -n1)
-echo "NetLogo Flocking (ms): "$ws
-
-ws=$(parallel -j1 ::: $(printf 'Schelling/NetLogo/benchmark_schelling.sh %.0s' {1..100}) | sort | head -n1)
-echo "NetLogo Schelling (ms): "$ws
-
-ws=$(parallel -j1 ::: $(printf 'ForestFire/NetLogo/benchmark_forestfire.sh %.0s' {1..100}) | sort | head -n1)
-echo "NetLogo ForestFire (ms): "$ws
 ) | tee benchmark_results.txt
 
 julia --project=@. create_benchmark_table.jl

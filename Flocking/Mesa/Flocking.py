@@ -21,6 +21,7 @@ class BoidFlockers(Model):
 
     def __init__(
         self,
+        seed,
         population=300,
         width=100,
         height=100,
@@ -43,6 +44,7 @@ class BoidFlockers(Model):
                     keep from any other
             cohere, separate, match: factors for the relative importance of
                     the three drives.        """
+        super().__init__(seed=seed)
         self.population = population
         self.vision = vision
         self.speed = speed

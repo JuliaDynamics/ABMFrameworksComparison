@@ -12,15 +12,17 @@ sys.path.insert(0, os.path.abspath("."))
 
 from Flocking import BoidFlockers
 
+import random
+random.seed(42)
+
 def runthemodel(flock):
     for i in range(0, 100):
       flock.step()
 
-
-flock = BoidFlockers()
+seed = random.randint(1, 10000)
+flock = BoidFlockers(seed)
 """
 
 tt = timeit.Timer('runthemodel(flock)', setup=setup)
 a = min(tt.repeat(100, 1))
 print("Mesa Flocking (ms):", a*1e3)
-
