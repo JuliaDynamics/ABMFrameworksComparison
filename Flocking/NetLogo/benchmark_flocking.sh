@@ -5,6 +5,9 @@
 
 # the netlogo folder is assumed to be inside the NetLogo folder of this repository, which contains the models
 
+SEED=42
+RANDOM=$SEED
+
 NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="Flocking/NetLogo/Flocking.nlogo"
 NAME_PARAM="Flocking/NetLogo/parameters_flocking.xml"
@@ -12,6 +15,7 @@ NAME_PARAM="Flocking/NetLogo/parameters_flocking.xml"
 times=()
 for i in {1..100}
 do
+    julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
     t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
     	) | awk '/GO/{i++}i==2{print $3;exit}')
     times+=(`expr $t`)
