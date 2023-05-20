@@ -4,4 +4,18 @@
 # to either a file or stdout. There's no easy abilitiy to parse it.
 
 # the netlogo folder is assumed to be inside the NetLogo folder of this repository, which contains the models
-bash ./netlogo/netlogo-headless.sh --model "Flocking/NetLogo/Flocking.nlogo" --setup-file "Flocking/NetLogo/parameters_flocking.xml" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
+
+NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
+NAME_MODEL="Flocking/NetLogo/Flocking.nlogo"
+NAME_PARAM="Flocking/NetLogo/parameters_flocking.xml"
+
+times=()
+for i in {1..100}
+do
+    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
+    	) | awk '/GO/{i++}i==2{print $3;exit}')
+    times+=(`expr $t`)
+done
+
+readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+printf "NetLogo Flocking (ms): "${sorted[0]}"\n"
