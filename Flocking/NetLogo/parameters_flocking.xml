@@ -21,5 +21,8 @@
     <enumeratedValueSet variable="max-align-turn">
       <value value="5"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="seed">
+      <value value=""/>
+    </enumeratedValueSet>
   </experiment>
 </experiments>
