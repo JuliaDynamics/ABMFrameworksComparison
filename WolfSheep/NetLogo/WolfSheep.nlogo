@@ -12,6 +12,7 @@ patches-own [ countdown ]    ; this is for the sheep-wolves-grass model version
 
 to setup
   clear-all
+  random-seed seed
   ifelse netlogo-web? [ set max-sheep 10000 ] [ set max-sheep 30000 ]
 
   ; Check model-version switch
@@ -199,6 +200,21 @@ initial-number-sheep
 250
 60.0
 1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+196
+179
+229
+seed
+seed
+0.0
+50000.0
+1.0
+1.0
 1
 NIL
 HORIZONTAL
