@@ -6,5 +6,8 @@
     <enumeratedValueSet variable="density">
       <value value="60"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="seed">
+      <value value=""/>
+    </enumeratedValueSet>
   </experiment>
 </experiments>
