@@ -30,5 +30,8 @@
     <enumeratedValueSet variable="sheep-reproduce">
       <value value="20"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="seed">
+      <value value=""/>
+    </enumeratedValueSet>
   </experiment>
 </experiments>
