@@ -18,7 +18,7 @@ python3 Schelling/Mesa/benchmark_schelling.py
 python3 ForestFire/Mesa/benchmark_forestfire.py
 
 echo "Benchmarking NetLogo"
-bash 'WolfSheep/NetLogo/benchmark_wolfsheep.sh'
+bash WolfSheep/NetLogo/benchmark_wolfsheep.sh
 
 ws=$(parallel -j1 ::: $(printf 'Flocking/NetLogo/benchmark_flocking.sh %.0s' {1..100}) | sort | head -n1)
 echo "NetLogo Flocking (ms): "$ws
