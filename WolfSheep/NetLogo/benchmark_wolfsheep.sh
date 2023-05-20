@@ -18,4 +18,4 @@ do
 done
 
 readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-printf "NetLogo Schelling (ms): "${sorted[0]}"\n"
+printf "NetLogo WolfSheep (ms): "${sorted[0]}"\n"
