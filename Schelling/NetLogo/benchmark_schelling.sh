@@ -16,6 +16,7 @@ times=()
 for i in {1..100}
 do
     julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
+    sed -i '1d' $NAME_PARAM
     t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
     	) | awk '/GO/{i++}i==2{print $3;exit}')
     times+=(`expr $t`)
