@@ -9,6 +9,8 @@ NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="WolfSheep/NetLogo/WolfSheep.nlogo"
 NAME_PARAM="WolfSheep/NetLogo/parameters_wolfsheep.xml"
 
+# Don't run above 8 threads otherwise errors will spit once the JVMs try
+# to share the Backing Store and lock it
 times=()
 for i in {1..100}
 do
