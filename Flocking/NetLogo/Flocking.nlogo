@@ -15,6 +15,7 @@ end
 
 to setup
   clear-all
+  random-seed seed
   create-turtles population
     [ set color yellow - 2 + random 7  ;; random shades look nice
       set size 2  ;; easier to see
@@ -187,6 +188,21 @@ population
 1.0
 1000.0
 300.0
+1.0
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+196
+179
+229
+seed
+seed
+0.0
+50000.0
+1.0
 1.0
 1
 NIL
