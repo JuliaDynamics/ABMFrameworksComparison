@@ -4,4 +4,18 @@
 # to either a file or stdout. There's no easy abilitiy to parse it.
 
 # the netlogo folder is assumed to be inside the NetLogo folder of this repository, which contains the models
-bash ./netlogo/netlogo-headless.sh --model "ForestFire/NetLogo/ForestFire.nlogo" --setup-file "ForestFire/NetLogo/parameters_forestfire.xml" --experiment benchmark | awk '/GO/{i++}i==2{print $3;exit}'
+
+NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
+NAME_MODEL="ForestFire/NetLogo/ForestFire.nlogo"
+NAME_PARAM="ForestFire/NetLogo/parameters_forestfire.xml"
+
+times=()
+for i in {1..100}
+do
+    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
+    	) | awk '/GO/{i++}i==2{print $3;exit}')
+    times+=(`expr $t`)
+done
+
+readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+printf "NetLogo ForestFire (ms): "${sorted[0]}"\n"
