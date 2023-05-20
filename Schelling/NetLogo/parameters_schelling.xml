@@ -12,5 +12,8 @@
     <enumeratedValueSet variable="agents">
       <value value="2000"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="seed">
+      <value value=""/>
+    </enumeratedValueSet>
   </experiment>
 </experiments>
