@@ -25,5 +25,7 @@ wolfsheep = WolfSheep(seed)
 """
 
 tt = timeit.Timer('runthemodel(wolfsheep)', setup=setup)
-a = min(tt.repeat(100, 1))
+n_run = 100
+a = tt.repeat(n_run, 1)
+median_time = sorted(a)[n_run // 2 + n_run % 2]
 print("Mesa WolfSheep (ms):", a*1e3)

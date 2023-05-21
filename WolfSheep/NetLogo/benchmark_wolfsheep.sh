@@ -7,6 +7,7 @@
 
 SEED=42
 RANDOM=$SEED
+N_RUN = 100
 
 NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="WolfSheep/NetLogo/WolfSheep.nlogo"
@@ -15,7 +16,7 @@ NAME_PARAM="WolfSheep/NetLogo/parameters_wolfsheep.xml"
 # Don't run above 8 threads otherwise errors will spit once the JVMs try
 # to share the Backing Store and lock it
 times=()
-for i in {1..100}
+for i in {1..$N_RUN}
 do
     julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
     sed -i '1d' $NAME_PARAM
@@ -25,4 +26,4 @@ do
 done
 
 readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-printf "NetLogo WolfSheep (ms): "${sorted[0]}"\n"
+printf "NetLogo WolfSheep (ms): "${sorted[(`expr $N_RUN / 2 $N_RUN % 2`)]}"\n"

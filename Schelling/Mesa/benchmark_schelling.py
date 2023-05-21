@@ -22,5 +22,7 @@ schelling = SchellingModel(seed)
 """
 
 tt = timeit.Timer('runthemodel(schelling)', setup=setup)
-a = min(tt.repeat(100, 1))
+n_run = 100
+a = tt.repeat(n_run, 1)
+median_time = sorted(a)[n_run // 2 + n_run % 2]
 print("Mesa Schelling (ms):", a*1e3)
