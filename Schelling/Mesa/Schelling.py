@@ -39,9 +39,10 @@ class SchellingModel(Model):
     Model class for the Schelling segregation model.
     '''
 
-    def __init__(self, height=50, width=50, density=0.8, minority_pc=0.5, homophily=3):
+    def __init__(self, seed, height=50, width=50, density=0.8, minority_pc=0.5, homophily=3):
         '''
         '''
+        super().__init__(seed=seed)
         self.height = height
         self.width = width
         self.density = density

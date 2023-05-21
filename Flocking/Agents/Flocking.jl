@@ -9,7 +9,8 @@ using LinearAlgebra
     visual_distance::Float64
 end
 
-function flocking(;
+function flocking(
+    rng;
     n_birds = 300,
     speed = 1.0,
     cohere_factor = 0.03,
@@ -21,7 +22,7 @@ function flocking(;
     spacing = visual_distance / 1.5,
 )
     space2d = ContinuousSpace(extent; spacing)
-    model = UnremovableABM(Bird, space2d, scheduler = Schedulers.Randomly())
+    model = UnremovableABM(Bird, space2d; scheduler = Schedulers.Randomly(), rng = rng)
     for _ in 1:n_birds
         vel = Tuple(rand(model.rng, 2) * 2 .- 1)
         add_agent!(
@@ -60,4 +61,3 @@ function flocking_agent_step!(bird, model)
     bird.vel = bird.vel ./ norm(bird.vel)
     move_agent!(bird, model, bird.speed)
 end
-

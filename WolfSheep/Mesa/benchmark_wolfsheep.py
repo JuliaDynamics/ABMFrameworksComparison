@@ -13,11 +13,15 @@ sys.path.insert(0, os.path.abspath("."))
 from agents import Sheep, Wolf, GrassPatch
 from WolfSheep import WolfSheep
 
+import random
+random.seed(42)
+
 def runthemodel(wolfsheep):
     for i in range(0, 500):
       wolfsheep.step()
 
-wolfsheep = WolfSheep()
+seed = random.randint(1, 10000)
+wolfsheep = WolfSheep(seed)
 """
 
 tt = timeit.Timer('runthemodel(wolfsheep)', setup=setup)

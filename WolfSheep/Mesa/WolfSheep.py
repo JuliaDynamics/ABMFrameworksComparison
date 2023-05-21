@@ -24,6 +24,7 @@ class WolfSheep(mesa.Model):
 
     def __init__(
         self,
+        seed,
         height=25,
         width=25,
         initial_sheep=60,
@@ -49,7 +50,7 @@ class WolfSheep(mesa.Model):
                                  once it is eaten
             sheep_gain_from_food: Energy sheep gain from grass, if enabled.
         """
-        super().__init__()
+        super().__init__(seed=seed)
         # Set parameters
         self.height = height
         self.width = width

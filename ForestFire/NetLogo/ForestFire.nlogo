@@ -10,6 +10,7 @@ breed [embers ember]  ;; turtles gradually fading from red to near black
 
 to setup
   clear-all
+  random-seed seed
   set-default-shape turtles "square"
   ;; make some green trees
   ask patches with [(random-float 100) < density]
@@ -89,6 +90,21 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+SLIDER
+5
+196
+179
+229
+seed
+seed
+0.0
+50000.0
+1.0
+1.0
+1
+NIL
+HORIZONTAL
 
 SLIDER
 5
@@ -535,16 +551,6 @@ setup
 repeat 180 [ go ]
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>benchmark</go>
-    <exitCondition>ticks = 700</exitCondition>
-    <enumeratedValueSet variable="density">
-      <value value="60"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

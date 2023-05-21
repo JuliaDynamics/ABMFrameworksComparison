@@ -14,6 +14,7 @@ turtles-own [
 
 to setup
   clear-all
+  random-seed seed
   ; create turtles on random patches.
   ask patches [ set pcolor white ]
   create-turtles agents [
@@ -224,6 +225,21 @@ visualization
 visualization
 "old" "square-x"
 1
+
+SLIDER
+5
+196
+179
+229
+seed
+seed
+0.0
+50000.0
+1.0
+1.0
+1
+NIL
+HORIZONTAL
 
 SLIDER
 10
@@ -710,22 +726,6 @@ NetLogo 6.2.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
-<experiments>
-  <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>benchmark</go>
-    <exitCondition>ticks = 10</exitCondition>
-    <enumeratedValueSet variable="%-similar-wanted">
-      <value value="30"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="visualization">
-      <value value="&quot;square-x&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="agents">
-      <value value="2000"/>
-    </enumeratedValueSet>
-  </experiment>
-</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default
