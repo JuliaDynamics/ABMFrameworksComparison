@@ -1,6 +1,7 @@
-# Schelling's segregation
+# Schelling's segregation model
 
 An archetypical example of an agent based model with very simple dynamics.
+This model tests the performance of the two most basic operations any ABM will use: searching for nearest neighbors and moving agents.
 
 ## Rules of the ABM
 

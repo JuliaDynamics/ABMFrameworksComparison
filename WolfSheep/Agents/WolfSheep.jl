@@ -73,9 +73,7 @@ end
 function agent_step!(wolf::Wolf, model)
     randomwalk!(wolf, model, 1)
     wolf.energy -= 1
-    agents = agents_in_position(wolf.pos, model)
-    dinner = Iterators.filter(x -> typeof(x) == Sheep, agents)
-    wolf_eat!(wolf, dinner, model)
+    wolf_eat!(wolf, model)
     if wolf.energy < 0
         kill_agent!(wolf, model)
         return
@@ -92,9 +90,11 @@ function sheep_eat!(sheep, model)
     end
 end
 
-function wolf_eat!(wolf, sheep, model)
-    if !isempty(sheep)
-        dinner = rand(abmrng(model), collect(sheep))
+function wolf_eat!(wolf, model)
+    agents = agents_in_position(wolf.pos, model)
+    sheeps = Iterators.filter(x -> typeof(x) == Sheep, agents)
+    if !isempty(sheeps)
+        dinner = rand(abmrng(model), collect(sheeps))
         kill_agent!(dinner, model)
         wolf.energy += wolf.Δenergy
     end

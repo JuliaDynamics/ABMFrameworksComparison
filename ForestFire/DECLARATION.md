@@ -19,3 +19,4 @@ Because this is a cellular automaton (all possible positions are occupied by exa
 
 For the small model, `X = 100` and `density = 0.7`.
 For the large model, `X = 1000` and `density = 0.9`.
+The implementation doesn't actually have to use agents; use whatever means the software has to accelerate cellular automata simulations.

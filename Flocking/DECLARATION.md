@@ -1,6 +1,8 @@
 # Flocking model
 
-An archetypical model of flocking behaviour of animals in continuous space. Note that there are two versions of this model, a "small" and a "large" one. The difference in the large is that the space extent, visual distance, and number of agents, are larger.
+An archetypical model of flocking behaviour of animals in continuous space. It is meant to test the performance of the software in continuous space: handling 64-bit floats, moving agents, searching for nearby agents.
+
+Note that there are two versions of this model, a "small" and a "large" one. The difference in the large is that the space extent, visual distance, and number of agents, are larger.
 
 The flock model illustrates how flocking behaviour can emerge when each bird follows three simple rules:
 
