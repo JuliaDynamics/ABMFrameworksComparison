@@ -29,9 +29,12 @@ The flock model illustrates how flocking behaviour can emerge when each bird fol
   - Three orientation vectors are generated from the neighbors: a coherence, matching, and a separation vector. How these vectors are generated is actually simpler to show in code, see technical implementation below.
   - The agent updates its velocity based on the three orientation vectors and its own velocity as the average of the four vectors. The velocity vector is then normalized to unit length.
   - The agent moves according the direction of its velocity vector for length given by the `speed` agent property.
-  - The simulation is performed for exactly 100 steps.
+  - The simulation is performed for a fixed amount of steps.
 
 ## Technical implementation
+
+The simulation is performed for exactly 100 steps.
+
 
 Defaults that are the same for small or large simulation:
 
