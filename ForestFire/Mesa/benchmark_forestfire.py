@@ -24,5 +24,5 @@ fire = ForestFire(seed)
 tt = timeit.Timer('runthemodel(fire)', setup=setup)
 n_run = 100
 a = tt.repeat(n_run, 1)
-median_time = sorted(a)[n_run // 2 + n_run % 2]
+median_time = sorted(a)[n_run ÷ 2 + n_run % 2]
 print("Mesa ForestFire (ms):", a*1e3)
