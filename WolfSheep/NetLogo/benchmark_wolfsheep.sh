@@ -7,7 +7,7 @@
 
 SEED=42
 RANDOM=$SEED
-N_RUN = 100
+N_RUN=100
 
 NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="WolfSheep/NetLogo/WolfSheep.nlogo"
