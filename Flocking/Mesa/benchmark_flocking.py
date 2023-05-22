@@ -26,5 +26,5 @@ flock = BoidFlockers(seed)
 tt = timeit.Timer('runthemodel(flock)', setup=setup)
 n_run = 100
 a = tt.repeat(n_run, 1)
-median_time = sorted(a)[n_run ÷ 2 + n_run % 2]
+median_time = sorted(a)[n_run // 2 + n_run % 2]
 print("Mesa Flocking (ms):", a*1e3)
