@@ -22,7 +22,9 @@ The requirements to run the benchmark file are:
 - To run the file on a bash shell;
 - To install the tested frameworks (except for Mason which is already provided);
 - To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the GNU Parallel and bc tools available;
-- To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the mThis snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other similar enviroments, copy-paste it on a bash shell to set up everything automatically for the benchmark:
+- To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder. 
+
+This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other similar enviroments, copy-paste it on a bash shell to set up everything automatically for the benchmark:
 
 ```bash
 # fetch update software list
@@ -66,7 +68,7 @@ sudo apt install bc
 cd ABM_Framework_Comparisons
 ```
 
-If you are on WSL make sure that you move to a folder inside the subsystem before running this commands.
+If you are using WSL make sure that you move to a folder inside the subsystem before running this commands.
 
 ## Contributions from other Frameworks
 
