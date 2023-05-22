@@ -1,3 +1,0 @@
-Benchmarking Mason
-Mason Flocking (ms): 240.191700
-Mason Schelling (ms): Benchmarking Mesa
