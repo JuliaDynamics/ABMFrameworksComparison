@@ -14,7 +14,7 @@ NAME_MODEL="Flocking/NetLogo/Flocking.nlogo"
 NAME_PARAM="Flocking/NetLogo/parameters_flocking.xml"
 
 times=()
-for i in {1..$N_RUN}
+for i in $( seq 1 $N_RUN )
 do
     julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
     sed -i '1d' $NAME_PARAM
@@ -24,4 +24,4 @@ do
 done
 
 readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-printf "NetLogo Flocking (ms): "${sorted[(`expr $N_RUN / 2 $N_RUN % 2`)]}"\n"
+printf "NetLogo Flocking (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"
