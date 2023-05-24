@@ -78,3 +78,5 @@ sudo apt install bc
 # move to repo folder
 cd ABM_Framework_Comparisons
 ```
+
+If you are using WSL make sure that you move to a folder inside the subsystem before running this commands.
