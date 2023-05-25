@@ -79,4 +79,4 @@ sudo apt install bc
 cd ABM_Framework_Comparisons
 ```
 
-If you are using WSL make sure that you move to a folder inside the subsystem before running this commands.
+If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
