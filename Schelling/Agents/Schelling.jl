@@ -6,7 +6,6 @@ using Agents
 end
 
 function schelling(rng; numagents = 2000, griddims = (50, 50), min_to_be_happy = 3)
-    @assert numagents < prod(griddims)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = (min_to_be_happy = min_to_be_happy,)
     model = UnremovableABM(SchellingAgent, space; properties, scheduler = Schedulers.Randomly(), rng = rng)

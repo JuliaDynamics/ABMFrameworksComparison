@@ -3,6 +3,9 @@
     <setup>setup</setup>
     <go>benchmark</go>
     <exitCondition>ticks = 100</exitCondition>
+    <enumeratedValueSet variable="n_ticks">
+      <value value="100"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="max-cohere-turn">
       <value value="3"/>
     </enumeratedValueSet>

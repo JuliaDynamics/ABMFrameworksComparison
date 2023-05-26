@@ -38,17 +38,17 @@ function predator_prey(
     id = 0
     for _ in 1:n_sheep
         id += 1
-        energy = rand(1:(Δenergy_sheep*2)) - 1
+        energy = rand(abmrng(model), 1:(Δenergy_sheep*2)) - 1
         sheep = Sheep(id, (0, 0), energy, sheep_reproduce, Δenergy_sheep)
         add_agent!(sheep, model)
     end
     for _ in 1:n_wolves
         id += 1
-        energy = rand(1:(Δenergy_wolf*2)) - 1
+        energy = rand(abmrng(model), 1:(Δenergy_wolf*2)) - 1
         wolf = Wolf(id, (0, 0), energy, wolf_reproduce, Δenergy_wolf)
         add_agent!(wolf, model)
     end
-    for p in positions(model) # random grass initial growth
+    @inbounds for p in positions(model) # random grass initial growth
         fully_grown = rand(abmrng(model), Bool)
         countdown = fully_grown ? regrowth_time : rand(abmrng(model), 1:regrowth_time) - 1
         model.countdown[p...] = countdown

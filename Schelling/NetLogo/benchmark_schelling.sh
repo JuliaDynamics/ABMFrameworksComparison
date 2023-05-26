@@ -13,15 +13,19 @@ NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="Schelling/NetLogo/Schelling.nlogo"
 NAME_PARAM="Schelling/NetLogo/parameters_schelling.xml"
 
-times=()
-for i in $( seq 1 $N_RUN )
-do
-    julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
-    sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
-    	) | awk '/GO/{i++}i==2{print $3;exit}')
-    times+=(`expr $t`)
-done
+n_run_model () {
+    times=()
+    for i in $( seq 1 $N_RUN )
+    do
+        julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
+        sed -i '1d' $NAME_PARAM
+        t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
+            ) | awk '/GO/{i++}i==2{print $3;exit}')
+        times+=(`expr $t`)
+    done
 
-readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-printf "NetLogo Schelling (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"
+    readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+    printf "NetLogo Schelling (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+}
+
+n_run_model
