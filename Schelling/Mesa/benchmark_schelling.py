@@ -14,7 +14,7 @@ import random
 random.seed(42)
 
 def runthemodel(seed):
-    SchellingModel(seed)
+    schelling = SchellingModel(seed)
     for i in range(0, 10):
       schelling.step()
 
