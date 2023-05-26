@@ -7,7 +7,8 @@ turtles-own [
 
 to benchmark
   profiler:start         ;; start profiling
-  repeat 100 [ go ]
+  setup
+  repeat n_ticks [ go ]
   profiler:stop          ;; stop profiling
   print profiler:report  ;; view the results
   profiler:reset         ;; clear the data
@@ -200,6 +201,21 @@ SLIDER
 229
 seed
 seed
+0.0
+50000.0
+1.0
+1.0
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+196
+179
+229
+n_ticks
+n_ticks
 0.0
 50000.0
 1.0

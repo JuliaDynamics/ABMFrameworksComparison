@@ -2,7 +2,10 @@
   <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>benchmark</go>
-    <exitCondition>ticks = 700</exitCondition>
+    <exitCondition>ticks = 100</exitCondition>
+    <enumeratedValueSet variable="n_ticks">
+      <value value="100"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="density">
       <value value="60"/>
     </enumeratedValueSet>

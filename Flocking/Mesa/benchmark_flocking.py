@@ -15,15 +15,15 @@ from Flocking import BoidFlockers
 import random
 random.seed(42)
 
-def runthemodel(flock):
+def runthemodel(seed):
+    flock = BoidFlockers(seed)
     for i in range(0, 100):
       flock.step()
 
 seed = random.randint(1, 10000)
-flock = BoidFlockers(seed)
 """
 
-tt = timeit.Timer('runthemodel(flock)', setup=setup)
+tt = timeit.Timer('runthemodel(seed)', setup=setup)
 n_run = 100
 a = tt.repeat(n_run, 1)
 median_time = sorted(a)[n_run // 2 + n_run % 2]

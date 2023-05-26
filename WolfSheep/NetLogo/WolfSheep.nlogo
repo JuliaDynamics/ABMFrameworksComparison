@@ -55,7 +55,8 @@ end
 to benchmark
   profiler:reset         ;; clear the data
   profiler:start         ;; start profiling
-  repeat 500 [go]        ;; run for 500 steps
+  setup
+  repeat n_ticks [go]    ;; run for n_ticks steps
   profiler:stop          ;; stop profiling
   print profiler:report
 end
@@ -211,6 +212,21 @@ SLIDER
 229
 seed
 seed
+0.0
+50000.0
+1.0
+1.0
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+196
+179
+229
+n_ticks
+n_ticks
 0.0
 50000.0
 1.0
