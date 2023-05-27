@@ -13,15 +13,15 @@ from ForestFire import ForestFire
 import random
 random.seed(42)
 
-def runthemodel(fire):
+def runthemodel(seed):
+    fire = ForestFire(seed)
     for i in range(0, 100):
       fire.step()
 
 seed = random.randint(1, 10000)
-fire = ForestFire(seed)
 """
 
-tt = timeit.Timer('runthemodel(fire)', setup=setup)
+tt = timeit.Timer('runthemodel(seed)', setup=setup)
 n_run = 100
 a = tt.repeat(n_run, 1)
 median_time = sorted(a)[n_run // 2 + n_run % 2]

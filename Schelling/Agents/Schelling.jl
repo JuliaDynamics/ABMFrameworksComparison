@@ -5,8 +5,7 @@ using Agents
     group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
-function schelling(; numagents = 1000, griddims = (40, 40), min_to_be_happy = 3)
-    @assert numagents < prod(griddims)
+function schelling(rng; numagents = 1000, griddims = (40, 40), min_to_be_happy = 3)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = (min_to_be_happy = min_to_be_happy,)
     model = UnremovableABM(SchellingAgent, space; properties, scheduler = Schedulers.Randomly(), rng = rng)

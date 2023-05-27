@@ -3,6 +3,9 @@
     <setup>setup</setup>
     <go>benchmark</go>
     <exitCondition>ticks = 500</exitCondition>
+    <enumeratedValueSet variable="n_ticks">
+      <value value="500"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="wolf-gain-from-food">
       <value value="13"/>
     </enumeratedValueSet>
