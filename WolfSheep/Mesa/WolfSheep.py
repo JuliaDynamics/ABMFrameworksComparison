@@ -25,15 +25,15 @@ class WolfSheep(mesa.Model):
     def __init__(
         self,
         seed,
-        height=25,
-        width=25,
-        initial_sheep=60,
-        initial_wolves=40,
-        sheep_reproduce=0.2,
-        wolf_reproduce=0.1,
+        height,
+        width,
+        initial_sheep,
+        initial_wolves,
+        sheep_reproduce,
+        wolf_reproduce,
+        grass_regrowth_time,
         wolf_gain_from_food=13,
         grass=True,
-        grass_regrowth_time=20,
         sheep_gain_from_food=5,
     ):
         """

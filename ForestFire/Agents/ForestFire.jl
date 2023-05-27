@@ -2,7 +2,7 @@ using Agents, Random
 
 @agent Automata GridAgent{2} begin end
 
-function forest_fire(rng; density = 0.7, griddims = (100, 100))
+function forest_fire(rng, density, griddims)
     space = GridSpaceSingle(griddims; periodic = false, metric = :manhattan)
     ## Empty = 0, Green = 1, Burning = 2, Burnt = 3
     forest = UnremovableABM(Automata, space; rng, properties = (trees = zeros(Int, griddims),))

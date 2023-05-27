@@ -1,2 +1,6 @@
-Benchmarking Mason
-Mason Flocking (ms): 224.397500
+Benchmarking Julia
+Agents.jl WolfSheep-small (ms): 2.7929
+Agents.jl WolfSheep-large (ms): 134.13309999999998
+Benchmarking Mesa
+Mesa WolfSheep-small (ms): 140.53749999948195
+Mesa WolfSheep-large (ms): 5405.778599999394

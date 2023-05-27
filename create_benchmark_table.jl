@@ -1,7 +1,11 @@
 using PrettyTables
 
 frameworks = ["Agents.jl", "Mason", "Mesa", "NetLogo"]
-models = ["WolfSheep", "Flocking", "Schelling", "ForestFire"]
+
+models = ["WolfSheep-small", "WolfSheep-large", 
+          "Flocking-small", "Flocking-large", 
+          "Schelling-small", "Schelling-large", 
+          "ForestFire-small", "ForestFire-large"]
 
 frameworks_times = Dict(m => Dict(f => 0.0 for f in frameworks) for m in models)
 		  
