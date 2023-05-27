@@ -26,7 +26,7 @@ radius = {}
 density = {}
 """
 
-n_run = 3
+n_run = 100
 
 tt = timeit.Timer('runthemodel(seed, height, width, homophily, radius, density)', 
                   setup=setup.format(40, 40, 3, 1, 0.625))

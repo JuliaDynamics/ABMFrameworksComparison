@@ -31,7 +31,7 @@ wolf_reproduce = {}
 grass_regrowth_time = {}
 """
 
-n_run = 3
+n_run = 100
 
 tt = timeit.Timer('runthemodel(seed, height, width, initial_sheep, initial_wolves, sheep_reproduce, wolf_reproduce, grass_regrowth_time)', 
                   setup=setup.format(25, 25, 60, 40, 0.2, 0.1, 20))
