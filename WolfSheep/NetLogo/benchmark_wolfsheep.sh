@@ -29,7 +29,7 @@ n_run_model_small () {
     done
 
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-    printf "NetLogo WolfSheep*small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"
+    printf "NetLogo WolfSheep-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"
 }
 
 n_run_model_large () {
