@@ -1,6 +1,10 @@
-Benchmarking Julia
-Agents.jl WolfSheep-small (ms): 2.7929
-Agents.jl WolfSheep-large (ms): 134.13309999999998
+Benchmarking Agents.jl
+Agents.jl WolfSheep-small (ms): 2.846482
+Agents.jl WolfSheep-large (ms): 90.40982199999999
+Agents.jl Flocking-small (ms): 9.866973
+Agents.jl Flocking-large (ms): 91.678615
+Agents.jl Schelling-small (ms): 0.48708199999999996
+Agents.jl Schelling-large (ms): 5.474118
+Agents.jl ForestFire-small (ms): 0.8584609999999999
+Agents.jl ForestFire-large (ms): 74.61637
 Benchmarking Mesa
-Mesa WolfSheep-small (ms): 140.53749999948195
-Mesa WolfSheep-large (ms): 5405.778599999394

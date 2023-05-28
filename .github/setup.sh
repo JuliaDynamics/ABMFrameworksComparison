@@ -29,9 +29,5 @@ sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
 sudo tar -xzf NetLogo-6.3.0-64.tgz
 sudo mv "NetLogo 6.3.0" netlogo
 
-# install parallel and bc tools
-sudo apt install parallel
+# install bc tool
 sudo apt install bc
-
-# run benchmarks
-bash runall.sh
