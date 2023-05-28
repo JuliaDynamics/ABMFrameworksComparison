@@ -3,10 +3,10 @@
 (
 
 echo "Benchmarking Agents.jl"
-julia --project=@. ../Schelling/Agents/benchmark_schelling.jl
+julia --project=@. ./Schelling/Agents/benchmark_schelling.jl
 
 echo "Benchmarking Mesa"
-python3 ../Schelling/Mesa/benchmark_schelling.py
+python3 ./Schelling/Mesa/benchmark_schelling.py
 
 ) | tee benchmark_results.txt
 
