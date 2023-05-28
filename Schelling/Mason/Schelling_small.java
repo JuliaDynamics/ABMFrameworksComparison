@@ -5,7 +5,7 @@ import sim.util.Bag;
 import sim.field.grid.IntGrid2D;
 import sim.engine.SimState;
 
-public class Schelling extends SimState
+public class Schelling_small extends SimState
 {
     public int gridHeight;
     public int gridWidth;
@@ -18,17 +18,17 @@ public class Schelling extends SimState
     public IntGrid2D neighbors;
     public Bag emptySpaces;
     
-    public Schelling(final long seed) {
-        this(seed, 50, 50);
+    public Schelling_small(final long seed) {
+        this(seed, 40, 40);
     }
     
-    public Schelling(final long seed, final int width, final int height) {
+    public Schelling_small(final long seed, final int width, final int height) {
         super(seed);
         this.neighborhood = 1;
         this.threshold = 3;
-        this.redProbability = 0.4;
-        this.blueProbability = 0.4;
-        this.emptyProbability = 0.2;
+        this.redProbability = 0.3125;
+        this.blueProbability = 0.3125;
+        this.emptyProbability = 0.375;
         this.unavailableProbability = 0.0;
         this.emptySpaces = new Bag();
         this.gridWidth = width;
@@ -65,13 +65,13 @@ public class Schelling extends SimState
         this.createGrids();
         for (int x = 0; x < this.gridWidth; ++x) {
             for (int y = 0; y < this.gridHeight; ++y) {
-                this.schedule.scheduleRepeating((Steppable)new Agent(x, y));
+                this.schedule.scheduleRepeating((Steppable)new Agent_small(x, y));
             }
         }
     }
     
     public static void main(final String[] args) {
-        doLoop((Class)Schelling.class, args);
+        doLoop((Class)Schelling_small.class, args);
         System.exit(0);
     }
 }

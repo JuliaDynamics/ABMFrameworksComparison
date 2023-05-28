@@ -4,7 +4,7 @@ import sim.util.Double2D;
 import sim.field.continuous.Continuous2D;
 import sim.engine.SimState;
 
-public class Flocking extends SimState
+public class Flocking_large extends SimState
 {
     public Continuous2D flockers;
     public double width;
@@ -16,16 +16,16 @@ public class Flocking extends SimState
     public double momentum;
     public double neighborhood;
 
-    public Flocking(final long seed) {
+    public Flocking_large(final long seed) {
         super(seed);
-        this.width = 100.0;
-        this.height = 100.0;
-        this.numFlockers = 300;
+        this.width = 150.0;
+        this.height = 150.0;
+        this.numFlockers = 400;
+        this.neighborhood = 15.0;
         this.cohesion = 0.03;
         this.avoidance = 0.015;
         this.consistency = 0.05;
         this.momentum = 1.0;
-        this.neighborhood = 5.0;
     }
 
     public void start() {
@@ -34,7 +34,7 @@ public class Flocking extends SimState
         //this.flockers = new Continuous2D(0.1, this.width, this.height); // For non-compartmental
         for (int x = 0; x < this.numFlockers; ++x) {
             final Double2D location = new Double2D(this.random.nextDouble() * this.width, this.random.nextDouble() * this.height);
-            final Flocker flocker = new Flocker(location);
+            final Flocker_large flocker = new Flocker_large(location);
             this.flockers.setObjectLocation((Object)flocker, location);
             flocker.flockers = this.flockers;
             flocker.theFlock = this;
@@ -43,7 +43,7 @@ public class Flocking extends SimState
     }
 
     public static void main(final String[] args) {
-        doLoop((Class)Flocking.class, args);
+        doLoop((Class)Flocking_large.class, args);
         System.exit(0);
     }
 }

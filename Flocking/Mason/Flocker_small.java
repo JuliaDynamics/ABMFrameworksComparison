@@ -5,14 +5,14 @@ import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
 import sim.engine.Steppable;
 
-public class Flocker implements Steppable
+public class Flocker_small implements Steppable
 {
     public Double2D loc;
     public Double2D lastd;
     public Continuous2D flockers;
-    public Flocking theFlock;
+    public Flocking_small theFlock;
     
-    public Flocker(final Double2D location) {
+    public Flocker_small(final Double2D location) {
         this.loc = new Double2D(0.0, 0.0);
         this.lastd = new Double2D(0.0, 0.0);
         this.loc = location;
@@ -35,8 +35,8 @@ public class Flocker implements Steppable
         int i = 0;
         int count = 0;
         for (i = 0; i < b.numObjs; ++i) {
-            final Flocker other = (Flocker)b.objs[i];
-            final Double2D m = ((Flocker)b.objs[i]).momentum();
+            final Flocker_small other = (Flocker_small)b.objs[i];
+            final Double2D m = ((Flocker_small)b.objs[i]).momentum();
             ++count;
             x += m.x;
             y += m.y;
@@ -56,11 +56,11 @@ public class Flocker implements Steppable
         double y = 0.0;
         int count = 0;
         int i;
-        Flocker other;
+        Flocker_small other;
         double dx;
         double dy;
         for (i = 0, i = 0; i < b.numObjs; ++i) {
-            other = (Flocker)b.objs[i];
+            other = (Flocker_small)b.objs[i];
             dx = flockers.tdx(this.loc.x, other.loc.x);
             dy = flockers.tdy(this.loc.y, other.loc.y);
             ++count;
@@ -83,7 +83,7 @@ public class Flocker implements Steppable
         int i = 0;
         int count = 0;
         for (i = 0; i < b.numObjs; ++i) {
-            final Flocker other = (Flocker)b.objs[i];
+            final Flocker_small other = (Flocker_small)b.objs[i];
             if (other != this) {
                 final double dx = flockers.tdx(this.loc.x, other.loc.x);
                 final double dy = flockers.tdy(this.loc.y, other.loc.y);
@@ -101,7 +101,7 @@ public class Flocker implements Steppable
     }
     
     public void step(final SimState state) {
-        final Flocking flock = (Flocking)state;
+        final Flocking_small flock = (Flocking_small)state;
         this.loc = flock.flockers.getObjectLocation((Object)this);
         final Bag b = this.getNeighbors();
         final Double2D avoid = this.avoidance(b, flock.flockers);

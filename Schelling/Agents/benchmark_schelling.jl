@@ -19,6 +19,6 @@ a = @benchmark run_model(rng, 1000, (40, 40), 3, 1) setup = (rng = rng_model()) 
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Agents.jl Schelling-small (ms): ", minimum(a.times) * 1e-6)
 
-a = @benchmark run_model(rng, 5000, (100, 100), 8, 2) setup = (rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, 8000, (100, 100), 8, 2) setup = (rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Agents.jl Schelling-large (ms): ", minimum(a.times) * 1e-6)

@@ -1,4 +1,0 @@
-Benchmarking Agents.jl
-Agents.jl Flocking-small (ms): 13.708404999999999
-Agents.jl Flocking-large (ms): 90.749219
-Benchmarking Mesa
