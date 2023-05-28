@@ -13,19 +13,37 @@ NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="Schelling/NetLogo/Schelling.nlogo"
 NAME_PARAM="Schelling/NetLogo/parameters_schelling.xml"
 
-n_run_model () {
+n_run_model_small () {
     times=()
     for i in $( seq 1 $N_RUN )
     do
         julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
         sed -i '1d' $NAME_PARAM
-        t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
+        t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
+             --min-pxcor 0 --max-pxcor 39 --min-pycor 0 --max-pycor 39
             ) | awk '/GO/{i++}i==2{print $3;exit}')
         times+=(`expr $t`)
     done
 
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-    printf "NetLogo Schelling (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+    printf "NetLogo Schelling-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
 }
 
-n_run_model
+n_run_model_large () {
+    times=()
+    for i in $( seq 1 $N_RUN )
+    do
+        julia --project=@. change_seed_netlogo.jl $NAME_PARAM $((RANDOM % 10000 + 1))
+        sed -i '1d' $NAME_PARAM
+        t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
+             --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99
+            ) | awk '/GO/{i++}i==2{print $3;exit}')
+        times+=(`expr $t`)
+    done
+
+    readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+    printf "NetLogo Schelling-large (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+}
+
+n_run_model_small
+n_run_model_large

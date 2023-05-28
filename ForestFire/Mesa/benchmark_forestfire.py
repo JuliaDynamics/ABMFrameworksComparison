@@ -31,7 +31,7 @@ a = tt.repeat(n_run, 1)
 median_time = sorted(a)[n_run // 2 + n_run % 2]
 print("Mesa ForestFire-small (ms):", median_time*1e3)
 
-tt = timeit.Timer('runthemodel(seed, height, width, density)', setup=setup.format(1000, 1000, 0.9))
+tt = timeit.Timer('runthemodel(seed, height, width, density)', setup=setup.format(500, 500, 0.9))
 a = tt.repeat(n_run, 1)
 median_time = sorted(a)[n_run // 2 + n_run % 2]
 print("Mesa ForestFire-large (ms):", median_time*1e3)

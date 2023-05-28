@@ -61,8 +61,8 @@ to update-turtles
   ask turtles [
     ; in next two lines, we use "neighbors" to test the eight patches
     ; surrounding the current patch
-    set similar-nearby count (turtles-on neighbors)  with [ color = [ color ] of myself ]
-    set other-nearby count (turtles-on neighbors) with [ color != [ color ] of myself ]
+    set similar-nearby count (turtles-on patches in-radius r)  with [ color = [ color ] of myself ]
+    set other-nearby count (turtles-on patches in-radius r) with [ color != [ color ] of myself ]
     set total-nearby similar-nearby + other-nearby
     set happy? similar-nearby >= (%-similar-wanted * total-nearby / 100)
     ; add visualization here
@@ -158,6 +158,21 @@ SLIDER
 128
 %-similar-wanted
 %-similar-wanted
+0
+100
+30.0
+1
+1
+%
+HORIZONTAL
+
+SLIDER
+10
+95
+285
+128
+r
+r
 0
 100
 30.0

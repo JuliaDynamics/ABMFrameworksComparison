@@ -8,6 +8,9 @@ julia --project=@. ./ForestFire/Agents/benchmark_forestfire.jl
 echo "Benchmarking Mesa"
 python3 ./ForestFire/Mesa/benchmark_forestfire.py
 
+echo "Benchmarking NetLogo"
+bash ForestFire/NetLogo/benchmark_forestfire.sh
+
 ) | tee benchmark_results.txt
 
 julia --project=@. create_benchmark_table.jl
