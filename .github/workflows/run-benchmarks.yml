@@ -21,7 +21,7 @@ jobs:
   Run-benchmark-wolfsheep:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v3ù
+       - uses: actions/checkout@v3
        - name: setup-benchmarks
          run: bash ./.github/setup.sh
        - name: run-benchmarks
