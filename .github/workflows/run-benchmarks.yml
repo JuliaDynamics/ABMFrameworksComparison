@@ -5,32 +5,36 @@ jobs:
   Run-benchmark-forestfire:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v3
        - name: setup-benchmarks
+         uses: actions/checkout@v3
        - run: bash ./.github/setup.sh
        - name: run-benchmarks
-       - run: bash ./.github/run-forestfire.sh
+         uses: actions/checkout@v3
+       - run: sudo bash ./.github/run-forestfire.sh
   Run-benchmark-flocking:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v3
        - name: setup-benchmarks
+         uses: actions/checkout@v3
        - run: bash ./.github/setup.sh
        - name: run-benchmarks
-       - run: bash ./.github/run-flocking.sh
+         uses: actions/checkout@v3
+       - run: sudo bash ./.github/run-flocking.sh
   Run-benchmark-wolfsheep:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v3
        - name: setup-benchmarks
+         uses: actions/checkout@v3
        - run: bash ./.github/setup.sh
        - name: run-benchmarks
-       - run: bash ./.github/run-wolfsheep.sh
+         uses: actions/checkout@v3
+       - run: sudo bash ./.github/run-wolfsheep.sh
   Run-benchmark-schelling:
     runs-on: ubuntu-latest
     steps:
-       - uses: actions/checkout@v3
        - name: setup-benchmarks
+         uses: actions/checkout@v3
        - run: bash ./.github/setup.sh
        - name: run-benchmarks
-       - run: bash ./.github/run-schelling.sh
+         uses: actions/checkout@v3
+       - run: sudo bash ./.github/run-schelling.sh
