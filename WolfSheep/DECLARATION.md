@@ -3,9 +3,7 @@
 This is an archetypical ABM implementation of traditional predator-prey-like ecosystem models in a discrete space.
 When compared to the Schelling model, this example tests the performance of handling agents of different types, as well as dynamic birth-death of new-old agents.
 
-There is only one size version of this model, because the scaling of the operations that scale (searching nearest neighbors) is already tested in the Schelling example.
-
-**Very important**: This model is not always stable. Depending on the initialization of the agents, the populations of sheeps and wolves may quickly go to zero. For this reason **this model is initialized with a single RNG seed, and the same RNG seed is used for every simulation. This chosen RNG seed must ensure that all populations oscillate around a stable mean value for the full duration of the simulation.**
+Two versions are simulated: a large and a small one, in the larger one the size of the grid, the number of agents, the reproduction rate of the Sheeps and the Wolves and  the growth rate of the Grass are larger.
 
 ## Rules of the ABM
 
@@ -32,7 +30,7 @@ The model consists of: Sheeps, Wolves, and Grass. Sheeps and Wolfs are agents th
   - Grass:
     - All model positions decrease the grass countdown timer. If it reaches 0 the grass becomes fully grown at this location (do nothing for grass that is already fully grown).
   - Reproduction: the agent creates halves its energy. Then creates an offspring with identical properties except the ID property which must be set by the framework to be unique.
-- The simulation runs for 1000 steps.
+- The simulation runs for 100 steps.
 
 ## Technical implementation
 The wolves and sheeps must be different agents. They must be different agent types/classes/datastructures. They cannot be the same data structure. This is done on purpose to penaltize Julia softwares which suffer the type-instability penalty on using different data structures for different agents. Grass can be modelled in whatever way each framework can do in the most performant way, to allow for optimizations regarding handling spatial properties.
@@ -48,3 +46,26 @@ Defaults:
 - reproduction rate of sheeps: 0.2
 - reproduction rate of wolves: 0.1
 - dimensions of the grid: (25, 25)
+
+Defaults that are the same for small or large simulation:
+
+- Δenergy for sheep eating grass: 5
+- Δenergy for wolf eating sheep: 13
+
+Defaults for small simulation:
+
+- init number of sheeps: 60
+- init number of wolves: 40
+- grass regrowth time = 20
+- reproduction rate of sheeps: 0.2
+- reproduction rate of wolves: 0.1
+- dimensions of the grid: (25, 25)
+
+Defaults for large simulation:
+
+- init number of sheeps: 1000
+- init number of wolves: 500
+- grass regrowth time = 10
+- reproduction rate of sheeps: 0.4
+- reproduction rate of wolves: 0.2
+- dimensions of the grid: (100, 100)
