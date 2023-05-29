@@ -1,9 +1,7 @@
 # fetch update software list
 sudo apt-get update
 
-# clone the repository and give permissions
-sudo git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
-sudo cd test_comp
+# give permissions
 sudo chmod a+rwx ./
 sudo chmod -R 777 ./
 
@@ -29,9 +27,5 @@ sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
 sudo tar -xzf NetLogo-6.3.0-64.tgz
 sudo mv "NetLogo 6.3.0" netlogo
 
-# install parallel and bc tools
-sudo apt install parallel
+# install bc tool
 sudo apt install bc
-
-# run benchmarks
-bash runall.sh

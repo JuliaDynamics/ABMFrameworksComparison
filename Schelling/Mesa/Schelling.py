@@ -23,7 +23,8 @@ class SchellingAgent(Agent):
 
     def step(self):
         similar = 0
-        for neighbor in self.model.grid.iter_neighbors(self.pos, moore=True):
+        r = self.model.radius
+        for neighbor in self.model.grid.iter_neighbors(self.pos, moore=True, radius=r):
             if neighbor.type == self.type:
                 similar += 1
 
@@ -39,7 +40,7 @@ class SchellingModel(Model):
     Model class for the Schelling segregation model.
     '''
 
-    def __init__(self, seed, height=50, width=50, density=0.8, minority_pc=0.5, homophily=3):
+    def __init__(self, seed, height, width, homophily, radius, density, minority_pc=0.5):
         '''
         '''
         super().__init__(seed=seed)
@@ -48,6 +49,7 @@ class SchellingModel(Model):
         self.density = density
         self.minority_pc = minority_pc
         self.homophily = homophily
+        self.radius = radius
 
         self.schedule = RandomActivation(self)
         self.grid = SingleGrid(height, width, torus=True)

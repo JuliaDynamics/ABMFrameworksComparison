@@ -1,5 +1,5 @@
 <experiments>
-  <experiment name="benchmark" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
+  <experiment name="benchmark_small" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>benchmark</go>
     <exitCondition>ticks = 100</exitCondition>
@@ -7,10 +7,24 @@
       <value value="100"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="density">
-      <value value="60"/>
+      <value value="70"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="seed">
-      <value value=""/>
+      <value value="2199"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="benchmark_large" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>benchmark</go>
+    <exitCondition>ticks = 100</exitCondition>
+    <enumeratedValueSet variable="n_ticks">
+      <value value="100"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="density">
+      <value value="90"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seed">
+      <value value="2199"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

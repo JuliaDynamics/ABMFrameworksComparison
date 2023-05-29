@@ -5,9 +5,9 @@ using Agents
     group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
-function schelling(rng; numagents = 2000, griddims = (50, 50), min_to_be_happy = 3)
+function schelling(rng, numagents, griddims, min_to_be_happy, radius)
     space = GridSpaceSingle(griddims, periodic = false)
-    properties = (min_to_be_happy = min_to_be_happy,)
+    properties = (min_to_be_happy = min_to_be_happy, radius = radius)
     model = UnremovableABM(SchellingAgent, space; properties, scheduler = Schedulers.Randomly(), rng = rng)
     for n in 1:numagents
         agent = SchellingAgent(n, (1, 1), false, n < numagents / 2 ? 1 : 2)
@@ -19,7 +19,7 @@ end
 function schelling_agent_step!(agent, model)
     agent.mood == true && return # do nothing if already happy
     count_neighbors_same_group = 0
-    for neighbor in nearby_agents(agent, model)
+    for neighbor in nearby_agents(agent, model, model.radius)
         if agent.group == neighbor.group
             count_neighbors_same_group += 1
         end

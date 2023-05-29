@@ -4,20 +4,20 @@ import sim.util.IntBag;
 import sim.util.Int2D;
 import sim.engine.Steppable;
 
-public class Agent implements Steppable
+public class Agent_small implements Steppable
 {
     Int2D loc;
     IntBag neighborsX;
     IntBag neighborsY;
 
-    public Agent(final int x, final int y) {
+    public Agent_small(final int x, final int y) {
         this.neighborsX = new IntBag(9);
         this.neighborsY = new IntBag(9);
         this.loc = new Int2D(x, y);
     }
 
     public void step(final SimState state) {
-        final Schelling sch = (Schelling)state;
+        final Schelling_small sch = (Schelling_small)state;
         final int[][] locs = sch.neighbors.field;
         final int x = this.loc.x;
         final int y = this.loc.y;

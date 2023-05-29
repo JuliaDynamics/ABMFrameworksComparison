@@ -11,15 +11,15 @@ end
 end
 
 function predator_prey(
-    rng;
-    n_sheep = 60,
-    n_wolves = 40,
-    dims = (25, 25),
-    regrowth_time = 20,
+    rng,
+    n_sheep,
+    n_wolves,
+    dims,
+    regrowth_time,
+    sheep_reproduce,
+    wolf_reproduce;
     Δenergy_sheep = 5,
     Δenergy_wolf = 13,
-    sheep_reproduce = 0.2,
-    wolf_reproduce = 0.1,
 )
     space = GridSpace(dims, periodic = false)
     properties = (
@@ -62,7 +62,7 @@ function agent_step!(sheep::Sheep, model)
     sheep.energy -= 1
     sheep_eat!(sheep, model)
     if sheep.energy < 0
-        kill_agent!(sheep, model)
+        remove_agent!(sheep, model)
         return
     end
     if rand(abmrng(model)) <= sheep.reproduction_prob
@@ -73,11 +73,9 @@ end
 function agent_step!(wolf::Wolf, model)
     randomwalk!(wolf, model, 1)
     wolf.energy -= 1
-    agents = agents_in_position(wolf.pos, model)
-    dinner = Iterators.filter(x -> typeof(x) == Sheep, agents)
-    wolf_eat!(wolf, dinner, model)
+    wolf_eat!(wolf, model)
     if wolf.energy < 0
-        kill_agent!(wolf, model)
+        remove_agent!(wolf, model)
         return
     end
     if rand(abmrng(model)) <= wolf.reproduction_prob
@@ -92,10 +90,12 @@ function sheep_eat!(sheep, model)
     end
 end
 
-function wolf_eat!(wolf, sheep, model)
-    if !isempty(sheep)
-        dinner = rand(abmrng(model), collect(sheep))
-        kill_agent!(dinner, model)
+function wolf_eat!(wolf, model)
+    agents = agents_in_position(wolf.pos, model)
+    sheeps = Iterators.filter(x -> typeof(x) == Sheep, agents)
+    if !isempty(sheeps)
+        dinner = rand(abmrng(model), collect(sheeps))
+        remove_agent!(dinner, model)
         wolf.energy += wolf.Δenergy
     end
 end
