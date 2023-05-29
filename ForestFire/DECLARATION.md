@@ -5,6 +5,7 @@ A basic ABM that specifically targets simulating cellular automata. Two versions
 Because this is a cellular automaton (all possible positions are occupied by exactly 1 agent which never moves) it is up to the framework to decide the implementation. The declaration below refers to "trees", under the assumption that each unique cell in space could be one unique agent or whatever else the framework uses. Trees and "unique positions in space" are the same thing here.
 
 ## Rules of the ABM
+
 - The space is a 2D rectangular grid of dimension `(X, X)`, i.e,. of `X` times `X` trees.
 - Each tree has an integer property corresponding to the status of the occupying trees: 0=empty, 1 = green, 2 = burning, 3 = burnt
 - At initialization, a `density` in (0, 1) value is provided.
@@ -17,6 +18,7 @@ Because this is a cellular automaton (all possible positions are occupied by exa
 
 ## Technical implementation
 
-For the small model, `X = 100` and `density = 0.7`.
-For the large model, `X = 1000` and `density = 0.9`.
+- For the small model, `X = 100` and `density = 0.7`.
+- For the large model, `X = 500` and `density = 0.9`.
+
 The implementation doesn't actually have to use agents; use whatever means the software has to accelerate cellular automata simulations.
