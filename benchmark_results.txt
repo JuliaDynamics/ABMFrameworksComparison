@@ -1,3 +1,0 @@
-Benchmarking NetLogo
-NetLogo ForestFire-small (ms): 247.978
-NetLogo ForestFire-large (ms): 779.462
