@@ -5,6 +5,8 @@ jobs:
   Run-benchmark-forestfire:
     runs-on: ubuntu-latest
     steps:
+       - name: Cancel ongoing test runs for previous commits
+         uses: styfle/cancel-workflow-action@0.11.0
        - uses: actions/checkout@v3
        - name: setup-benchmarks
          run: bash ./.github/setup.sh
@@ -13,6 +15,8 @@ jobs:
   Run-benchmark-flocking:
     runs-on: ubuntu-latest
     steps:
+       - name: Cancel ongoing test runs for previous commits
+         uses: styfle/cancel-workflow-action@0.11.0
        - uses: actions/checkout@v3
        - name: setup-benchmarks
          run: bash ./.github/setup.sh
@@ -21,6 +25,8 @@ jobs:
   Run-benchmark-wolfsheep:
     runs-on: ubuntu-latest
     steps:
+       - name: Cancel ongoing test runs for previous commits
+         uses: styfle/cancel-workflow-action@0.11.0
        - uses: actions/checkout@v3
        - name: setup-benchmarks
          run: bash ./.github/setup.sh
@@ -29,6 +35,8 @@ jobs:
   Run-benchmark-schelling:
     runs-on: ubuntu-latest
     steps:
+       - name: Cancel ongoing test runs for previous commits
+         uses: styfle/cancel-workflow-action@0.11.0
        - uses: actions/checkout@v3
        - name: setup-benchmarks
          run: bash ./.github/setup.sh
