@@ -35,18 +35,6 @@ The model consists of: Sheeps, Wolves, and Grass. Sheeps and Wolfs are agents th
 ## Technical implementation
 The wolves and sheeps must be different agents. They must be different agent types/classes/datastructures. They cannot be the same data structure. This is done on purpose to penaltize Julia softwares which suffer the type-instability penalty on using different data structures for different agents. Grass can be modelled in whatever way each framework can do in the most performant way, to allow for optimizations regarding handling spatial properties.
 
-
-Defaults:
-
-- init number of sheeps: 60
-- init number of wolves: 40
-- grass regrowth time = 20
-- Δenergy for sheep eating grass: 5
-- Δenergy for wolf eating sheep: 13
-- reproduction rate of sheeps: 0.2
-- reproduction rate of wolves: 0.1
-- dimensions of the grid: (25, 25)
-
 Defaults that are the same for small or large simulation:
 
 - Δenergy for sheep eating grass: 5
