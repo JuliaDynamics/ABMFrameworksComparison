@@ -20,7 +20,7 @@ Various agent based models have been selected to compare performance, such as th
 1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
 1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
 
-The results of the latest comparison are presented here: TODO: provide link to a CI log.
+The results of the latest comparison are presented here: https://github.com/JuliaDynamics/ABM_Framework_Comparisons/actions/runs/5115347628/jobs/9196526399
 
 [Here are the old benchmarks](https://juliadynamics.github.io/Agents.jl/stable/comparison/). The hardware configuration used for the benchmark is a Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
 
