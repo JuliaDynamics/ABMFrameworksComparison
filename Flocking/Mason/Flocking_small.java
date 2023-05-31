@@ -33,7 +33,7 @@ public class Flocking_small extends SimState
         this.flockers = new Continuous2D(this.neighborhood / 1.5, this.width, this.height);
         for (int x = 0; x < this.numFlockers; ++x) {
             final Double2D location = new Double2D(this.random.nextDouble() * this.width, this.random.nextDouble() * this.height);
-            vel = new Double2D(this.random.nextDouble()*2-1, this.random.nextDouble()*2-1);
+            final Double2D vel = new Double2D(this.random.nextDouble()*2-1, this.random.nextDouble()*2-1);
             final Flocker_small flocker = new Flocker_small(location, vel);
             this.flockers.setObjectLocation((Object)flocker, location);
             flocker.flockers = this.flockers;
