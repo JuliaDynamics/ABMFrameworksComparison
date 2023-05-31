@@ -1,5 +1,4 @@
 import sim.engine.SimState;
-import ec.util.MersenneTwisterFast;
 import sim.util.Bag;
 import sim.field.continuous.Continuous2D;
 import sim.util.Double2D;
@@ -12,9 +11,8 @@ public class Flocker_small implements Steppable
     public Continuous2D flockers;
     public Flocking_small theFlock;
     
-    public Flocker_small(final Double2D location) {
-        this.loc = new Double2D(0.0, 0.0);
-        this.lastd = new Double2D(0.0, 0.0);
+    public Flocker_small(final Double2D location, final Double2D lastd) {
+        this.lastd = lastd;
         this.loc = location;
     }
     
@@ -37,9 +35,9 @@ public class Flocker_small implements Steppable
         for (i = 0; i < b.numObjs; ++i) {
             final Flocker_small other = (Flocker_small)b.objs[i];
             final Double2D m = ((Flocker_small)b.objs[i]).momentum();
-            ++count;
             x += m.x;
             y += m.y;
+            ++count;
         }
         if (count > 0) {
             x /= count;
@@ -59,19 +57,19 @@ public class Flocker_small implements Steppable
         Flocker_small other;
         double dx;
         double dy;
-        for (i = 0, i = 0; i < b.numObjs; ++i) {
+        for (i = 0; i < b.numObjs; ++i) {
             other = (Flocker_small)b.objs[i];
             dx = flockers.tdx(this.loc.x, other.loc.x);
             dy = flockers.tdy(this.loc.y, other.loc.y);
-            ++count;
             x += dx;
             y += dy;
+            ++count;
         }
         if (count > 0) {
             x /= count;
             y /= count;
         }
-        return new Double2D(-x / 10.0, -y / 10.0);
+        return new Double2D(x, y);
     }
     
     public Double2D avoidance(final Bag b, final Continuous2D flockers) {
@@ -88,16 +86,18 @@ public class Flocker_small implements Steppable
                 final double dx = flockers.tdx(this.loc.x, other.loc.x);
                 final double dy = flockers.tdy(this.loc.y, other.loc.y);
                 final double lensquared = dx * dx + dy * dy;
-                ++count;
-                x += dx / (lensquared * lensquared + 1.0);
-                y += dy / (lensquared * lensquared + 1.0);
+                if lensquared < 1.0 {
+                    x += dx;
+                    y += dy;
+                    ++count;
+                }
             }
         }
         if (count > 0) {
             x /= count;
             y /= count;
         }
-        return new Double2D(400.0 * x, 400.0 * y);
+        return new Double2D(-x, -y);
     }
     
     public void step(final SimState state) {
@@ -108,8 +108,8 @@ public class Flocker_small implements Steppable
         final Double2D cohe = this.cohesion(b, flock.flockers);
         final Double2D cons = this.consistency(b, flock.flockers);
         final Double2D mome = this.momentum();
-        double dx = flock.cohesion * cohe.x + flock.avoidance * avoid.x + flock.consistency * cons.x + flock.momentum * mome.x;
-        double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + flock.momentum * mome.y;
+        double dx = flock.cohesion * cohe.x + flock.avoidance * avoid.x + flock.consistency * cons.x + mome.x;
+        double dy = flock.cohesion * cohe.y + flock.avoidance * avoid.y + flock.consistency * cons.y + mome.y;
         final double dis = Math.sqrt(dx * dx + dy * dy);
         if (dis > 0.0) {
             dx = dx / dis;
@@ -120,4 +120,3 @@ public class Flocker_small implements Steppable
         flock.flockers.setObjectLocation((Object)this, this.loc);
     }
 }
-
