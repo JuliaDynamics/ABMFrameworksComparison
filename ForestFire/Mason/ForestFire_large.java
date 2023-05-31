@@ -53,7 +53,8 @@ public class ForestFire_large extends SimState
                         for (int k = i-1; k <= i+1; k++) {
                             for (int l = j-1; l <= j+1; l++) {
                                 if (k >= 0 && k < gridWidth && l >= 0 && l < gridHeight
-                                    && (k != i || l != j)) {
+                                    && (k != i || l != j)
+                                    && Math.abs(k - i) + Math.abs(l - j) <= 1) {
                                     if (myfield.get(k,l) == BURNING) {
                                         myfield.set(i,j, BURNING);
                                         break;
