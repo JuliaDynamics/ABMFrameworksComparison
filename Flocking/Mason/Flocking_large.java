@@ -18,8 +18,8 @@ public class Flocking_large extends SimState
 
     public Flocking_large(final long seed) {
         super(seed);
-        this.width = 200.0;
-        this.height = 200.0;
+        this.width = 150.0;
+        this.height = 150.0;
         this.numFlockers = 400;
         this.neighborhood = 15.0;
         this.cohesion = 0.03;
