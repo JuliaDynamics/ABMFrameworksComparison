@@ -47,10 +47,10 @@ function flocking_agent_step!(bird, model)
         match = match .+ model[id].vel
     end
     N = max(N, 1)
-    cohere = cohere ./ N .* bird.cohere_factor
-    separate = separate ./ N .* bird.separate_factor
-    match = match ./ N .* bird.match_factor
-    bird.vel = (bird.vel .+ cohere .+ separate .+ match) ./ 2
+    cohere = cohere .* bird.cohere_factor
+    separate = separate .* bird.separate_factor
+    match = match .* bird.match_factor
+    bird.vel = bird.vel .+ (cohere .+ separate .+ match) ./ N 
     bird.vel = bird.vel ./ norm(bird.vel)
     move_agent!(bird, model, bird.speed)
 end
