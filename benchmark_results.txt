@@ -1,3 +1,0 @@
-Benchmarking Mason
-Mason ForestFire (ms): 112.284321
-Mason ForestFire-large (ms): 175.866867
