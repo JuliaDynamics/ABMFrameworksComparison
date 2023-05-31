@@ -18,7 +18,7 @@ n_run_model_small () {
         times+=(`expr $endt - $startt`)
     done
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-    echo -n "Mason ForestFire (ms): "
+    echo -n "Mason ForestFire-small (ms): "
     echo "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]} * 0.000001" | bc
 }
 
