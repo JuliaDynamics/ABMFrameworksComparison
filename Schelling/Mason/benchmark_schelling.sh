@@ -13,7 +13,7 @@ n_run_model_small () {
     for i in $( seq 1 $N_RUN )
     do
         startt=`date +%s%N`
-        java Schelling_small -seed $((RANDOM % 10000 + 1)) -for 10 -quiet
+        java Schelling_small -seed $((RANDOM % 10000 + 1)) -for 20 -quiet
         endt=`date +%s%N`
         times+=(`expr $endt - $startt`)
     done
