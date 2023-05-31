@@ -31,10 +31,10 @@ public class Flocking_large extends SimState
     public void start() {
         super.start();
         this.flockers = new Continuous2D(this.neighborhood / 1.5, this.width, this.height);
-        //this.flockers = new Continuous2D(0.1, this.width, this.height); // For non-compartmental
         for (int x = 0; x < this.numFlockers; ++x) {
             final Double2D location = new Double2D(this.random.nextDouble() * this.width, this.random.nextDouble() * this.height);
-            final Flocker_large flocker = new Flocker_large(location);
+            final Double2D vel = new Double2D(this.random.nextDouble()*2-1, this.random.nextDouble()*2-1);
+            final Flocker_large flocker = new Flocker_large(location, vel);
             this.flockers.setObjectLocation((Object)flocker, location);
             flocker.flockers = this.flockers;
             flocker.theFlock = this;
