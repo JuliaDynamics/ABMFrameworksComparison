@@ -86,7 +86,7 @@ public class Flocker_large implements Steppable
                 final double dx = flockers.tdx(this.loc.x, other.loc.x);
                 final double dy = flockers.tdy(this.loc.y, other.loc.y);
                 final double lensquared = dx * dx + dy * dy;
-                if lensquared < 1.0 {
+                if (lensquared < 1.0) {
                     x += dx;
                     y += dy;
                     ++count;
