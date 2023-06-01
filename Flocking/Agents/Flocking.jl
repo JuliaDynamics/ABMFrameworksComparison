@@ -19,7 +19,7 @@ function flocking(
     separation = 1.0,
     separate_factor = 0.015,
     match_factor = 0.05,
-    spacing = visual_distance/1.5,
+    spacing = visual_distance / 1.5,
 )
     space2d = ContinuousSpace(extent; spacing)
     model = UnremovableABM(Bird, space2d; scheduler = Schedulers.Randomly(), rng = rng)
