@@ -19,13 +19,13 @@ function flocking(
     separation = 1.0,
     separate_factor = 0.015,
     match_factor = 0.05,
-    spacing = visual_distance / 1.5,
+    spacing = visual_distance/1.5,
 )
     space2d = ContinuousSpace(extent; spacing)
     model = UnremovableABM(Bird, space2d; scheduler = Schedulers.Randomly(), rng = rng)
     for n in 1:n_birds
-        vel = Tuple(rand(model.rng, 2) * 2 .- 1)
-        agent = Bird(n, (1, 1), vel, speed, cohere_factor, separation, 
+        vel = ntuple(_ -> randn(model.rng), 2) .* 2 .- 1
+        agent = Bird(n, (1.0, 1.0), vel, speed, cohere_factor, separation, 
                      separate_factor, match_factor, visual_distance,)
         add_agent!(agent, model)
     end
@@ -33,18 +33,17 @@ function flocking(
 end
 
 function flocking_agent_step!(bird, model)
-    neighbor_ids = nearby_ids(bird, model, bird.visual_distance)
+    neighbor_agents = nearby_agents(bird, model, bird.visual_distance)
     N = 0
     match = separate = cohere = (0.0, 0.0)
-    for id in neighbor_ids
+    for neighbor in neighbor_agents
         N += 1
-        neighbor = model[id].pos
-        heading = neighbor .- bird.pos
+        heading = neighbor.pos .- bird.pos
         cohere = cohere .+ heading
-        if euclidean_distance(bird.pos, neighbor, model) < bird.separation
+        match = match .+ neighbor.vel
+        if sum(heading.^2) < bird.separation
             separate = separate .- heading
         end
-        match = match .+ model[id].vel
     end
     N = max(N, 1)
     cohere = cohere .* bird.cohere_factor
