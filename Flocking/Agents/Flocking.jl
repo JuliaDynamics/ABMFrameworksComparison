@@ -41,7 +41,7 @@ function flocking_agent_step!(bird, model)
         heading = neighbor.pos .- bird.pos
         cohere = cohere .+ heading
         match = match .+ neighbor.vel
-        if sum(heading.^2) < bird.separation
+        if sum(heading.^2) < bird.separation^2
             separate = separate .- heading
         end
     end
