@@ -1,0 +1,3 @@
+Benchmarking Mason
+Mason WolfSheep-small (ms): 235.135083
+Mason WolfSheep-large (ms): 458.176879

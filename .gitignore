@@ -3,4 +3,6 @@ Manifest.toml
 *.code-workspace
 *.class
 .*.tmp.nlogo
+netlogo
 __pycache__
+
