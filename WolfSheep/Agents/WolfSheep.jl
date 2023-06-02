@@ -57,36 +57,25 @@ function predator_prey(
     return model, agent_step!, model_step!
 end
 
-function agent_step!(sheep::Sheep, model)
-    randomwalk!(sheep, model, 1)
-    sheep.energy -= 1
-    sheep_eat!(sheep, model)
-    if sheep.energy < 0
-        remove_agent!(sheep, model)
-    elseif rand(abmrng(model)) <= sheep.reproduction_prob
-        reproduce!(sheep, model)
+function agent_step!(agent, model)
+    randomwalk!(agent, model, 1)
+    agent.energy -= 1
+    eat!(agent, model)
+    if agent.energy < 0
+        remove_agent!(agent, model)
+    elseif rand(abmrng(model)) <= agent.reproduction_prob
+        reproduce!(agent, model)
     end
 end
 
-function agent_step!(wolf::Wolf, model)
-    randomwalk!(wolf, model, 1)
-    wolf.energy -= 1
-    wolf_eat!(wolf, model)
-    if wolf.energy < 0
-        remove_agent!(wolf, model)
-    elseif rand(abmrng(model)) <= wolf.reproduction_prob
-        reproduce!(wolf, model)
-    end
-end
-
-function sheep_eat!(sheep, model)
+function eat!(sheep::Sheep, model)
     if model.fully_grown[sheep.pos...]
         sheep.energy += sheep.Δenergy
         model.fully_grown[sheep.pos...] = false
     end
 end
 
-function wolf_eat!(wolf, model)
+function eat!(wolf::Wolf, model)
     agents = agents_in_position(wolf.pos, model)
     sheeps = Iterators.filter(x -> typeof(x) == Sheep, agents)
     if !isempty(sheeps)
@@ -106,7 +95,6 @@ function reproduce!(agent, model)
         agent.Δenergy,
     )
     add_agent_pos!(offspring, model)
-    return
 end
 
 function model_step!(model)

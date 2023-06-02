@@ -3,12 +3,9 @@
 (
 
 
-
 echo "Benchmarking Mason"
 bash WolfSheep/Mason/benchmark_wolfsheep.sh
-bash Flocking/Mason/benchmark_flocking.sh
-bash Schelling/Mason/benchmark_schelling.sh
-bash ForestFire/Mason/benchmark_forestfire.sh
+
 
 echo "Benchmarking Mesa"
 python3 WolfSheep/Mesa/benchmark_wolfsheep.py
