@@ -20,7 +20,9 @@ Various agent based models have been selected to compare performance, such as th
 1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
 1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
 
-The results of the latest comparison are presented here:
+These are the results of the latest comparison:
+
+![Screenshot 2023-06-02 031848](https://github.com/JuliaDynamics/ABM_Framework_Comparisons/assets/68152031/f3fc1bdc-93b3-4ba1-b6a0-e4ddf1e0b43e)
 
 <!--
 \documentclass{article}
