@@ -11,7 +11,6 @@ public class Wolf_small implements Steppable
     public SparseGrid2D fieldWolves;
     public SparseGrid2D fieldSheeps;
     public Wsg_small theWsg;
-    public double mom = 0.5;
     public boolean dead = false;
     public int energy = 0;
     public Wolf_small(Int2D location) { loc = location; }
@@ -25,24 +24,19 @@ public class Wolf_small implements Steppable
 
         final Wsg_small wsg = (Wsg_small)state;
         
-        boolean moved = false;
         int x = loc.x;
         int y = loc.y;
 
-        if (!moved) {
-            int xmin = (x>0) ? -1 : 0;
-            int xmax = (x<Wsg_small.GRID_WIDTH-1) ? 1 : 0;
-            int ymin = (y>0) ? -1 : 0;
-            int ymax = (y<Wsg_small.GRID_HEIGHT-1) ? 1 : 0;
+        int xmin = (x>0) ? -1 : 0;
+        int xmax = (x<Wsg_small.GRID_WIDTH-1) ? 1 : 0;
+        int ymin = (y>0) ? -1 : 0;
+        int ymax = (y<Wsg_small.GRID_HEIGHT-1) ? 1 : 0;
 
-            //generate int between xmin and xmax
-            int dx = x + wsg.random.nextInt((xmax-xmin) + 1) + xmin;
-            int dy = y + wsg.random.nextInt((ymax-ymin) + 1) + ymin;
-            Int2D new_loc = new Int2D(dx, dy);
-            loc = new_loc;
-            lastd = new Int2D(x, y);
-        }
-
+        //generate int between xmin and xmax
+        int dx = x + wsg.random.nextInt((xmax-xmin) + 1) + xmin;
+        int dy = y + wsg.random.nextInt((ymax-ymin) + 1) + ymin;
+        Int2D new_loc = new Int2D(dx, dy);
+        loc = new_loc;
         wsg.fieldWolves.setObjectLocation(this, loc);
         
         //eat sheep
@@ -53,13 +47,12 @@ public class Wolf_small implements Steppable
                 if (!s.isDead())
                 {
                     s.setDead(true);
-                    energy += 20;
+                    energy += 13;
                     break;
                 }
             }
         }
             
-
         energy -= 1;
         if (energy <= 0) {
             dead = true;
@@ -70,16 +63,15 @@ public class Wolf_small implements Steppable
         //reproduce
         if (wsg.random.nextDouble() < 0.1) {
             energy /= 2;
-            Int2D location = new Int2D(wsg.random.nextInt(Wsg_small.GRID_WIDTH), wsg.random.nextInt(Wsg_small.GRID_HEIGHT));
+            Int2D location = new Int2D(loc.x, loc.y);
 
             Wolf_small w = new Wolf_small(location);
             w.energy = energy;
 
             wsg.fieldWolves.setObjectLocation(w, location);
             Schedule schedule = state.schedule;
-            schedule.scheduleRepeating(w);
+            schedule.scheduleRepeating(w, 2, 1.0);
         }
 
         }
- 
     }
