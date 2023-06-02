@@ -3,13 +3,9 @@ import sim.field.continuous.*;
 import sim.field.grid.IntGrid2D;
 import sim.field.grid.SparseGrid2D;
 import sim.util.*;
-import ec.util.*;
-
 
 public class Wolf_large implements Steppable
     {
-    private static final long serialVersionUID = 1;
-
     public Int2D loc = new Int2D(0,0);
     public Int2D lastd = new Int2D(0,0);
     public SparseGrid2D fieldWolves;
@@ -30,13 +26,11 @@ public class Wolf_large implements Steppable
 
         final Wsg_large wsg = (Wsg_large)state;
         
-
-        MersenneTwisterFast random = new MersenneTwisterFast(1);
         boolean moved = false;
         int x = loc.x;
         int y = loc.y;
 
-        if (random.nextDouble() < mom) {
+        if (wsg.random.nextDouble() < mom) {
             int xm = x + (x - lastd.x);
             int ym = y + (y - lastd.y);
             Int2D new_loc = new Int2D(xm, ym);
@@ -55,8 +49,8 @@ public class Wolf_large implements Steppable
             int ymax = (y<Wsg_large.GRID_HEIGHT-1) ? 1 : 0;
 
             //generate int between xmin and xmax
-            int dx = x + random.nextInt((xmax-xmin) + 1) + xmin;
-            int dy = y + random.nextInt((ymax-ymin) + 1) + ymin;
+            int dx = x + wsg.random.nextInt((xmax-xmin) + 1) + xmin;
+            int dy = y + wsg.random.nextInt((ymax-ymin) + 1) + ymin;
             Int2D new_loc = new Int2D(dx, dy);
             loc = new_loc;
             lastd = new Int2D(x, y);
@@ -87,9 +81,9 @@ public class Wolf_large implements Steppable
         }
 
         //reproduce
-        if (random.nextDouble() < 0.2) {
+        if (wsg.random.nextDouble() < 0.2) {
             energy /= 2;
-            Int2D location = new Int2D(random.nextInt(Wsg_large.GRID_WIDTH), random.nextInt(Wsg_large.GRID_HEIGHT));
+            Int2D location = new Int2D(wsg.random.nextInt(Wsg_large.GRID_WIDTH), wsg.random.nextInt(Wsg_large.GRID_HEIGHT));
 
             Wolf_large w = new Wolf_large(location);
             w.energy = energy;

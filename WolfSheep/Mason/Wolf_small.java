@@ -3,13 +3,9 @@ import sim.field.continuous.*;
 import sim.field.grid.IntGrid2D;
 import sim.field.grid.SparseGrid2D;
 import sim.util.*;
-import ec.util.*;
-
 
 public class Wolf_small implements Steppable
     {
-    private static final long serialVersionUID = 1;
-
     public Int2D loc = new Int2D(0,0);
     public Int2D lastd = new Int2D(0,0);
     public SparseGrid2D fieldWolves;
@@ -22,20 +18,7 @@ public class Wolf_small implements Steppable
     
     public boolean isDead() { return dead; }
     public void setDead(boolean val) { dead = val; }
-    
-    public void setOrientation2D(double val)
-        {
-        Double2D lastdd = new Double2D(Math.cos(val),Math.sin(val));
-        lastd = new Int2D((int)lastdd.x, (int)lastdd.y);
         
-        }
-    
-    public double orientation2D()
-        {
-        if (lastd.x == 0 && lastd.y == 0) return 0;
-        return Math.atan2(lastd.y, lastd.x);
-        }
-    
     public void step(SimState state)
         {     
             
@@ -43,13 +26,11 @@ public class Wolf_small implements Steppable
 
         final Wsg_small wsg = (Wsg_small)state;
         
-
-        MersenneTwisterFast random = new MersenneTwisterFast(1);
         boolean moved = false;
         int x = loc.x;
         int y = loc.y;
 
-        if (random.nextDouble() < mom) {
+        if (wsg.random.nextDouble() < mom) {
             int xm = x + (x - lastd.x);
             int ym = y + (y - lastd.y);
             Int2D new_loc = new Int2D(xm, ym);
@@ -68,8 +49,8 @@ public class Wolf_small implements Steppable
             int ymax = (y<Wsg_small.GRID_HEIGHT-1) ? 1 : 0;
 
             //generate int between xmin and xmax
-            int dx = x + random.nextInt((xmax-xmin) + 1) + xmin;
-            int dy = y + random.nextInt((ymax-ymin) + 1) + ymin;
+            int dx = x + wsg.random.nextInt((xmax-xmin) + 1) + xmin;
+            int dy = y + wsg.random.nextInt((ymax-ymin) + 1) + ymin;
             Int2D new_loc = new Int2D(dx, dy);
             loc = new_loc;
             lastd = new Int2D(x, y);
@@ -100,9 +81,9 @@ public class Wolf_small implements Steppable
         }
 
         //reproduce
-        if (random.nextDouble() < 0.1) {
+        if (wsg.random.nextDouble() < 0.1) {
             energy /= 2;
-            Int2D location = new Int2D(random.nextInt(Wsg_small.GRID_WIDTH), random.nextInt(Wsg_small.GRID_HEIGHT));
+            Int2D location = new Int2D(wsg.random.nextInt(Wsg_small.GRID_WIDTH), wsg.random.nextInt(Wsg_small.GRID_HEIGHT));
 
             Wolf_small w = new Wolf_small(location);
             w.energy = energy;
