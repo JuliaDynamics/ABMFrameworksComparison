@@ -13,7 +13,7 @@ n_run_model_small () {
     for i in $( seq 1 $N_RUN )
     do
         startt=`date +%s%N`
-        java Wsg_small -seed $((RANDOM % 10000 + 1)) -for 20 -quiet
+        java Wsg_small -seed $((RANDOM % 10000 + 1)) -for 100 -quiet
         endt=`date +%s%N`
         times+=(`expr $endt - $startt`)
     done
@@ -27,7 +27,7 @@ n_run_model_large () {
     for i in $( seq 1 $N_RUN )
     do
         startt=`date +%s%N`
-        java Wsg_large -seed $((RANDOM % 10000 + 1)) -for 20 -quiet
+        java Wsg_large -seed $((RANDOM % 10000 + 1)) -for 100 -quiet
         endt=`date +%s%N`
         times+=(`expr $endt - $startt`)
     done
