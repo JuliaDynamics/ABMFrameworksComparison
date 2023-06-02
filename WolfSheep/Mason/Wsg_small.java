@@ -69,7 +69,7 @@ public class Wsg_small extends SimState
                         if (fieldFullyGrown.get(i, j) == 0){
                             if (fieldGrass.get(i, j) <= 0){
                                 fieldFullyGrown.set(i, j, 1);
-                                fieldGrass.set(i, j, 10);
+                                fieldGrass.set(i, j, 20);
                             }
                             else{
                                 fieldGrass.set(i, j, fieldGrass.get(i, j) - 1);       
