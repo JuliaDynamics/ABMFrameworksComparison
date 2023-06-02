@@ -56,8 +56,8 @@ public class Flocker_large implements Steppable
         for (i = 0; i < b.numObjs; ++i) {
             other = (Flocker_large)b.objs[i];
             if (other != this) {
-                dx = this.loc.x - other.loc.x;
-                dy = this.loc.y - other.loc.y;
+                dx = other.loc.x - this.loc.x;
+                dy = other.loc.y - this.loc.y;
                 x += dx;
                 y += dy;
                 ++count;
@@ -78,8 +78,8 @@ public class Flocker_large implements Steppable
         for (i = 0; i < b.numObjs; ++i) {
             final Flocker_large other = (Flocker_large)b.objs[i];
             if (other != this) {
-                final double dx = this.loc.x - other.loc.x;
-                final double dy = this.loc.y - other.loc.y;
+                final double dx = other.loc.x - this.loc.x;
+                final double dy = other.loc.y - this.loc.y;
                 final double lensquared = dx * dx + dy * dy;
                 ++count;
                 if (lensquared < 1.0) {
