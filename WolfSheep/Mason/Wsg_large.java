@@ -29,9 +29,9 @@ public class Wsg_large extends SimState
         for (int i = 0; i < GRID_WIDTH; i++) {
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 if (random.nextDouble() < 0.5) {
-                    fieldGrass.set(i, j, random.nextInt(20) + 1);
+                    fieldGrass.set(i, j, random.nextInt(20));
                 } else {
-                    fieldGrass.set(i, j, 20);
+                    fieldGrass.set(i, j, 0);
                 }
             }
         }
