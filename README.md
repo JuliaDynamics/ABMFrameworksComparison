@@ -22,7 +22,16 @@ Various agent based models have been selected to compare performance, such as th
 
 These are the results of the latest comparison:
 
-![Screenshot 2023-06-02 031848](https://github.com/JuliaDynamics/ABM_Framework_Comparisons/assets/68152031/f3fc1bdc-93b3-4ba1-b6a0-e4ddf1e0b43e)
+ | Model/Framework  | Agents 5.14.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
+|------------------|---------------|------------|------------|---------------|
+ | WolfSheep-small  |      1      |    58.3x    |    44.2x    |     77.3x      |
+| WolfSheep-large  |      1      |    3.1x     |    35.8x    |     13.7x      |
+|  Flocking-small  |      1     |     19.0x    |   114.7x    |     63.4x      |
+|  Flocking-large  |      1      |    3.3x     |   108.0x   |     25.6x      |
+| Schelling-small  |      1      |   280.6x    |   183.1x    |     293.4x     |
+| Schelling-large  |      1      |    55.7x    |   418.4x    |     209.0x     |
+| ForestFire-small |      1      |   176.0x    |   230.4x    |     202.0x     |
+| ForestFire-large |      1      |    38.4x    |   472.0x    |     37.2x      |
 
 <!--
 \documentclass{article}
