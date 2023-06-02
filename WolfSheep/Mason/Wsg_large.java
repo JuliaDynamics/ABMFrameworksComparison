@@ -46,7 +46,7 @@ public class Wsg_large extends SimState
             sheep.theWsg = this;
             sheep.energy = random.nextInt(2*4);
             fieldSheeps.setObjectLocation(sheep, location.x, location.y);
-            schedule.scheduleRepeating(sheep);
+            schedule.scheduleRepeating(sheep, 1, 1.0);
             }
 
         for(int x=0;x<numWolves;x++)
@@ -58,13 +58,13 @@ public class Wsg_large extends SimState
             wolf.theWsg = this;
             wolf.energy = random.nextInt(2*13);
             fieldWolves.setObjectLocation(wolf, location.x, location.y);
-            schedule.scheduleRepeating(wolf);
+            schedule.scheduleRepeating(wolf, 2, 1.0);
         }
 
-        schedule.scheduleRepeating(Schedule.EPOCH,1, new Steppable()
+        schedule.scheduleRepeating(new Steppable()
             {
             public void step(SimState state) { fieldGrass.add(1);}
-            }, 1);
+            }, 3, 1.0);
         }
 
     public static void main(String[] args)
