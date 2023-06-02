@@ -48,7 +48,7 @@ function predator_prey(
         wolf = Wolf(id, (0, 0), energy, wolf_reproduce, Δenergy_wolf)
         add_agent!(wolf, model)
     end
-    @inbounds for p in positions(model) # random grass initial growth
+    @inbounds for p in positions(model)
         fully_grown = rand(abmrng(model), Bool)
         countdown = fully_grown ? regrowth_time : rand(abmrng(model), 0:regrowth_time-1)
         model.countdown[p...] = countdown

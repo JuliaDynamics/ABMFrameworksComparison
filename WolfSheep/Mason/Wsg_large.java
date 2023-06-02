@@ -16,7 +16,6 @@ public class Wsg_large extends SimState
     public int numSheep = 1000;
     public int numWolves = 500;
 
-    /** Creates a Flockers simulation with the given random number seed. */
     public Wsg_large(long seed)
         {
         super(seed);
@@ -36,7 +35,6 @@ public class Wsg_large extends SimState
             }
         }
 
-        // make a bunch of flockers and schedule 'em.  A few will be dead
         for(int x=0;x<numSheep;x++)
             {
             Int2D location = new Int2D(random.nextInt(GRID_WIDTH), random.nextInt(GRID_HEIGHT));

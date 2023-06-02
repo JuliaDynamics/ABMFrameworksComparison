@@ -2,11 +2,7 @@
 
 (
 
-echo "Benchmarking Agents.jl"
-julia --project=@. WolfSheep/Agents/benchmark_wolfsheep.jl
-julia --project=@. Flocking/Agents/benchmark_flocking.jl
-julia --project=@. Schelling/Agents/benchmark_schelling.jl
-julia --project=@. ForestFire/Agents/benchmark_forestfire.jl
+
 
 echo "Benchmarking Mason"
 bash WolfSheep/Mason/benchmark_wolfsheep.sh

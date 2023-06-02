@@ -6,7 +6,7 @@ import sim.util.*;
 import ec.util.*;
 
 
-public class Wolf_small implements Steppable, sim.portrayal.Orientable2D
+public class Wolf_small implements Steppable
     {
     private static final long serialVersionUID = 1;
 

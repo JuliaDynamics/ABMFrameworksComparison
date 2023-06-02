@@ -6,7 +6,7 @@ import sim.util.*;
 import ec.util.*;
 
 
-public class Sheep_large implements Steppable, sim.portrayal.Orientable2D
+public class Sheep_large implements Steppable
     {
     private static final long serialVersionUID = 1;
 
@@ -22,19 +22,6 @@ public class Sheep_large implements Steppable, sim.portrayal.Orientable2D
     
     public boolean isDead() { return dead; }
     public void setDead(boolean val) { dead = val; }
-    
-    public void setOrientation2D(double val)
-        {
-        Double2D lastdd = new Double2D(Math.cos(val),Math.sin(val));
-        lastd = new Int2D((int)lastdd.x, (int)lastdd.y);
-        
-        }
-    
-    public double orientation2D()
-        {
-        if (lastd.x == 0 && lastd.y == 0) return 0;
-        return Math.atan2(lastd.y, lastd.x);
-        }
     
     public void step(SimState state)
         {     
