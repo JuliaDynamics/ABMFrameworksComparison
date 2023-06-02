@@ -20,7 +20,33 @@ Various agent based models have been selected to compare performance, such as th
 1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
 1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
 
-The results of the latest comparison are presented here: https://github.com/JuliaDynamics/ABM_Framework_Comparisons/actions/runs/5115347628/jobs/9196526399
+The results of the latest comparison are presented here:
+
+<!--
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{multirow}
+\usepackage{hhline}
+\begin{document}
+\begin{table}[ph]
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hhline{------}
+        \multicolumn{2}{|c|}{Model$\backslash$Framework}  & Agents 5.15.0 & MASON 21.0 & Mesa 1.2.1 & NetLogo 6.3.0 \\ \hline
+        \multirow{2}{*}{WolfSheep} & small & 1 & . & 53.7x & 92.1x 
+        \\ \hhline{~-----}
+        & large & 1 & . & 40.4x & 15.9x \\ \hline
+        \multirow{2}{*}{Flocking} & small & 1 & 18.6x & 132.0x & 63.5x 
+        \\ \hhline{~-----}
+        ~ & large & 1 & 2.0x & 70.5x & 17.0x \\ \hline
+        \multirow{2}{*}{Schelling} & small & 1 & 303.4x & 214.5x & 323.5x \\ \hhline{~-----}
+        ~ & large & 1 & 50.8x & 404.0x & 209.7x \\ \hline
+        \multirow{2}{*}{ForestFire} & small & 1 & 120.0x & 151.1x & 135.0x 
+        \\ \hhline{~-----}
+        ~ & large & 1 & 35.5x & 445.1x & 53.2x \\ \hline
+    \end{tabular}
+\end{table}
+\end{document}
+-->
 
 [Here are the old benchmarks](https://juliadynamics.github.io/Agents.jl/stable/comparison/). The hardware configuration used for the benchmark is a Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
 
