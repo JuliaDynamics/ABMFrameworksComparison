@@ -21,7 +21,6 @@ public class Sheep_large implements Steppable
     
     public void step(SimState state)
         {     
-            
         if (dead) return;
 
         final Wsg_large wsg = (Wsg_large)state;
@@ -29,18 +28,6 @@ public class Sheep_large implements Steppable
         boolean moved = false;
         int x = loc.x;
         int y = loc.y;
-
-        if (wsg.random.nextDouble() < mom) {
-            int xm = x + (x - lastd.x);
-            int ym = y + (y - lastd.y);
-            Int2D new_loc = new Int2D(xm, ym);
-            if (xm > 0 && xm < Wsg_large.GRID_WIDTH - 1 && ym > 0 && ym < Wsg_large.GRID_HEIGHT - 1) {
-                wsg.fieldSheeps.setObjectLocation(this, new_loc);
-                loc = new_loc;
-                lastd = new Int2D(x, y);
-                moved = true;
-            }
-        }
 
         if (!moved) {
             int xmin = (x>0) ? -1 : 0;
