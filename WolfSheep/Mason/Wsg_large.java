@@ -5,8 +5,8 @@ import sim.field.grid.SparseGrid2D;
 
 public class Wsg_large extends SimState
     {
-    public static final int GRID_HEIGHT = 1131;
-    public static final int GRID_WIDTH = 1131;
+    public static final int GRID_HEIGHT = 100;
+    public static final int GRID_WIDTH = 100;
     public SparseGrid2D fieldSheeps = new SparseGrid2D(GRID_WIDTH, GRID_HEIGHT);
     public SparseGrid2D fieldWolves = new SparseGrid2D(GRID_WIDTH, GRID_HEIGHT);
     public IntGrid2D fieldGrass = new IntGrid2D(GRID_WIDTH, GRID_HEIGHT);
