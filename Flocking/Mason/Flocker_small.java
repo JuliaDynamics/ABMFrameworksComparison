@@ -25,19 +25,18 @@ public class Flocker_small implements Steppable
     }
     
     public Double2D consistency(final Bag b, final Continuous2D flockers) {
-        if (b == null || b.numObjs == 0) {
-            return new Double2D(0.0, 0.0);
-        }
         double x = 0.0;
         double y = 0.0;
         int i = 0;
         int count = 0;
         for (i = 0; i < b.numObjs; ++i) {
             final Flocker_small other = (Flocker_small)b.objs[i];
-            final Double2D m = ((Flocker_small)b.objs[i]).momentum();
-            x += m.x;
-            y += m.y;
-            ++count;
+            if (other != this) {
+                final Double2D m = ((Flocker_small)b.objs[i]).momentum();
+                x += m.x;
+                y += m.y;
+                ++count;
+            }
         }
         if (count > 0) {
             x /= count;
@@ -47,9 +46,6 @@ public class Flocker_small implements Steppable
     }
     
     public Double2D cohesion(final Bag b, final Continuous2D flockers) {
-        if (b == null || b.numObjs == 0) {
-            return new Double2D(0.0, 0.0);
-        }
         double x = 0.0;
         double y = 0.0;
         int count = 0;
@@ -59,11 +55,13 @@ public class Flocker_small implements Steppable
         double dy;
         for (i = 0; i < b.numObjs; ++i) {
             other = (Flocker_small)b.objs[i];
-            dx = flockers.tdx(this.loc.x, other.loc.x);
-            dy = flockers.tdy(this.loc.y, other.loc.y);
-            x += dx;
-            y += dy;
-            ++count;
+            if (other != this) {
+                dx = other.loc.x - this.loc.x;
+                dy = other.loc.y - this.loc.y;
+                x += dx;
+                y += dy;
+                ++count;
+            }
         }
         if (count > 0) {
             x /= count;
@@ -73,9 +71,6 @@ public class Flocker_small implements Steppable
     }
     
     public Double2D avoidance(final Bag b, final Continuous2D flockers) {
-        if (b == null || b.numObjs == 0) {
-            return new Double2D(0.0, 0.0);
-        }
         double x = 0.0;
         double y = 0.0;
         int i = 0;
@@ -83,13 +78,13 @@ public class Flocker_small implements Steppable
         for (i = 0; i < b.numObjs; ++i) {
             final Flocker_small other = (Flocker_small)b.objs[i];
             if (other != this) {
-                final double dx = flockers.tdx(this.loc.x, other.loc.x);
-                final double dy = flockers.tdy(this.loc.y, other.loc.y);
+                final double dx = other.loc.x - this.loc.x;
+                final double dy = other.loc.y - this.loc.y;
                 final double lensquared = dx * dx + dy * dy;
+                ++count;
                 if (lensquared < 1.0) {
-                    x += dx;
-                    y += dy;
-                    ++count;
+                    x -= dx;
+                    y -= dy;
                 }
             }
         }
@@ -97,7 +92,7 @@ public class Flocker_small implements Steppable
             x /= count;
             y /= count;
         }
-        return new Double2D(-x, -y);
+        return new Double2D(x, y);
     }
     
     public void step(final SimState state) {
