@@ -10,6 +10,7 @@ public class Wsg_large extends SimState
     public SparseGrid2D fieldSheeps = new SparseGrid2D(GRID_WIDTH, GRID_HEIGHT);
     public SparseGrid2D fieldWolves = new SparseGrid2D(GRID_WIDTH, GRID_HEIGHT);
     public IntGrid2D fieldGrass = new IntGrid2D(GRID_WIDTH, GRID_HEIGHT);
+    public IntGrid2D fieldFullyGrown = new IntGrid2D(GRID_WIDTH, GRID_HEIGHT);
 
     public int numWS = 1500;
     public int numSheep = 1000;
@@ -28,8 +29,10 @@ public class Wsg_large extends SimState
             for (int j = 0; j < GRID_HEIGHT; j++) {
                 if (random.nextDouble() < 0.5) {
                     fieldGrass.set(i, j, random.nextInt(10));
+                    fieldFullyGrown.set(i, j, 1);
                 } else {
                     fieldGrass.set(i, j, 0);
+                    fieldFullyGrown.set(i, j, 0);
                 }
             }
         }
@@ -60,7 +63,22 @@ public class Wsg_large extends SimState
 
         schedule.scheduleRepeating(new Steppable()
             {
-            public void step(SimState state) { fieldGrass.add(1);}
+            public void step(SimState state) {
+                for (int i = 0; i < GRID_WIDTH; i++) {
+                    for (int j = 0; j < GRID_HEIGHT; j++) {
+                        if (fieldFullyGrown.get(i, j) == 0){
+                            if (fieldGrass.get(i, j) <= 0){
+                                fieldFullyGrown.set(i, j, 1);
+                                fieldGrass.set(i, j, 10);
+                            }
+                            else{
+                                fieldGrass.set(i, j, fieldGrass.get(i, j) - 1);       
+                             }
+
+                        }
+                    }
+                }
+            }
             }, 3, 1.0);
         }
 
