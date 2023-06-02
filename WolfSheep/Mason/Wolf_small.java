@@ -39,18 +39,23 @@ public class Wolf_small implements Steppable
         loc = new_loc;
         wsg.fieldWolves.setObjectLocation(this, loc);
         
-        //eat sheep
-        Bag b = wsg.fieldSheeps.getObjectsAtLocation(loc.x, loc.y);
-        if (b != null && b.numObjs > 0) {
-            for (int k = 0; k < b.numObjs; k++) {
-                Sheep_small s = (Sheep_small) b.objs[k];
-                if (!s.isDead())
+        Bag a = wsg.fieldSheeps.getObjectsAtLocation(loc.x, loc.y);
+        Bag b = new Bag();
+
+        if (a != null && a.numObjs > 0){
+            for (int k = 0; k < a.numObjs; k++) {
+                Sheep_large s = (Sheep_large) a.objs[k];
+                if (s.isDead())
                 {
-                    s.setDead(true);
-                    energy += 13;
-                    break;
+                    b.add(s);
                 }
             }
+        }
+        if (b != null && b.numObjs > 0){
+            int q = wsg.random.nextInt(b.numObjs);
+            Sheep_large s = (Sheep_large) b.objs[q];
+            s.setDead(true);
+            energy += 13;
         }
             
         energy -= 1;

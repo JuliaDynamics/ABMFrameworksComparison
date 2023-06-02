@@ -41,7 +41,7 @@ public class Sheep_large implements Steppable
 
         //eat grass
         int g = wsg.fieldGrass.get(loc.x, loc.y);
-        if (g >= 20) {
+        if (g >= 10) {
             wsg.fieldGrass.set(loc.x, loc.y, 0);
             //energy
             energy += 5;
