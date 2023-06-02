@@ -88,7 +88,6 @@ public class Flocker_large implements Steppable
                 }
             }
         }
-        //System.out.println(count);
         if (count > 0) {
             x /= count;
             y /= count;
