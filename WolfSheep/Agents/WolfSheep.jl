@@ -63,9 +63,7 @@ function agent_step!(sheep::Sheep, model)
     sheep_eat!(sheep, model)
     if sheep.energy < 0
         remove_agent!(sheep, model)
-        return
-    end
-    if rand(abmrng(model)) <= sheep.reproduction_prob
+    elseif rand(abmrng(model)) <= sheep.reproduction_prob
         reproduce!(sheep, model)
     end
 end
@@ -76,9 +74,7 @@ function agent_step!(wolf::Wolf, model)
     wolf_eat!(wolf, model)
     if wolf.energy < 0
         remove_agent!(wolf, model)
-        return
-    end
-    if rand(abmrng(model)) <= wolf.reproduction_prob
+    elseif rand(abmrng(model)) <= wolf.reproduction_prob
         reproduce!(wolf, model)
     end
 end
