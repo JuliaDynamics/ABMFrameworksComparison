@@ -44,7 +44,7 @@ public class Wsg_small extends SimState
             sheep.fieldSheeps = fieldSheeps;
             sheep.fieldGrass = fieldGrass;
             sheep.theWsg = this;
-            sheep.energy = random.nextInt(2*4) + 1;
+            sheep.energy = random.nextInt(2*4);
             fieldSheeps.setObjectLocation(sheep, location.x, location.y);
             schedule.scheduleRepeating(sheep);
             }
@@ -56,7 +56,7 @@ public class Wsg_small extends SimState
             wolf.fieldSheeps = fieldSheeps;
             wolf.fieldWolves = fieldWolves;
             wolf.theWsg = this;
-            wolf.energy = random.nextInt(2*20) + 1;
+            wolf.energy = random.nextInt(2*13);
             fieldWolves.setObjectLocation(wolf, location.x, location.y);
             schedule.scheduleRepeating(wolf);
         }

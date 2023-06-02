@@ -93,7 +93,7 @@ public class Sheep_large implements Steppable, sim.portrayal.Orientable2D
         }
 
         //reproduce
-        if (random.nextDouble() < 0.2) {
+        if (random.nextDouble() < 0.4) {
             //reproduce
             energy /= 2;
             Int2D location = new Int2D(random.nextInt(Wsg_large.GRID_WIDTH), random.nextInt(Wsg_large.GRID_HEIGHT));

@@ -100,7 +100,7 @@ public class Wolf_small implements Steppable, sim.portrayal.Orientable2D
         }
 
         //reproduce
-        if (random.nextDouble() < 0.2) {
+        if (random.nextDouble() < 0.1) {
             energy /= 2;
             Int2D location = new Int2D(random.nextInt(Wsg_small.GRID_WIDTH), random.nextInt(Wsg_small.GRID_HEIGHT));
 
