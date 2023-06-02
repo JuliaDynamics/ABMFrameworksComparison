@@ -41,12 +41,13 @@ public class Wolf_large implements Steppable
         if (a != null && a.numObjs > 0){
             for (int k = 0; k < a.numObjs; k++) {
                 Sheep_large s = (Sheep_large) a.objs[k];
-                if (s.isDead())
+                if (!s.isDead())
                 {
                     b.add(s);
                 }
             }
         }
+
         if (b != null && b.numObjs > 0){
             int q = wsg.random.nextInt(b.numObjs);
             Sheep_large s = (Sheep_large) b.objs[q];
