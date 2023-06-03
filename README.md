@@ -22,8 +22,8 @@ Various agent based models have been selected to compare performance, such as th
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents 5.14.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
-|------------------|---------------|------------|------------|---------------|
+ | Model\Framework  | Agents 5.14.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
+|:------------------:|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep-small  |      1      |    69.6x    |    44.2x    |     77.3x      |
 | WolfSheep-large  |      1      |    25.7x     |    35.8x    |     13.7x      |
 |  Flocking-small  |      1     |     19.0x    |   114.7x    |     63.4x      |
@@ -33,7 +33,35 @@ These are the results of the latest comparison:
 | ForestFire-small |      1      |   176.0x    |   230.4x    |     202.0x     |
 | ForestFire-large |      1      |    38.4x    |   472.0x    |     37.2x      |
 
-<!--
+
+<!--  better
+<table>
+    <thead>
+        <tr>
+            <th>Layer 1</th>
+            <th>Layer 2</th>
+            <th>Layer 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=4>L1 Name</td>
+            <td rowspan=2>L2 Name A</td>
+            <td>L3 Name A</td>
+        </tr>
+        <tr>
+            <td>L3 Name B</td>
+        </tr>
+        <tr>
+            <td rowspan=2>L2 Name B</td>
+            <td>L3 Name C</td>
+        </tr>
+        <tr>
+            <td>L3 Name D</td>
+        </tr>
+    </tbody>
+</table>
+
 \documentclass{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{multirow}
@@ -59,7 +87,7 @@ These are the results of the latest comparison:
 \end{document}
 -->
 
-[Here are the old benchmarks](https://juliadynamics.github.io/Agents.jl/stable/comparison/). The hardware configuration used for the benchmark is a Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
+[Here are the old benchmarks](https://juliadynamics.github.io/Agents.jl/stable/comparison/) which have been run on an Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
 
 ## How to run the benchmarks locally
 
