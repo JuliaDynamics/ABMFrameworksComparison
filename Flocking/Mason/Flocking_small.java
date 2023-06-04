@@ -3,6 +3,7 @@ import sim.util.Bag;
 import sim.util.Double2D;
 import sim.field.continuous.Continuous2D;
 import sim.engine.SimState;
+import sim.engine.RandomSequence;
 
 public class Flocking_small extends SimState
 {
@@ -30,6 +31,8 @@ public class Flocking_small extends SimState
 
     public void start() {
         super.start();
+        Steppable[] array_agents = new Steppable[numFlockers];
+        int count = 0;
         this.flockers = new Continuous2D(this.neighborhood / 1.5, this.width, this.height);
         for (int x = 0; x < this.numFlockers; ++x) {
             final Double2D location = new Double2D(this.random.nextDouble() * this.width, this.random.nextDouble() * this.height);
@@ -38,8 +41,10 @@ public class Flocking_small extends SimState
             this.flockers.setObjectLocation((Object)flocker, location);
             flocker.flockers = this.flockers;
             flocker.theFlock = this;
-            this.schedule.scheduleRepeating((Steppable)flocker);
+            array_agents[count] = flocker;
+            ++count;
         }
+        this.schedule.scheduleRepeating(new RandomSequence(array_agents));
     }
 
     public static void main(final String[] args) {

@@ -4,6 +4,7 @@ import sim.util.Interval;
 import sim.util.Bag;
 import sim.field.grid.IntGrid2D;
 import sim.engine.SimState;
+import sim.engine.RandomSequence;
 
 public class Schelling_large extends SimState
 {
@@ -37,6 +38,7 @@ public class Schelling_large extends SimState
     }
     
     protected void createGrids() {
+
         this.emptySpaces.clear();
         this.neighbors = new IntGrid2D(this.gridWidth, this.gridHeight, 0);
         final int[][] g = this.neighbors.field;
@@ -63,11 +65,15 @@ public class Schelling_large extends SimState
     public void start() {
         super.start();
         this.createGrids();
+        Steppable[] array_agents = new Steppable[10000];
+        int count = 0;
         for (int x = 0; x < this.gridWidth; ++x) {
             for (int y = 0; y < this.gridHeight; ++y) {
-                this.schedule.scheduleRepeating((Steppable)new Agent_large(x, y));
+                array_agents[count] = new Agent_large(x, y);
+                ++count;
             }
         }
+        this.schedule.scheduleRepeating(new RandomSequence(array_agents));
     }
     
     public static void main(final String[] args) {

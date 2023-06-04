@@ -4,6 +4,7 @@ import sim.util.Interval;
 import sim.util.Bag;
 import sim.field.grid.IntGrid2D;
 import sim.engine.SimState;
+import sim.engine.RandomSequence;
 
 public class Schelling_small extends SimState
 {
@@ -17,6 +18,7 @@ public class Schelling_small extends SimState
     public double unavailableProbability;
     public IntGrid2D neighbors;
     public Bag emptySpaces;
+
     
     public Schelling_small(final long seed) {
         this(seed, 40, 40);
@@ -63,11 +65,15 @@ public class Schelling_small extends SimState
     public void start() {
         super.start();
         this.createGrids();
+        Steppable[] array_agents = new Steppable[this.gridWidth * this.gridHeight];
+        int count = 0;
         for (int x = 0; x < this.gridWidth; ++x) {
             for (int y = 0; y < this.gridHeight; ++y) {
-                this.schedule.scheduleRepeating((Steppable)new Agent_small(x, y));
+                array_agents[count] = new Agent_small(x, y);
+                ++count;
             }
         }
+        this.schedule.scheduleRepeating(new RandomSequence(array_agents));
     }
     
     public static void main(final String[] args) {
