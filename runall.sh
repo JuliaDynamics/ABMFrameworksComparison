@@ -2,15 +2,15 @@
 
 (
 
-# echo "Benchmarking Agents.jl"
-# julia --project=@. WolfSheep/Agents/benchmark_wolfsheep.jl
-# julia --project=@. Flocking/Agents/benchmark_flocking.jl
-# julia --project=@. Schelling/Agents/benchmark_schelling.jl
-# julia --project=@. ForestFire/Agents/benchmark_forestfire.jl
+echo "Benchmarking Agents.jl"
+julia --project=@. WolfSheep/Agents/benchmark_wolfsheep.jl
+julia --project=@. Flocking/Agents/benchmark_flocking.jl
+julia --project=@. Schelling/Agents/benchmark_schelling.jl
+julia --project=@. ForestFire/Agents/benchmark_forestfire.jl
 
-# echo "Benchmarking Mason"
-# bash WolfSheep/Mason/benchmark_wolfsheep.sh
-# bash Flocking/Mason/benchmark_flocking.sh
+echo "Benchmarking Mason"
+bash WolfSheep/Mason/benchmark_wolfsheep.sh
+bash Flocking/Mason/benchmark_flocking.sh
 bash Schelling/Mason/benchmark_schelling.sh
 bash ForestFire/Mason/benchmark_forestfire.sh
 
