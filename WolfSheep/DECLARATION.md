@@ -33,7 +33,7 @@ The model consists of: Sheeps, Wolves, and Grass. Sheeps and Wolfs are agents th
 - The simulation runs for 100 steps.
 
 ## Technical implementation
-The wolves and sheeps must be different agents. They must be different agent types/classes/datastructures. They cannot be the same data structure. This is done on purpose to penaltize Julia softwares which suffer the type-instability penalty on using different data structures for different agents. Grass can be modelled in whatever way each framework can do in the most performant way, to allow for optimizations regarding handling spatial properties.
+The wolves and sheeps must be different agents, in the sense that they should be different types/classes/datastructures, this is done since this benchmark tries to analyze the performance of a multi-type ABM model. Grass can be modelled in whatever way each framework can do in the most performant way, to allow for optimizations regarding handling spatial properties.
 
 Defaults that are the same for small or large simulation:
 
@@ -44,7 +44,7 @@ Defaults for small simulation:
 
 - init number of sheeps: 60
 - init number of wolves: 40
-- grass regrowth time = 20
+- grass regrowth time: 20
 - reproduction rate of sheeps: 0.2
 - reproduction rate of wolves: 0.1
 - dimensions of the grid: (25, 25)
@@ -53,7 +53,7 @@ Defaults for large simulation:
 
 - init number of sheeps: 1000
 - init number of wolves: 500
-- grass regrowth time = 10
+- grass regrowth time: 10
 - reproduction rate of sheeps: 0.4
 - reproduction rate of wolves: 0.2
 - dimensions of the grid: (100, 100)
