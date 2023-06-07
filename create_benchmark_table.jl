@@ -13,6 +13,7 @@ open("benchmark_results.txt", "r") do f
     for line in readlines(f)
         s_line = split(line)
         !in(s_line[1], frameworks) && continue
+	!occursin("(ms)", line) && continue
         frameworks_times[String(s_line[2])][String(s_line[1])] = parse(Float64, s_line[4])
     end
 end
