@@ -22,16 +22,16 @@ Various agent based models have been selected to compare performance, such as th
 
 These are the results of the latest comparison:
 
- | Model\Framework  | Agents 5.14.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
+ | Model\Framework  | Agents 5.15.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
- | WolfSheep-small  |      1      |    69.6x    |    44.2x    |     77.3x      |
-| WolfSheep-large  |      1      |    25.7x     |    35.8x    |     13.7x      |
-|  Flocking-small  |      1     |     19.6x    |   114.7x    |     63.4x      |
-|  Flocking-large  |      1      |    3.1x     |   108.0x   |     25.6x      |
-| Schelling-small  |      1      |   324.0x    |   183.1x    |     293.4x     |
-| Schelling-large  |      1      |    37.6x    |   418.4x    |     209.0x     |
-| ForestFire-small |      1      |   176.0x    |   230.4x    |     202.0x     |
-| ForestFire-large |      1      |    38.4x    |   472.0x    |     37.2x      |
+| WolfSheep-small  |       1        |    73.4    |    43.0    |     74.3      |
+| WolfSheep-large  |       1        |    24.8    |    34.1    |     13.4      |
+ |  Flocking-small  |       1        |    19.3    |   157.6    |     73.7      |
+|  Flocking-large  |       1       |    3.3     |   120.4    |     27.4      |
+ | Schelling-small  |       1        |   249.1    |   180.7    |     311.2     |
+| Schelling-large  |       1        |    41.2    |   402.7    |     217.0     |
+ | ForestFire-small |       1        |   153.6    |   197.3    |     176.4     |
+| ForestFire-large |       1        |    35.0    |   428.2    |     39.2      |
 
 
 <!--  better

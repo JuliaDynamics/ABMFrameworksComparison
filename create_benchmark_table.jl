@@ -11,6 +11,7 @@ frameworks_times = Dict(m => Dict(f => 0.0 for f in frameworks) for m in models)
 		  
 open("benchmark_results.txt", "r") do f
     for line in readlines(f)
+	!occursin("(ms)", line) && continue
         s_line = split(line)
         !in(s_line[1], frameworks) && continue
         frameworks_times[String(s_line[2])][String(s_line[1])] = parse(Float64, s_line[4])
@@ -30,7 +31,7 @@ for m in models
     end
 end
 
-columns = ["Model/Framework", "Agents 5.14.0", "MASON 21.0", "Mesa 1.2.1", "Netlogo 6.3.0"]
+columns = ["Model/Framework", "Agents.jl 5.15.0", "MASON 21.0", "Mesa 1.2.1", "Netlogo 6.3.0"]
 results = mapreduce(permutedims, vcat, [vcat([m], [ifelse(frameworks_comparison[m][f] != 0, frameworks_comparison[m][f], ".") for f in frameworks]) for m in models])
 conf = set_pt_conf(tf = tf_markdown, alignment = :c)
 table = pretty_table_with_conf(conf, results; header = columns)
