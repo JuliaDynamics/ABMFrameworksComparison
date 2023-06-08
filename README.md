@@ -1,5 +1,10 @@
 # Agent based modelling frameworks comparison
 
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8016506.svg)](https://doi.org/10.5281/zenodo.8016506)
+
+
+
 This repository contains code used to compare performance and features between various agent based modelling **(ABM)** frameworks. Currently, frameworks compared are [Agents.jl](https://github.com/JuliaDynamics/Agents.jl), [NetLogo](https://github.com/NetLogo/NetLogo), [MASON](https://github.com/eclab/mason) and [Mesa](https://github.com/projectmesa/mesa). We happily welcome more frameworks to join the comparison.
 
 **This repository establishes objectively that Agents.jl is the fastest open source agent based modelling framework and that Agents.jl has the simplest source code for a given model specification, in comparison to all the other tested frameworks.**
@@ -8,17 +13,8 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 **The performance benchmark comparison is run automatically during continuous integration, and hence the comparison is updated after every pull request to this repo.**
 
-## How it works
 
-Various agent based models have been selected to compare performance, such as the Schelling model for example. This repository is structured as follows
-
-1. Each selected ABM is contained in a dedicated folder of this repo.
-1. Inside the ABM folder there is a DECLARATION.md markdown file. In declares both the scientific as well as technical implementation of the ABM. We tried our best to make the declaration as clear and as specific as possible, but we welcome Pull Requests that may clarify the declaration even more.
-1. In the same folder there are subfolders named after the frameworks. Each contains the files that implement and benchmark the ABM implementation.
-1. The implementation must be written in the same way a typical user will use the respective software. The implementations must only use the documented API of the respective software.
-1. The benchmark step operates as follows: all models must be seeded with a given random number generator seed. At the start of the process, _`S` random seeds are generated in a reproducible way (or, alternatively, a random number generator that generates seeds is initialized with a specified seed)_. `S` is the amount of random seeds and hence also the amount of simulations performed for a given model. Unless stated otherwise in the declaration file of an ABM, `S` has been arbitrarily decided to be `100`.
-1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
-1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
+## Latest results
 
 These are the results of the latest comparison:
 
@@ -34,60 +30,17 @@ These are the results of the latest comparison:
 | ForestFire-large |       1        |    35.0    |   428.2    |     39.2      |
 
 
-<!--  better
-<table>
-    <thead>
-        <tr>
-            <th>Layer 1</th>
-            <th>Layer 2</th>
-            <th>Layer 3</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td rowspan=4>L1 Name</td>
-            <td rowspan=2>L2 Name A</td>
-            <td>L3 Name A</td>
-        </tr>
-        <tr>
-            <td>L3 Name B</td>
-        </tr>
-        <tr>
-            <td rowspan=2>L2 Name B</td>
-            <td>L3 Name C</td>
-        </tr>
-        <tr>
-            <td>L3 Name D</td>
-        </tr>
-    </tbody>
-</table>
+## How it works
 
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage{multirow}
-\usepackage{hhline}
-\begin{document}
-\begin{table}[ph]
-    \begin{tabular}{|c|c|c|c|c|c|}
-    \hhline{------}
-        \multicolumn{2}{|c|}{Model$\backslash$Framework}  & Agents 5.15.0 & MASON 21.0 & Mesa 1.2.1 & NetLogo 6.3.0 \\ \hline
-        \multirow{2}{*}{WolfSheep} & small & 1 & . & 53.7x & 92.1x 
-        \\ \hhline{~-----}
-        & large & 1 & . & 40.4x & 15.9x \\ \hline
-        \multirow{2}{*}{Flocking} & small & 1 & 18.6x & 132.0x & 63.5x 
-        \\ \hhline{~-----}
-        ~ & large & 1 & 2.0x & 70.5x & 17.0x \\ \hline
-        \multirow{2}{*}{Schelling} & small & 1 & 303.4x & 214.5x & 323.5x \\ \hhline{~-----}
-        ~ & large & 1 & 50.8x & 404.0x & 209.7x \\ \hline
-        \multirow{2}{*}{ForestFire} & small & 1 & 120.0x & 151.1x & 135.0x 
-        \\ \hhline{~-----}
-        ~ & large & 1 & 35.5x & 445.1x & 53.2x \\ \hline
-    \end{tabular}
-\end{table}
-\end{document}
--->
+Various agent based models have been selected to compare performance, such as the Schelling model for example. This repository is structured as follows
 
-[Here are the old benchmarks](https://juliadynamics.github.io/Agents.jl/stable/comparison/) which have been run on an Ubuntu 22.04 LTS x86_64 with a Ryzen 5 5600H CPU and 16GB of RAM.
+1. Each selected ABM is contained in a dedicated folder of this repo.
+1. Inside the ABM folder there is a DECLARATION.md markdown file. In declares both the scientific as well as technical implementation of the ABM. We tried our best to make the declaration as clear and as specific as possible, but we welcome Pull Requests that may clarify the declaration even more.
+1. In the same folder there are subfolders named after the frameworks. Each contains the files that implement and benchmark the ABM implementation.
+1. The implementation must be written in the same way a typical user will use the respective software. The implementations must only use the documented API of the respective software.
+1. The benchmark step operates as follows: all models must be seeded with a given random number generator seed. At the start of the process, _`S` random seeds are generated in a reproducible way (or, alternatively, a random number generator that generates seeds is initialized with a specified seed)_. `S` is the amount of random seeds and hence also the amount of simulations performed for a given model. Unless stated otherwise in the declaration file of an ABM, `S` has been arbitrarily decided to be `100`.
+1. From these `100` random (but reproducibly random) model runs, the median is used as the performance of each software.
+1. The benchmarks are run during continuous integration. The benchmark timings are collected among ABMs and among the different ABM software during continuous integration. The timings are printed in the CI log, and also stored in a csv file (not yet, TODO) to be accessed later.
 
 ## How to run the benchmarks locally
 
