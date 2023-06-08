@@ -53,7 +53,7 @@ The requirements to run the benchmark file are:
 1. To make the commands `julia`, `python`, `java` and `javac` available from the shell and to have the bc tool available;
 1. To move the folder where NetLogo is installed, rename it as `netlogo` and put it inside the main folder.
 
-This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other similar enviroments, copy-paste it on a bash shell to set up everything automatically for the benchmark:
+This snippet was tested on an Ubuntu 22.04 LTS x86_64, but it should work also on other similar environments, copy-paste it on a bash shell to set up everything automatically for the benchmark:
 
 ```bash
 # fetch update software list
