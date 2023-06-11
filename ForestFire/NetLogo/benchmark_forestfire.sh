@@ -15,8 +15,9 @@ n_run_model_small () {
     times=()
     julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
     sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
-        ) | awk '/GO/{i++}i==2{print $3;exit}')
+    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark \
+        --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99
+        ) --table "ForestFire/NetLogo/" | awk '/GO/{i++}i==2{print $3;exit}')
     times+=(`expr $t`)
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
     printf "NetLogo ForestFire-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
@@ -26,7 +27,8 @@ n_run_model_large () {
     times=()
     julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
     sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark
+    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark \
+        --min-pxcor 0 --max-pxcor 499 --min-pycor 0 --max-pycor 499
         ) | awk '/GO/{i++}i==2{print $3;exit}')
     times+=(`expr $t`)
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
