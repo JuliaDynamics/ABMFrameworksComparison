@@ -18,7 +18,7 @@ n_run_model_small () {
     times=()
     julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
     sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark \
+    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
         --min-pxcor 0 --max-pxcor 24 --min-pycor 0 --max-pycor 24
         ) | awk '/GO/{i++}i==2{print $3;exit}')
     times+=(`expr $t`)
@@ -30,7 +30,7 @@ n_run_model_large () {
     times=()
     julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
     sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark \
+    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
         --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99
         ) | awk '/GO/{i++}i==2{print $3;exit}')
     times+=(`expr $t`)
