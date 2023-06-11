@@ -25,7 +25,6 @@
       <value value="5"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="seed">
-      <value value="2199"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="benchmark_large" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="false">
@@ -54,7 +53,6 @@
       <value value="5"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="seed">
-      <value value="2199"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
