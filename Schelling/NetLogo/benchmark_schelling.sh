@@ -20,7 +20,7 @@ n_run_model_small () {
          --min-pxcor 0 --max-pxcor 39 --min-pycor 0 --max-pycor 39 --threads 1)
     times=()
     while IFS= read -r line; do
-    times+=("$line")
+    times+=(`expr $line`)
     done < $NAME_TIMES
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
     printf "NetLogo Schelling-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
@@ -32,7 +32,7 @@ n_run_model_large () {
          --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99 --threads 1)
     times=()
     while IFS= read -r line; do
-    times+=("$line")
+    times+=(`expr $line`)
     done < $NAME_TIMES
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
     printf "NetLogo Schelling-large (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
