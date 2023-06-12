@@ -10,29 +10,33 @@ N_RUN=100
 NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="ForestFire/NetLogo/ForestFire.nlogo"
 NAME_PARAM="ForestFire/NetLogo/parameters_forestfire.xml"
+NAME_TIMES="ForestFire/NetLogo/times.txt"
+
+julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
 
 n_run_model_small () {
-    times=()
-    julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
     sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
-        --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99
-        ) --table "ForestFire/NetLogo/" | awk '/GO/{i++}i==2{print $3;exit}')
-    times+=(`expr $t`)
+    (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
+         --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99)
+    times=()
+    while IFS= read -r line; do
+    times+=("$line")
+    done < $NAME_TIMES
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
     printf "NetLogo ForestFire-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+    rm $NAME_TIMES
 }
 
 n_run_model_large () {
+    (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
+         --min-pxcor 0 --max-pxcor 499 --min-pycor 0 --max-pycor 499)
     times=()
-    julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
-    sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
-        --min-pxcor 0 --max-pxcor 499 --min-pycor 0 --max-pycor 499
-        ) | awk '/GO/{i++}i==2{print $3;exit}')
-    times+=(`expr $t`)
+    while IFS= read -r line; do
+    times+=("$line")
+    done < $NAME_TIMES
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
     printf "NetLogo ForestFire-large (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+    rm $NAME_TIMES
 }
 
 n_run_model_small

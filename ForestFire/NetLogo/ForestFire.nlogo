@@ -3,6 +3,7 @@ extensions [profiler]
 globals [
   initial-trees   ;; how many trees (green patches) we started with
   burned-trees    ;; how many have burned so far
+  time-tot
 ]
 
 breed [fires fire]    ;; bright red turtles -- the leading edge of the fire
@@ -21,6 +22,7 @@ to setup
   ;; set tree counts
   set initial-trees count patches with [pcolor = green]
   set burned-trees 0
+  set time-tot 0
   reset-ticks
 end
 
@@ -30,10 +32,14 @@ to benchmark
   setup
   repeat n_ticks [go]    ;; run for n_ticks steps
   profiler:stop          ;; stop profiling
-  print profiler:report
+  set time-tot profiler:inclusive-time "go" + profiler:inclusive-time "setup"
+  file-open "times.txt"
+  file-print time-tot
+  file-close
 end
 
 to go
+  set time-tot 0
   ;if not any? turtles  ;; either fires or embers
   ;  [ stop ]
   ask fires

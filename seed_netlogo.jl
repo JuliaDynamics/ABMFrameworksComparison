@@ -8,12 +8,10 @@ xroot = root(xdoc)
 
 found = false
 
-println("ok")
 for c in child_elements(xroot)
     global found
     for cc in child_elements(c)
         if attribute(cc, "variable"; required=false) == "seed"
-            println("ok")
             for _ in 1:n_run
                 seed = rand(rng_seed, 1:10000)
                 e = new_child(cc, "value")  

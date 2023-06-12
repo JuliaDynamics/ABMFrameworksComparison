@@ -10,33 +10,35 @@ N_RUN=100
 NAME_LAUNCHER="./netlogo/netlogo-headless.sh"
 NAME_MODEL="WolfSheep/NetLogo/WolfSheep.nlogo"
 NAME_PARAM="WolfSheep/NetLogo/parameters_wolfsheep.xml"
+NAME_TIMES="WolfSheep/NetLogo/times.txt"
 
-# Don't run above 8 threads otherwise errors will spit once the JVMs try
-# to share the Backing Store and lock it
+julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
 
 n_run_model_small () {
-    times=()
-    julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
     sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
-        --min-pxcor 0 --max-pxcor 24 --min-pycor 0 --max-pycor 24
-        ) | awk '/GO/{i++}i==2{print $3;exit}')
-    times+=(`expr $t`)
+    (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
+         --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99)
+    times=()
+    while IFS= read -r line; do
+    times+=("$line")
+    done < $NAME_TIMES
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-    printf "NetLogo WolfSheep-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"
+    printf "NetLogo WolfSheep-small (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+    rm $NAME_TIMES
 }
 
 n_run_model_large () {
+    (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
+         --min-pxcor 0 --max-pxcor 499 --min-pycor 0 --max-pycor 499)
     times=()
-    julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
-    sed -i '1d' $NAME_PARAM
-    t=$((bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
-        --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99
-        ) | awk '/GO/{i++}i==2{print $3;exit}')
-    times+=(`expr $t`)
+    while IFS= read -r line; do
+    times+=("$line")
+    done < $NAME_TIMES
     readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
-    printf "NetLogo WolfSheep-large (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"
+    printf "NetLogo WolfSheep-large (ms): "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]}"\n"  
+    rm $NAME_TIMES
 }
 
 n_run_model_small
 n_run_model_large
+

@@ -3,6 +3,7 @@ extensions [profiler]
 globals [
   percent-similar  ; on the average, what percent of a turtle's neighbors are the same color as that turtle?
   percent-unhappy  ; what percent of the turtles are unhappy?
+  time-tot
 ]
 
 turtles-own [
@@ -26,6 +27,7 @@ to setup
   ]
   update-turtles
   update-globals
+  set time-tot 0
   reset-ticks
 end
 
@@ -35,7 +37,10 @@ to benchmark
   setup
   repeat n_ticks [go]    ;; run for n_ticks steps
   profiler:stop          ;; stop profiling
-  print profiler:report
+  set time-tot profiler:inclusive-time "go" + profiler:inclusive-time "setup"
+  file-open "times.txt"
+  file-print time-tot
+  file-close
 end
 
 ; run the model for one tick

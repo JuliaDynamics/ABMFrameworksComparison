@@ -3,15 +3,19 @@ extensions [ profiler ]
 turtles-own [
   flockmates         ;; agentset of nearby turtles
   nearest-neighbor   ;; closest one of our flockmates
+  time-tot
 ]
 
 to benchmark
+  profiler:reset         ;; clear the data
   profiler:start         ;; start profiling
   setup
-  repeat n_ticks [ go ]
+  repeat n_ticks [go]    ;; run for n_ticks steps
   profiler:stop          ;; stop profiling
-  print profiler:report  ;; view the results
-  profiler:reset         ;; clear the data
+  set time-tot profiler:inclusive-time "go" + profiler:inclusive-time "setup"
+  file-open "times.txt"
+  file-print time-tot
+  file-close
 end
 
 to setup
@@ -22,6 +26,7 @@ to setup
       set size 2  ;; easier to see
       setxy random-xcor random-ycor
       set flockmates no-turtles ]
+  set time-tot 0
   reset-ticks
 end
 
