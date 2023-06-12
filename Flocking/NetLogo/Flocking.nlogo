@@ -1,9 +1,12 @@
 extensions [ profiler ]
 
+globals [
+  time-tot
+]
+
 turtles-own [
   flockmates         ;; agentset of nearby turtles
   nearest-neighbor   ;; closest one of our flockmates
-  time-tot
 ]
 
 to benchmark
