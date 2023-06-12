@@ -17,7 +17,7 @@ julia --project=@. seed_netlogo.jl $NAME_PARAM $N_RUN
 n_run_model_small () {
     sed -i '1d' $NAME_PARAM
     (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_small \
-         --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99)
+         --min-pxcor 0 --max-pxcor 39 --min-pycor 0 --max-pycor 39)
     times=()
     while IFS= read -r line; do
     times+=("$line")
@@ -29,7 +29,7 @@ n_run_model_small () {
 
 n_run_model_large () {
     (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
-         --min-pxcor 0 --max-pxcor 499 --min-pycor 0 --max-pycor 499)
+         --min-pxcor 0 --max-pxcor 99 --min-pycor 0 --max-pycor 99)
     times=()
     while IFS= read -r line; do
     times+=("$line")
