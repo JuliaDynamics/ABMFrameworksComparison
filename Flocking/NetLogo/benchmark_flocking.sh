@@ -29,7 +29,7 @@ n_run_model_small () {
 
 n_run_model_large () {
     (bash $NAME_LAUNCHER --model $NAME_MODEL --setup-file $NAME_PARAM --experiment benchmark_large \
-         --min-pxcor 0 --max-pxcor 499 --min-pycor 0 --max-pycor 499)
+         --min-pxcor 0 --max-pxcor 149 --min-pycor 0 --max-pycor 149)
     times=()
     while IFS= read -r line; do
     times+=("$line")
