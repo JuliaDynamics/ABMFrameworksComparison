@@ -1,6 +1,9 @@
 extensions [profiler]
 
-globals [ max-sheep ]  ; don't let the sheep population grow too large
+globals [ 
+  max-sheep   ; don't let the sheep population grow too large
+  time-tot
+   ]
 
 ; Sheep and wolves are both breeds of turtles
 breed [ sheep a-sheep ]  ; sheep is its own plural, so we use "a-sheep" as the singular
@@ -49,6 +52,7 @@ to setup
     setxy random-pxcor random-pycor
   ]
   display-labels
+  set time-tot 0
   reset-ticks
 end
 
@@ -58,7 +62,10 @@ to benchmark
   setup
   repeat n_ticks [go]    ;; run for n_ticks steps
   profiler:stop          ;; stop profiling
-  print profiler:report
+  set time-tot profiler:inclusive-time "go" + profiler:inclusive-time "setup"
+  file-open "times.txt"
+  file-print time-tot
+  file-close
 end
 
 to go
