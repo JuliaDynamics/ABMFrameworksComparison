@@ -66,8 +66,9 @@ to update-turtles
   ask turtles [
     ; in next two lines, we use "neighbors" to test the eight patches
     ; surrounding the current patch
-    set similar-nearby count (turtles-on patches in-radius r)  with [ color = [ color ] of myself ]
-    set other-nearby count (turtles-on patches in-radius r) with [ color != [ color ] of myself ]
+    set similar-nearby count (other turtles in-radius r with [ color = [ color ] of myself ])
+    ;print similar-nearby
+    set other-nearby count (other turtles in-radius r with [ color != [ color ] of myself ])
     set total-nearby similar-nearby + other-nearby
     set happy? similar-nearby >= (%-similar-wanted * total-nearby / 100)
     ; add visualization here
@@ -172,18 +173,18 @@ SLIDER
 HORIZONTAL
 
 SLIDER
-10
-95
-285
-128
+5
+196
+179
+229
 r
 r
-0
-100
-30.0
+0.0
+50000.0
+1.0
+1.0
 1
-1
-%
+NIL
 HORIZONTAL
 
 BUTTON
@@ -758,7 +759,7 @@ false
 Polygon -7500403 true true 300 60 225 0 0 225 60 300
 Polygon -7500403 true true 0 60 75 0 300 240 225 300
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.3.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
