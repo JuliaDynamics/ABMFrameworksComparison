@@ -64,7 +64,7 @@ class WolfSheep(mesa.Model):
         self.sheep_gain_from_food = sheep_gain_from_food
 
         self.schedule = RandomActivationByType(self)
-        self.grid = MultiGrid(self.height, self.width, torus=True)
+        self.grid = MultiGrid(self.height, self.width, torus=False)
 
         # Create sheep:
         for i in range(self.initial_sheep):

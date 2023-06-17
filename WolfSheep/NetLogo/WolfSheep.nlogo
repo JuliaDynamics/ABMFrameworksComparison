@@ -69,10 +69,6 @@ to benchmark
 end
 
 to go
-  ; stop the model if there are no wolves and no sheep
-  if not any? turtles [ stop ]
-  ; stop the model if there are no wolves and the number of sheep gets very large
-  if not any? wolves and count sheep > max-sheep [ user-message "The sheep have inherited the earth" stop ]
   ask sheep [
     move
 
@@ -583,7 +579,7 @@ true
 Polygon -7500403 true true 150 0 0 150 105 150 105 293 195 293 195 150 300 150
 
 box
-false
+true
 0
 Polygon -7500403 true true 150 285 285 225 285 75 150 135
 Polygon -7500403 true true 150 135 15 75 150 15 285 75
