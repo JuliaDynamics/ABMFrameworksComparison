@@ -20,8 +20,8 @@ These are the results of the latest comparison:
 
  | Model\Framework  | Agents 5.15.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
- | WolfSheep-small  |       1.0        |    68.6x    |    40.7x    |     12.2x      |
-| WolfSheep-large  |       1.0        |    24.8x    |    36.1x    |      9.9x      |
+ | WolfSheep-small  |       1       |    68.6x    |    40.7x    |     12.2x      |
+| WolfSheep-large  |       1        |    24.8x    |    36.1x    |      9.9x      |
  |  Flocking-small  |       1        |    19.3x   |   157.6x    |     15.6x      |
 |  Flocking-large  |       1       |    3.3x     |   120.4x    |     17.9x      |
  | Schelling-small  |       1        |   249.1x    |   180.7x    |     109.4x     |
