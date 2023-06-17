@@ -69,10 +69,6 @@ to benchmark
 end
 
 to go
-  ; stop the model if there are no wolves and no sheep
-  if not any? turtles [ stop ]
-  ; stop the model if there are no wolves and the number of sheep gets very large
-  if not any? wolves and count sheep > max-sheep [ user-message "The sheep have inherited the earth" stop ]
   ask sheep [
     move
 
