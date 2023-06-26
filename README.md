@@ -20,14 +20,14 @@ These are the results of the latest comparison:
 
  | Model\Framework  | Agents 5.15.0 | MASON 21.0 | Mesa 1.2.1 | Netlogo 6.3.0 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
- | WolfSheep-small  |       1       |    68.6x    |    40.7x    |     12.2x      |
-| WolfSheep-large  |       1        |    24.8x    |    36.1x    |      9.9x      |
- |  Flocking-small  |       1        |    19.3x   |   157.6x    |     15.6x      |
-|  Flocking-large  |       1       |    3.3x     |   120.4x    |     17.9x      |
- | Schelling-small  |       1        |   249.1x    |   180.7x    |     109.4x     |
-| Schelling-large  |       1        |    41.2x   |   402.7x    |     177.0x     |
- | ForestFire-small |       1        |   153.6x    |   197.3x    |     21.3x     |
-| ForestFire-large |       1        |    35.0x    |   428.2x    |     15.3x      |
+| WolfSheep-small  |       1        |    74.7x    |    45.8x    |     15.6x      |
+| WolfSheep-large  |       1        |    23.8x    |    33.2x    |      9.0x      |
+|  Flocking-small  |       1        |    19.3x    |   153.1x    |     17.9x      |
+|  Flocking-large  |       1        |    3.0x    |   117.5x   |     18.3x      |
+| Schelling-small  |       1        |   256.7x    |   179.9x    |     86.8x      |
+| Schelling-large  |       1        |    43.3x    |   417.1x    |     202.6x     |
+| ForestFire-small |       1        |   179.9x    |   237.5x    |     24.7x      |
+| ForestFire-large |       1        |    40.7x    |   489.1x    |     15.1x      |
 
 
 ## How it works
