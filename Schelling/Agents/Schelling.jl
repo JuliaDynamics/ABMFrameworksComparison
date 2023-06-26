@@ -10,14 +10,13 @@ function schelling(rng, numagents, griddims, min_to_be_happy, radius)
     properties = (min_to_be_happy = min_to_be_happy, radius = radius)
     model = UnremovableABM(SchellingAgent, space; properties, scheduler = Schedulers.Randomly(), rng = rng)
     for n in 1:numagents
-        agent = SchellingAgent(n, (1, 1), false, n < numagents / 2 ? 1 : 2)
-        add_agent_single!(agent, model)
+        add_agent_single!(model, false, n < numagents / 2 ? 1 : 2)
     end
     return model, schelling_agent_step!, dummystep
 end
 
 function schelling_agent_step!(agent, model)
-    agent.mood == true && return # do nothing if already happy
+    agent.mood == true && return# do nothing if already happy
     count_neighbors_same_group = 0
     for neighbor in nearby_agents(agent, model, model.radius)
         if agent.group == neighbor.group

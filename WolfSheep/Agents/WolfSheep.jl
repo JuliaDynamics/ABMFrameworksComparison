@@ -35,18 +35,13 @@ function predator_prey(
         rng = rng,
         warn=false
     )
-    id = 0
     for _ in 1:n_sheep
-        id += 1
         energy = rand(abmrng(model), 0:(Δenergy_sheep*2-1))
-        sheep = Sheep(id, (0, 0), energy, sheep_reproduce, Δenergy_sheep)
-        add_agent!(sheep, model)
+        add_agent!(Sheep, model, energy, sheep_reproduce, Δenergy_sheep)
     end
     for _ in 1:n_wolves
-        id += 1
         energy = rand(abmrng(model), 0:(Δenergy_wolf*2-1))
-        wolf = Wolf(id, (0, 0), energy, wolf_reproduce, Δenergy_wolf)
-        add_agent!(wolf, model)
+        add_agent!(Wolf, model, energy, wolf_reproduce, Δenergy_wolf)
     end
     @inbounds for p in positions(model)
         fully_grown = rand(abmrng(model), Bool)
