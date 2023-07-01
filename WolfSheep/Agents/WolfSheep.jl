@@ -53,7 +53,7 @@ function predator_prey(
 end
 
 function agent_step!(agent, model)
-    randomwalk!(agent, model, 1)
+    randomwalk!(agent, model; ifempty=false)
     agent.energy -= 1
     eat!(agent, model)
     if agent.energy < 0
