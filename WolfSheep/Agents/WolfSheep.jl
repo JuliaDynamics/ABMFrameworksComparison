@@ -71,8 +71,8 @@ function eat!(sheep::Sheep, model)
 end
 
 function eat!(wolf::Wolf, model)
-    agents = agents_in_position(wolf.pos, model)
-    sheeps = Iterators.filter(x -> typeof(x) == Sheep, agents)
+    all = ids_in_position(wolf.pos, model)
+    sheeps = Iterators.filter(x -> typeof(model[x]) == Sheep, all)
     if !isempty(sheeps)
         dinner = rand(abmrng(model), collect(sheeps))
         remove_agent!(dinner, model)
