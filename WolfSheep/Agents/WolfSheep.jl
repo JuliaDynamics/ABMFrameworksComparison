@@ -59,7 +59,8 @@ function agent_step!(agent, model)
     if agent.energy < 0
         remove_agent!(agent, model)
     elseif rand(abmrng(model)) <= agent.reproduction_prob
-        reproduce!(agent, model)
+        agent.energy /= 2
+        replicate!(agent, model)
     end
 end
 
@@ -78,18 +79,6 @@ function eat!(wolf::Wolf, model)
         remove_agent!(dinner, model)
         wolf.energy += wolf.Δenergy
     end
-end
-
-function reproduce!(agent, model)
-    agent.energy /= 2
-    offspring = typeof(agent)(
-        nextid(model),
-        agent.pos,
-        agent.energy,
-        agent.reproduction_prob,
-        agent.Δenergy,
-    )
-    add_agent_pos!(offspring, model)
 end
 
 function model_step!(model)
