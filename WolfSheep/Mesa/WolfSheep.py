@@ -85,13 +85,12 @@ class WolfSheep(mesa.Model):
         # Create grass patches
         if self.grass:
             possibly_fully_grown = [True, False]
-            for agent, x, y in self.grid.coord_iter():
+            for agent, pos in self.grid.coord_iter():
                 fully_grown = self.random.choice(possibly_fully_grown)
                 if fully_grown:
                     countdown = self.grass_regrowth_time
                 else:
                     countdown = self.random.randrange(self.grass_regrowth_time)
-                pos = (x, y)
                 patch = GrassPatch(self.next_id(), pos, self, fully_grown, countdown)
                 self.grid.place_agent(patch, pos)
                 self.schedule.add(patch)
