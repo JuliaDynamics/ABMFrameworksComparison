@@ -79,7 +79,7 @@ julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
 
 # install mesa
 sudo apt install python3-pip
-pip install mesa==2.0.0
+pip install mesa==2.1.0
 
 # install netlogo
 sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
