@@ -1,6 +1,6 @@
 using PrettyTables
 
-frameworks = ["Agents.jl", "Mason", "Mesa", "NetLogo"]
+frameworks = ["Agents.jl", "Mason", "NetLogo", "Mesa"]
 
 models = ["WolfSheep-small", "WolfSheep-large", 
           "Flocking-small", "Flocking-large", 
