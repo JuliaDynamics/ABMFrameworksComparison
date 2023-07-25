@@ -56,13 +56,12 @@ class ForestFire(Model):
         self.grid = SingleGrid(height, width, torus=False)
 
         # Place a tree in each cell with Prob = density
-        for cont, x, y in self.grid.coord_iter():
+        for cont, pos in self.grid.coord_iter():
             if self.random.random() < density:
-                pos = (x, y)
                 # Create a tree
                 new_tree = TreeCell(pos, self)
                 # Set all trees in the first column on fire.
-                if x == 0:
+                if pos[0] == 0:
                     new_tree.condition = "On Fire"
                 self.grid.place_agent(new_tree, pos)
                 self.schedule.add(new_tree)
