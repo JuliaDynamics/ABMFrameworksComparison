@@ -20,7 +20,7 @@ julia --project=@. -e 'using Pkg; Pkg.instantiate()'
 
 # install mesa
 sudo apt install python3-pip
-pip install git+https://github.com/projectmesa/mesa.git#egg=mesa
+pip install mesa==1.2.1
 
 # install netlogo
 sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
