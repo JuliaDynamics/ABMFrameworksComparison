@@ -18,16 +18,16 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model\Framework  | Agents.jl 5.17.1 | MASON 21.0 | Mesa 2.1.0 | Netlogo 6.3.0 |
+ | Model/Framework  | Agents.jl 5.15.0 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.0 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
-| WolfSheep-small  |       1        |    65.0x    |    37.9x    |     11.4x      |
-| WolfSheep-large  |       1        |    20.7x    |    30.2x    |      8.0x      |
-|  Flocking-small  |       1        |    19.3x    |   153.1x    |     17.9x      |
-|  Flocking-large  |       1        |    3.0x    |   117.5x   |     18.3x      |
-| Schelling-small  |       1        |   256.7x    |   179.9x    |     86.8x      |
-| Schelling-large  |       1        |    43.3x    |   417.1x    |     202.6x     |
-| ForestFire-small |       1        |   179.9x    |   237.5x    |     24.7x      |
-| ForestFire-large |       1        |    40.7x    |   489.1x    |     15.1x      |
+ | WolfSheep-small  |       1        |    66.8    |     12.2      |    40.8    |
+| WolfSheep-large  |       1        |    21.3    |      8.3      |    28.5    |
+ |  Flocking-small  |       1        |    18.3    |     16.9      |   134.2    |
+|  Flocking-large  |       1        |    3.2     |     18.5      |   108.1    |
+| Schelling-small  |       1        |   251.1    |     87.7      |   185.5    |
+| Schelling-large  |       1        |    43.2    |     196.4     |   435.7    |
+| ForestFire-small |       1        |   176.8    |     27.7      |   249.6    |
+| ForestFire-large |       1        |    42.6    |     15.1      |   494.2    |
 
 
 ## How it works
