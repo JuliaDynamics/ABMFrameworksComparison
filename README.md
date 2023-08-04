@@ -18,14 +18,14 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 5.15.0 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.0 |
+ | Model/Framework  | Agents.jl 5.15.0 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep-small  |       1        |    66.8x    |     12.2x      |    40.8x    |
 | WolfSheep-large  |       1        |    21.3x    |      8.3x      |    28.5x    |
  |  Flocking-small  |       1        |    18.3x    |     16.9x      |   134.2x    |
 |  Flocking-large  |       1        |    3.2x     |     18.5x      |   108.1x    |
-| Schelling-small  |       1        |   251.1x    |     87.7x      |   185.5x    |
-| Schelling-large  |       1        |    43.2x    |     196.4x     |   435.7x    |
+| Schelling-small  |       1        |    80.3x    |     23.5x      |    61.8x    |
+| Schelling-large  |       1        |    7.3x     |     34.3x      |    71.4x    |
 | ForestFire-small |       1        |   176.8x    |     27.7x      |   249.6x    |
 | ForestFire-large |       1        |    42.6x    |     15.1x      |   494.2x    |
 
@@ -79,7 +79,7 @@ julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
 
 # install mesa
 sudo apt install python3-pip
-pip install mesa==2.1.0
+pip install mesa==2.1.1
 
 # install netlogo
 sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz

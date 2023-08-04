@@ -16,7 +16,6 @@ function schelling(rng, numagents, griddims, min_to_be_happy, radius)
 end
 
 function schelling_agent_step!(agent, model)
-    agent.mood == true && return# do nothing if already happy
     count_neighbors_same_group = 0
     for neighbor in nearby_agents(agent, model, model.radius)
         if agent.group == neighbor.group

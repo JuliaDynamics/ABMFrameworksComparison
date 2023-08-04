@@ -11,7 +11,6 @@ This model tests the performance of the two most basic operations any ABM will u
 - There are `K` agents in the model, `0.5K` of group 1 and `0.5K` of group 2. All agents are initialized at random locations and with the happy boolean being `false`.
 - The agents are activated in random order, so that at each step the order may change.
 - At each step of the simulation each agent performs the following actions:
-  - If the `happy` property is `true`, it does nothing. Otherwise:
   - Searches the nearby positions within the specified radius in the discrete grid for neighbors. Saying the same thing with mathematically specificity, the agent searchers for neighbors in a radius `r` in Chebyshev metric around it.
   - It iterates through the found neighbors and counts how many of the neighbors are belonging to the same group.
   - If that number is equal or greater than the model property "minimum to be happy", the agent sets its own happy boolean flag to `true`, otherwise, then the agent moves to a random unoccupied location on the grid.
