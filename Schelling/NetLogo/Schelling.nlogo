@@ -24,7 +24,6 @@ to setup
     setxy random-pxcor random-pycor
   ]
   update-turtles
-  update-globals
   set time-tot 0
   reset-ticks
 end
