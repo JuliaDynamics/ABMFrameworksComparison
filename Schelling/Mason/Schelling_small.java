@@ -20,7 +20,7 @@ public class Schelling_small extends SimState
     public Bag fillSpaces;
     
     public Schelling_small(final long seed) {
-        this(seed, 100, 100);
+        this(seed, 40, 40);
     }
     
     public Schelling_small(final long seed, final int width, final int height) {
