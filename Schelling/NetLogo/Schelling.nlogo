@@ -103,46 +103,6 @@ GRAPHICS-WINDOW
 ticks
 30.0
 
-MONITOR
-265
-365
-355
-410
-% unhappy
-percent-unhappy
-1
-1
-11
-
-MONITOR
-265
-220
-355
-265
-% similar
-percent-similar
-1
-1
-11
-
-PLOT
-10
-140
-260
-285
-Percent Similar
-time
-%
-0.0
-5.0
-0.0
-100.0
-true
-false
-"" ""
-PENS
-"percent" 1.0 0 -16777216 true "" "plot percent-similar"
-
 SLIDER
 10
 95
@@ -764,3 +724,4 @@ Line -7500403 true 150 150 210 180
 @#$#@#$#@
 1
 @#$#@#$#@
+
