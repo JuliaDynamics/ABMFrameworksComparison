@@ -18,7 +18,7 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 5.15.0 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.0 |
+ | Model/Framework  | Agents.jl 5.15.0 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep-small  |       1        |    66.8x    |     12.2x      |    40.8x    |
 | WolfSheep-large  |       1        |    21.3x    |      8.3x      |    28.5x    |
@@ -79,7 +79,7 @@ julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
 
 # install mesa
 sudo apt install python3-pip
-pip install mesa==2.1.0
+pip install mesa==2.1.1
 
 # install netlogo
 sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
