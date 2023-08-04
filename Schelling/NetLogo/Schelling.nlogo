@@ -1,11 +1,5 @@
 extensions [profiler]
 
-globals [
-  percent-similar  ; on the average, what percent of a turtle's neighbors are the same color as that turtle?
-  percent-unhappy  ; what percent of the turtles are unhappy?
-  time-tot
-]
-
 turtles-own [
   happy?           ; for each turtle, indicates whether at least %-similar-wanted percent of that turtle's neighbors are the same color as the turtle
   similar-nearby   ; how many neighboring patches have a turtle with my color?
@@ -45,10 +39,7 @@ end
 
 ; run the model for one tick
 to go
-  ;;if all? turtles [ happy? ] [ stop ]
-  move-unhappy-turtles
   update-turtles
-  update-globals
   tick
 end
 
@@ -70,6 +61,7 @@ to update-turtles
     set other-nearby count (other turtles-on patches in-radius r) with [ color != [ color ] of myself ]
     set total-nearby similar-nearby + other-nearby
     set happy? similar-nearby >= (%-similar-wanted * total-nearby / 100)
+    if not happy? [ find-new-spot ]
     ; add visualization here
     if visualization = "old" [ set shape "default" set size 1.3 ]
     if visualization = "square-x" [
@@ -77,14 +69,6 @@ to update-turtles
     ]
   ]
 end
-
-to update-globals
-  let similar-neighbors sum [ similar-nearby ] of turtles
-  let total-neighbors sum [ total-nearby ] of turtles
-  set percent-similar (similar-neighbors / total-neighbors) * 100
-  set percent-unhappy (count turtles with [ not happy? ]) / (count turtles) * 100
-end
-
 
 ; Copyright 1997 Uri Wilensky.
 ; See Info tab for full copyright and license.
