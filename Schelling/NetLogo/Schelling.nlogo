@@ -1,5 +1,9 @@
 extensions [profiler]
 
+globals [
+  time-tot
+]
+
 turtles-own [
   happy?           ; for each turtle, indicates whether at least %-similar-wanted percent of that turtle's neighbors are the same color as the turtle
   similar-nearby   ; how many neighboring patches have a turtle with my color?
