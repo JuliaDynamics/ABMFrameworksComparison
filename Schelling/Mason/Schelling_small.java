@@ -25,11 +25,11 @@ public class Schelling_small extends SimState
     
     public Schelling_small(final long seed, final int width, final int height) {
         super(seed);
-        this.neighborhood = 2;
-        this.threshold = 8;
-        this.redProbability = 0.4;
-        this.blueProbability = 0.4;
-        this.emptyProbability = 0.2;
+        this.neighborhood = 1;
+        this.threshold = 3;
+        this.redProbability = 0.3125;
+        this.blueProbability = 0.3125;
+        this.emptyProbability = 0.375;
         this.emptySpaces = new Bag();
         this.fillSpaces = new Bag();
         this.gridWidth = width;
