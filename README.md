@@ -24,8 +24,8 @@ These are the results of the latest comparison:
 | WolfSheep-large  |       1        |    21.3x    |      8.3x      |    28.5x    |
  |  Flocking-small  |       1        |    18.3x    |     16.9x      |   134.2x    |
 |  Flocking-large  |       1        |    3.2x     |     18.5x      |   108.1x    |
- | Schelling-small  |       1        |   117.9x    |     22.4x      |    82.8x    |
-| Schelling-large  |       1       |    5.9x     |     28.4x      |    57.9x    |
+| Schelling-small  |       1        |    80.3x    |     23.5x      |    61.8x    |
+| Schelling-large  |       1        |    7.3x     |     34.3x      |    71.4x    |
 | ForestFire-small |       1        |   176.8x    |     27.7x      |   249.6x    |
 | ForestFire-large |       1        |    42.6x    |     15.1x      |   494.2x    |
 
