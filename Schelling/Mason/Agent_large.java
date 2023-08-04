@@ -11,8 +11,8 @@ public class Agent_large implements Steppable
     IntBag neighborsY;
 
     public Agent_large(final int x, final int y) {
-        this.neighborsX = new IntBag(9);
-        this.neighborsY = new IntBag(9);
+        this.neighborsX = new IntBag(25);
+        this.neighborsY = new IntBag(25);
         this.loc = new Int2D(x, y);
     }
 
