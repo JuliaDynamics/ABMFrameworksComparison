@@ -18,7 +18,7 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 5.15.0 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
+ | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep-small  |       1        |    66.8x    |     12.2x      |    40.8x    |
 | WolfSheep-large  |       1        |    21.3x    |      8.3x      |    28.5x    |
@@ -26,8 +26,8 @@ These are the results of the latest comparison:
 |  Flocking-large  |       1        |    3.2x     |     18.5x      |   108.1x    |
 | Schelling-small  |       1        |    80.3x    |     23.5x      |    61.8x    |
 | Schelling-large  |       1        |    7.3x     |     34.3x      |    71.4x    |
-| ForestFire-small |       1        |   176.8x    |     27.7x      |   249.6x    |
-| ForestFire-large |       1        |    42.6x    |     15.1x      |   494.2x    |
+| ForestFire-small |       1        |   176.8x    |     15.5x      |   249.6x    |
+| ForestFire-large |       1        |    42.6x    |     27.1x      |   494.2x    |
 
 
 ## How it works
