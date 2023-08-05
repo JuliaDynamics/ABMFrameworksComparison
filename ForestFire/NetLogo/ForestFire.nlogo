@@ -1,13 +1,8 @@
 extensions [profiler]
 
 globals [
-  initial-trees   ;; how many trees (green patches) we started with
-  burned-trees    ;; how many have burned so far
   time-tot
 ]
-
-breed [fires fire]    ;; bright red turtles -- the leading edge of the fire
-breed [embers ember]  ;; turtles gradually fading from red to near black
 
 to setup
   clear-all
@@ -18,10 +13,8 @@ to setup
     [ set pcolor green ]
   ;; make a column of burning trees
   ask patches with [pxcor = min-pxcor]
-    [ ignite ]
+    [ set pcolor red ]
   ;; set tree counts
-  set initial-trees count patches with [pcolor = green]
-  set burned-trees 0
   set time-tot 0
   reset-ticks
 end
@@ -40,33 +33,12 @@ end
 
 to go
   set time-tot 0
-  ;if not any? turtles  ;; either fires or embers
-  ;  [ stop ]
-  ask fires
+  ask patches with [pcolor = red]
     [ ask neighbors4 with [pcolor = green]
-        [ ignite ]
-      set breed embers ]
-  fade-embers
+        [ set pcolor red ]
+      set pcolor black ]
   tick
 end
-
-;; creates the fire turtles
-to ignite  ;; patch procedure
-  sprout-fires 1
-    [ set color red ]
-  set pcolor black
-  set burned-trees burned-trees + 1
-end
-
-;; achieve fading color effect for the fire as it burns
-to fade-embers
-  ask embers
-    [ set color color - 0.3  ;; make red darker
-      if color < red - 3.5     ;; are we almost at black?
-        [ set pcolor color
-          die ] ]
-end
-
 
 ; Copyright 1997 Uri Wilensky.
 ; See Info tab for full copyright and license.
@@ -566,7 +538,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.1
+NetLogo 6.3.0
 @#$#@#$#@
 set density 60.0
 setup
