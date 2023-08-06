@@ -4,24 +4,33 @@ using Agents, Random
 
 function forest_fire(rng, density, griddims)
     space = GridSpaceSingle(griddims; periodic = false, metric = :manhattan)
-    ## Empty = 0, Green = 1, Burning = 2, Burnt = 3
-    forest = UnremovableABM(Automata, space; rng, properties = (trees = zeros(UInt8, griddims),))
+    properties = (trees = zeros(Int, griddims), on_fire = Vector{NTuple{2, Int}}(),
+                  n = Ref{Int}())
+    forest = UnremovableABM(Automata, space; rng, properties = properties)
     for I in findall(<(density), rand(abmrng(forest), griddims...))
-        forest.trees[I] = I[1] == 1 ? 2 : 1
+        if I[1] == 1
+            forest.trees[I] = 2
+            push!(forest.on_fire, Tuple(I))
+        else
+            forest.trees[I] = 1
+        end
     end
+    forest.n[] = length(forest.on_fire)
+    resize!(forest.on_fire, reduce(*, size(forest.trees)))
     return forest, dummystep, tree_step!
 end
 
 function tree_step!(forest)
-    ## Find trees that are burning (coded as 2)
-    @inbounds for I in findall(isequal(2), forest.trees)
-        for idx in nearby_positions(I.I, forest)
-            ## If a neighbor is Green (1), set it on fire (2)
+    k = 0
+    for pos in @view forest.on_fire[1:forest.n[]]
+        forest.trees[pos...] = 3
+        for idx in nearby_positions(pos, forest)
             if forest.trees[idx...] == 1
                 forest.trees[idx...] = 2
+                k += 1
+                forest.on_fire[k] = idx
             end
         end
-        ## Finally, any burning tree is burnt out (3)
-        forest.trees[I] = 3
     end
+    forest.n[] = k
 end
