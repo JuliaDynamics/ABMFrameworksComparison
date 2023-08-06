@@ -1,4 +1,4 @@
-# This example deviates from Mesa's ForestFire in that it is
+# This example deviates from Mesa's ForestFire in that it is#
 # performance optimized.
 
 from mesa import Model
