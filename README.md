@@ -26,8 +26,8 @@ These are the results of the latest comparison:
 |  Flocking-large  |       1        |    3.2x     |     18.5x      |   108.1x    |
  | Schelling-small  |       1        |    77.5x    |     23.7x      |    59.4x    |
 | Schelling-large  |       1        |    6.9x     |     32.8x      |    68.4x    |
-| ForestFire-small |       1        |   176.8x    |     15.5x      |   249.6x    |
-| ForestFire-large |       1        |    42.6x    |     27.1x      |   494.2x    |
+| ForestFire-small |       1        |   193.8x    |     22.6x      |   271.9x    |
+| ForestFire-large |       1        |    48.2x    |     60.6x      |   645.7x    |
 
 
 ## How it works
