@@ -1,42 +1,10 @@
-# This example deviates from Mesa's ForestFire in that it uses BaseScheduler
-# instead of RandomActivation.
+# This example deviates from Mesa's ForestFire in that it is
+# performance optimized.
 
 from mesa import Model
 from mesa import Agent
 from mesa.space import SingleGrid
-from mesa.time import BaseScheduler
 
-class TreeCell(Agent):
-    """
-    A tree cell.
-    Attributes:
-        x, y: Grid coordinates
-        condition: Can be "Fine", "On Fire", or "Burned Out"
-        unique_id: (x,y) tuple.
-    unique_id isn't strictly necessary here, but it's good
-    practice to give one to each agent anyway.
-    """
-
-    def __init__(self, pos, model):
-        """
-        Create a new tree.
-        Args:
-            pos: The tree's coordinates on the grid.
-            model: standard model reference for agent.
-        """
-        super().__init__(pos, model)
-        self.pos = pos
-        self.condition = "Fine"
-
-    def step(self):
-        """
-        If the tree is on fire, spread it to fine trees nearby.
-        """
-        if self.condition == "On Fire":
-            for neighbor in self.model.grid.iter_neighbors(self.pos, moore=False):
-                if neighbor.condition == "Fine":
-                    neighbor.condition = "On Fire"
-            self.condition = "Burned Out"
 
 class ForestFire(Model):
     """
@@ -52,22 +20,34 @@ class ForestFire(Model):
         """
         super().__init__(seed=seed)
         # Set up model objects
-        self.schedule = BaseScheduler(self)
+        # Instead of actual agents, we just use a grid with the following encoding:
+        # 0 = empty, 1 = tree, 2 = burning tree, 3 = burnt tree
         self.grid = SingleGrid(height, width, torus=False)
+        self.trees = [[0] * width for _ in range(height)]
+        self.burning_tree_coordinates = set()
 
-        # Place a tree in each cell with Prob = density
-        for cont, pos in self.grid.coord_iter():
-            if self.random.random() < density:
-                # Create a tree
-                new_tree = TreeCell(pos, self)
-                # Set all trees in the first column on fire.
-                if pos[0] == 0:
-                    new_tree.condition = "On Fire"
-                self.grid.place_agent(new_tree, pos)
-                self.schedule.add(new_tree)
+        for x in range(width):
+            for y in range(height):
+                # Place a tree in each cell with Prob = density
+                if self.random.random() < density:
+                    # Set Trees in first column on fire.
+                    if x == 0:
+                        self.trees[x][y] = 2
+                        self.burning_tree_coordinates.add((x, y))
+                    else:
+                        self.trees[x][y] = 1
 
     def step(self):
         """
         Advance the model by one step.
         """
-        self.schedule.step()
+        for x, y in list(self.burning_tree_coordinates):
+            for nx, ny in self.grid.get_neighborhood(
+                (x, y),
+                moore=False,
+            ):
+                if self.trees[nx][ny] == 1:
+                    self.trees[nx][ny] = 2
+                    self.burning_tree_coordinates.add((nx, ny))
+            self.trees[x][y] = 3
+            self.burning_tree_coordinates.remove((x, y))
