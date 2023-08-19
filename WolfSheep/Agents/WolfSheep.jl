@@ -71,11 +71,10 @@ function eat!(sheep::Sheep, model)
     end
 end
 
-function eat!(wolf::Wolf, model)
-    all = ids_in_position(wolf.pos, model)
-    sheeps = Iterators.filter(x -> typeof(model[x]) == Sheep, all)
-    if !isempty(sheeps)
-        dinner = rand(abmrng(model), collect(sheeps))
+function eat!(wolf::Union{Wolf, Wolf2, Wolf3}, model)
+    is_sheep = (agent) -> agent isa Sheep
+    dinner = random_agent_in_position(wolf.pos, model, is_sheep)
+    if !isnothing(dinner)
         remove_agent!(dinner, model)
         wolf.energy += wolf.Δenergy
     end
