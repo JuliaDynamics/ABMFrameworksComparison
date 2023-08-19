@@ -71,7 +71,7 @@ function eat!(sheep::Sheep, model)
     end
 end
 
-function eat!(wolf::Union{Wolf, Wolf2, Wolf3}, model)
+function eat!(wolf::Wolf, model)
     is_sheep = (agent) -> agent isa Sheep
     dinner = random_agent_in_position(wolf.pos, model, is_sheep)
     if !isnothing(dinner)
