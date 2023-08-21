@@ -1,4 +1,4 @@
-using StaticArrays, LinearAlgebra
+using LinearAlgebra
 
 @agent Bird ContinuousAgent{2} begin
     speed::Float64
