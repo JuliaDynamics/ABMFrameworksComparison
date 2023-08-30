@@ -18,17 +18,16 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
+ | Model/Framework  | Agents.jl 5.17 | MASON 21.0** | Netlogo 6.3.0 | Mesa 2.1.1 |
 |:------------------:|:---------------:|:------------:|:------------:|:---------------:|
- | WolfSheep-small  |       1        |    66.8x    |     12.2x      |    40.8x    |
-| WolfSheep-large  |       1        |    21.3x    |      8.3x      |    28.5x    |
- |  Flocking-small  |       1        |    18.3x    |     16.9x      |   134.2x    |
-|  Flocking-large  |       1        |    3.2x     |     18.5x      |   108.1x    |
- | Schelling-small  |       1        |    77.5x    |     23.7x      |    59.4x    |
-| Schelling-large  |       1        |    6.9x     |     32.8x      |    68.4x    |
- | ForestFire-small |       1        |   368.5x    |     44.9x      |    52.9x    |
-| ForestFire-large |       1        |    96.1x    |     77.6x      |    31.7x   |
+ | WolfSheep-small  |       1        |    19.0x    |     12.2x      |    40.8x    |
+| WolfSheep-large  |       1        |    19.0x    |      8.3x      |    28.5x    |
+ |  Flocking-small  |       1        |    0.8x    |     16.9x      |   134.2x    |
+|  Flocking-large  |       1        |    0.8x     |     18.5x      |   108.1x    |
+ | Schelling-small  |       1        |    2.6x    |     23.7x      |    59.4x    |
+| Schelling-large  |       1        |    2.6x     |     32.8x      |    68.4x    |
 
+** These are estimates due to current issues with the benchmarks: see https://github.com/JuliaDynamics/ABM_Framework_Comparisons/issues/68
 
 ## How it works
 
