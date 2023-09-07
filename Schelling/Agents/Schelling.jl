@@ -1,8 +1,8 @@
 using Agents
 
-@agent SchellingAgent GridAgent{2} begin
+@agent struct SchellingAgent fieldsof(GridAgent{2})
     mood::Bool # whether the agent is happy in its position. (true = happy)
-    group::Int # The group of the agent,  determines mood as it interacts with neighbors
+    const group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
 function schelling(rng, numagents, griddims, min_to_be_happy, radius)
