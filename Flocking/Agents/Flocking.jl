@@ -1,12 +1,12 @@
 using LinearAlgebra
 
-@agent Bird ContinuousAgent{2} begin
-    speed::Float64
-    cohere_factor::Float64
-    separation::Float64
-    separate_factor::Float64
-    match_factor::Float64
-    visual_distance::Float64
+@agent struct Bird fieldsof(ContinuousAgent{2})
+    const speed::Float64
+    const cohere_factor::Float64
+    const separation::Float64
+    const separate_factor::Float64
+    const match_factor::Float64
+    const visual_distance::Float64
 end
 
 function flocking(
