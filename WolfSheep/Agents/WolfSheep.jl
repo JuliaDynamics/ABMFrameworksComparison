@@ -1,13 +1,13 @@
-@agent Wolf GridAgent{2} begin
+@agent struct Wolf fieldsof(GridAgent{2})
     energy::Float64
-    reproduction_prob::Float64
-    Δenergy::Float64
+    const reproduction_prob::Float64
+    const Δenergy::Float64
 end
 
-@agent Sheep GridAgent{2} begin
+@agent struct Sheep fieldsof(GridAgent{2})
     energy::Float64
-    reproduction_prob::Float64
-    Δenergy::Float64
+    const reproduction_prob::Float64
+    const Δenergy::Float64
 end
 
 function predator_prey(
