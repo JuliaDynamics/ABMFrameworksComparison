@@ -73,7 +73,7 @@ class Boid(Agent):
             match_vector += neighbor.velocity
         N = max(N, 1)
         cohere = cohere / N * self.cohere_factor
-        separation_vector = separation_vector * self.separate_factor
+        separation_vector = separation_vector / N * self.separate_factor
         match_vector = match_vector / N * self.match_factor
         #self.velocity = (self.velocity + cohere + separation_vector + match_vector) / 2
         self.velocity += (cohere + separation_vector + match_vector) / 2
