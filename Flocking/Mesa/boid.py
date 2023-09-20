@@ -72,10 +72,10 @@ class Boid(Agent):
                 separation_vector -= heading
             match_vector += neighbor.velocity
         N = max(N, 1)
-        cohere = cohere / N * self.cohere_factor
-        separation_vector = separation_vector / N * self.separate_factor
-        match_vector = match_vector / N * self.match_factor
-        self.velocity += (cohere + separation_vector + match_vector)
+        cohere = cohere * self.cohere_factor
+        separation_vector = separation_vector * self.separate_factor
+        match_vector = match_vector * self.match_factor
+        self.velocity += (cohere + separation_vector + match_vector) / N
         self.velocity /= np.linalg.norm(self.velocity)
         new_pos = self.pos + self.velocity * self.speed
         self.model.space.move_agent(self, new_pos)
