@@ -48,7 +48,7 @@ function flocking_agent_step!(bird, model)
     cohere = cohere .* bird.cohere_factor
     separate = separate .* bird.separate_factor
     match = match .* bird.match_factor
-    bird.vel = bird.vel .+ (cohere .+ separate .+ match) ./ N 
+    bird.vel = (bird.vel .+ (cohere .+ separate .+ match) ./ N) ./ 2
     bird.vel = bird.vel ./ norm(bird.vel)
     move_agent!(bird, model, bird.speed)
 end
