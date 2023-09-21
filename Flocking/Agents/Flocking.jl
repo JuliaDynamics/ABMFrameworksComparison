@@ -37,7 +37,7 @@ function flocking_agent_step!(bird, model)
     match = separate = cohere = (0.0, 0.0)
     for neighbor in neighbor_agents
         N += 1
-        heading = neighbor.pos .- bird.pos
+        heading = get_direction(bird.pos, neighbor.pos, model)
         cohere = cohere .+ heading
         match = match .+ neighbor.vel
         if sum(heading.^2) < bird.separation^2
@@ -48,7 +48,7 @@ function flocking_agent_step!(bird, model)
     cohere = cohere .* bird.cohere_factor
     separate = separate .* bird.separate_factor
     match = match .* bird.match_factor
-    bird.vel = bird.vel .+ (cohere .+ separate .+ match) ./ N 
+    bird.vel = bird.vel .+ (cohere .+ separate .+ match) ./ N
     bird.vel = bird.vel ./ norm(bird.vel)
     move_agent!(bird, model, bird.speed)
 end
