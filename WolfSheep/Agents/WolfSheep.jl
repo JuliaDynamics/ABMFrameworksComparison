@@ -1,10 +1,10 @@
-@agent struct Wolf fieldsof(GridAgent{2})
+@agent struct Wolf(GridAgent{2})
     energy::Float64
     const reproduction_prob::Float64
     const Δenergy::Float64
 end
 
-@agent struct Sheep fieldsof(GridAgent{2})
+@agent struct Sheep(GridAgent{2})
     energy::Float64
     const reproduction_prob::Float64
     const Δenergy::Float64
