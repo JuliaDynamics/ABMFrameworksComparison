@@ -1,6 +1,6 @@
 using Agents
 
-@agent struct SchellingAgent fieldsof(GridAgent{2})
+@agent struct SchellingAgent(GridAgent{2})
     mood::Bool # whether the agent is happy in its position. (true = happy)
     const group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
