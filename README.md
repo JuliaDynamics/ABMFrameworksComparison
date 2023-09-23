@@ -61,10 +61,6 @@ sudo git clone https://github.com/JuliaDynamics/ABM_Framework_Comparisons.git
 sudo chmod a+rwx ABM_Framework_Comparisons
 sudo chmod -R 777 ABM_Framework_Comparisons
 
-# install java
-sudo apt install default-jre-headless
-sudo apt install default-jdk-headless
-
 # install julia
 sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.2-linux-x86_64.tar.gz
 sudo tar zxvf julia-1.9.2-linux-x86_64.tar.gz
@@ -73,6 +69,10 @@ printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.2/bin\"" >> ~/.bashrc
 
 # install agents
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
+
+# install java
+sudo apt install default-jre-headless
+sudo apt install default-jdk-headless
 
 # install mesa
 sudo apt install python3-pip
