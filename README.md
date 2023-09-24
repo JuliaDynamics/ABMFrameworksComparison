@@ -25,10 +25,10 @@ These are the results of the latest comparison:
 |      (LOC)       |     88          |    202        |  137 (871)        | 146 |
  |  Flocking-small  |       1       |    18.7x   |     17.4x     |   183.3x    |
 |  Flocking-large  |       1       |    3.1x   |     19.8x    |   209.7x    |
-|      (LOC)       |       50     |      369     |    82 (689)   |   102       |
+|      (LOC)       |       50     |      159     |    82 (689)   |   102       |
  | Schelling-small  |       1        |    77.5x    |     23.7x      |    59.4x    |
 | Schelling-large  |       1        |    6.9x     |     32.8x      |    68.4x    |
-|    (LOC)      |        27          |      248   |   60 (743)      |     44    |
+|    (LOC)      |        27          |      134   |   58 (743)      |     44    |
 
 
 
