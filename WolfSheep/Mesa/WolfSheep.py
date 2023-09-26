@@ -33,7 +33,6 @@ class WolfSheep(mesa.Model):
         wolf_reproduce,
         grass_regrowth_time,
         wolf_gain_from_food=13,
-        grass=True,
         sheep_gain_from_food=5,
     ):
         """
@@ -59,7 +58,6 @@ class WolfSheep(mesa.Model):
         self.sheep_reproduce = sheep_reproduce
         self.wolf_reproduce = wolf_reproduce
         self.wolf_gain_from_food = wolf_gain_from_food
-        self.grass = grass
         self.grass_regrowth_time = grass_regrowth_time
         self.sheep_gain_from_food = sheep_gain_from_food
 
@@ -83,17 +81,16 @@ class WolfSheep(mesa.Model):
             self.schedule.add(wolf)
         
         # Create grass patches
-        if self.grass:
-            possibly_fully_grown = [True, False]
-            for agent, pos in self.grid.coord_iter():
-                fully_grown = self.random.choice(possibly_fully_grown)
-                if fully_grown:
-                    countdown = self.grass_regrowth_time
-                else:
-                    countdown = self.random.randrange(self.grass_regrowth_time)
-                patch = GrassPatch(self.next_id(), pos, self, fully_grown, countdown)
-                self.grid.place_agent(patch, pos)
-                self.schedule.add(patch)
+        possibly_fully_grown = [True, False]
+        for agent, pos in self.grid.coord_iter():
+            fully_grown = self.random.choice(possibly_fully_grown)
+            if fully_grown:
+                countdown = self.grass_regrowth_time
+            else:
+                countdown = self.random.randrange(self.grass_regrowth_time)
+            patch = GrassPatch(self.next_id(), pos, self, fully_grown, countdown)
+            self.grid.place_agent(patch, pos)
+            self.schedule.add(patch)
 
     def step(self):
         self.schedule.step()
