@@ -22,10 +22,10 @@ These are the results of the latest comparison:
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep (Time-Ratio, Small-Version) |       1        |    66.8x    |     12.2x      |    40.8x    |
 | WolfSheep (Time-Ratio, Large-Version)  |       1        |    21.3x    |      8.3x      |    28.5x    |
-| WolfSheep (LOC) |     1          |    2.3x        |  1.56x (9.9x)        | 1.66x |
+| WolfSheep (LOC) |     1          |    2.3x        |  1.6x (9.9x)        | 1.7x |
  |  Flocking (Time-Ratio, Small-Version)  |       1       |    18.7x   |     17.4x     |   183.3x    |
 |  Flocking (Time-Ratio, Large-Version)   |       1       |    3.1x   |     19.8x    |   209.7x    |
-|   Flocking (LOC)       |       1     |      3.2x     |    1.6 (13.8x)   |   2.0x       |
+|   Flocking (LOC)       |       1     |      3.2x     |    1.6x (13.8x)   |   2.0x       |
  | Schelling (Time-Ratio, Small-Version)   |       1        |    77.5x    |     23.7x      |    59.4x    |
 | Schelling (Time-Ratio, Large-Version)  |       1        |    6.9x     |     32.8x      |    68.4x    |
 |    Schelling (LOC)      |        1          |      5.0x   |   2.2x (27.5x)      |     1.6x    |
