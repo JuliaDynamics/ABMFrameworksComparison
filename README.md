@@ -19,18 +19,16 @@ This repository has been initiated and maintained by the developers of Agents.jl
 These are the results of the latest comparison:
 
  | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
-|:------------------:|:---------------:|:------------:|:------------:|:---------------:|
- | WolfSheep-small  |       1        |    71.6x    |     13.1x      |    40.0x    |
-| WolfSheep-large  |       1        |    24.0x    |      9.9x      |    30.2x    |
-|      (LOC)       |     88          |    202        |  137 (871)        | 138 |
- |  Flocking-small  |       1       |    18.7x   |     17.4x     |   183.3x    |
-|  Flocking-large  |       1       |    3.1x   |     19.8x    |   209.7x    |
-|      (LOC)       |       50     |      159     |    82 (689)   |   102       |
- | Schelling-small  |       1        |    77.5x    |     23.7x      |    59.4x    |
-| Schelling-large  |       1        |    6.9x     |     32.8x      |    68.4x    |
-|    (LOC)      |        27          |      134   |   58 (743)      |     44    |
-
-
+|:------------------|:---------------:|:------------:|:------------:|:---------------:|
+ | WolfSheep (Time-Ratio, Small-Version) |        1        |    71.6x    |     13.1x      |    40.0x    |
+| WolfSheep (Time-Ratio, Large-Version)  |       1        |    24.0x    |      9.9x      |    30.2x    |
+| WolfSheep (LOC) |     88          |    202        |  137 (871)        | 138 |
+ |  Flocking (Time-Ratio, Small-Version)  |       1       |    18.7x   |     17.4x     |   183.3x    |
+|  Flocking (Time-Ratio, Large-Version)   |         1       |    3.1x   |     19.8x    |   209.7x    |
+|   Flocking (LOC)       |       50     |      159     |    82 (689)   |   102       |
+ | Schelling (Time-Ratio, Small-Version)   |       1        |    77.5x    |     23.7x      |    59.4x    |
+| Schelling (Time-Ratio, Large-Version)  |      1        |    6.9x     |     32.8x      |    68.4x    |
+|    Schelling (LOC)      |       27          |      134   |   58 (743)      |     44    |
 
 ## How it works
 
