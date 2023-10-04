@@ -9,8 +9,8 @@ rng_seed = MersenneTwister(42)
 rng_model() = Xoshiro(rand(rng_seed, 1:10000))
 
 function run_model(rng, numagents, griddims, min_to_be_happy, radius)
-    model, agent_step!, model_step! = schelling(rng, numagents, griddims, min_to_be_happy, radius)
-    step!(model, agent_step!, model_step!, 20)
+    model = schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
+    step!(model, 20)
 end
 
 n_run = 100
