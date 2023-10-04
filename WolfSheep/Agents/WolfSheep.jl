@@ -10,7 +10,7 @@ end
     const Δenergy::Float64
 end
 
-function predator_prey(
+function predator_prey_model(
     rng,
     n_sheep,
     n_wolves,
@@ -30,6 +30,7 @@ function predator_prey(
     model = ABM(
         Union{Wolf, Sheep},
         space,
+        agent_step! = agent_step!, model_step! = model_step!,
         scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep}),
         properties = properties,
         rng = rng,
@@ -49,7 +50,7 @@ function predator_prey(
         model.countdown[p...] = countdown
         model.fully_grown[p...] = fully_grown
     end
-    return model, agent_step!, model_step!
+    return model
 end
 
 function agent_step!(agent, model)
