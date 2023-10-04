@@ -5,14 +5,15 @@ using Agents
     const group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
-function schelling(rng, numagents, griddims, min_to_be_happy, radius)
+function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = (min_to_be_happy = min_to_be_happy, radius = radius)
-    model = UnremovableABM(SchellingAgent, space; properties, scheduler = Schedulers.Randomly(), rng = rng)
+    model = UnremovableABM(SchellingAgent, space; agent_step! = schelling_agent_step!
+                           properties, scheduler = Schedulers.Randomly(), rng = rng)
     for n in 1:numagents
         add_agent_single!(model, false, n < numagents / 2 ? 1 : 2)
     end
-    return model, schelling_agent_step!, dummystep
+    return model
 end
 
 function schelling_agent_step!(agent, model)
