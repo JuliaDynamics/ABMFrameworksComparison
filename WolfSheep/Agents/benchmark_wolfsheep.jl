@@ -8,11 +8,11 @@ rng_seed = MersenneTwister(42)
 
 rng_model() = Xoshiro(rand(rng_seed, 1:10000))
 
-function run_model(rng, n_sheep, n_wolves, dims, 
-                   regrowth_time, sheep_reproduce, wolf_reproduce)
-    model, agent_step!, model_step! = predator_prey(rng, n_sheep, n_wolves, dims, 
-                                                    regrowth_time, sheep_reproduce, wolf_reproduce)
-    step!(model, agent_step!, model_step!, 100)
+function run_model(rng, n_sheep, n_wolves, dims, regrowth_time, 
+                   sheep_reproduce, wolf_reproduce)
+    model = predator_prey_model(rng, n_sheep, n_wolves, dims, regrowth_time, 
+                                sheep_reproduce, wolf_reproduce)
+    step!(model, 100)
 end
 
 n_run = 100
