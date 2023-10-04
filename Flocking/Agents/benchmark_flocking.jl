@@ -9,8 +9,8 @@ rng_seed = MersenneTwister(42)
 rng_model() = Xoshiro(rand(rng_seed, 1:10000))
 
 function run_model(rng, extent, n_birds, visual_distance)
-    model, agent_step!, model_step! = flocking(rng, extent, n_birds, visual_distance)
-    step!(model, agent_step!, model_step!, 100)
+    model = flocking_model(rng, extent, n_birds, visual_distance)
+    step!(model, 100)
 end
 
 n_run = 100
