@@ -22,20 +22,11 @@ function predator_prey_model(
     Δenergy_wolf = 13,
 )
     space = GridSpace(dims, periodic = false)
-    properties = (
-        fully_grown = falses(dims),
-        countdown = zeros(Int, dims),
-        regrowth_time = regrowth_time,
-    )
-    model = ABM(
-        Union{Wolf, Sheep},
-        space,
-        agent_step! = agent_step!, model_step! = model_step!,
-        scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep}),
-        properties = properties,
-        rng = rng,
-        warn=false
-    )
+    properties = (fully_grown = falses(dims), countdown = zeros(Int, dims),
+                  regrowth_time = regrowth_time)
+    scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep})
+    model = ABM(Union{Wolf, Sheep}, space; agent_step!, model_step!, scheduler,
+                properties, rng, warn=false)
     for _ in 1:n_sheep
         energy = rand(abmrng(model), 0:(Δenergy_sheep*2-1))
         add_agent!(Sheep, model, energy, sheep_reproduce, Δenergy_sheep)
