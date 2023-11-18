@@ -10,16 +10,9 @@ using LinearAlgebra
 end
 
 function flocking_model(
-    rng,
-    extent,
-    n_birds,
-    visual_distance;
-    speed = 1.0,
-    cohere_factor = 0.03,
-    separation = 1.0,
-    separate_factor = 0.015,
-    match_factor = 0.05,
-    spacing = visual_distance / 1.5,
+    rng, extent, n_birds, visual_distance; 
+    speed = 1.0, cohere_factor = 0.03, separation = 1.0, separate_factor = 0.015,
+    match_factor = 0.05, spacing = visual_distance / 1.5,
 )
     space2d = ContinuousSpace(extent; spacing)
     model = StandardABM(Bird, space2d; agent_step!, rng, container = Vector, 
