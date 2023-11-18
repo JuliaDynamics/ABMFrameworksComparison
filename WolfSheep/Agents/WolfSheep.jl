@@ -11,15 +11,8 @@ end
 end
 
 function predator_prey_model(
-    rng,
-    n_sheep,
-    n_wolves,
-    dims,
-    regrowth_time,
-    sheep_reproduce,
-    wolf_reproduce;
-    Δenergy_sheep = 5,
-    Δenergy_wolf = 13,
+    rng, n_sheep, n_wolves, dims, regrowth_time, sheep_reproduce, wolf_reproduce;
+    Δenergy_sheep = 5, Δenergy_wolf = 13,
 )
     space = GridSpace(dims, periodic = false)
     properties = (fully_grown = falses(dims), countdown = zeros(Int, dims),
