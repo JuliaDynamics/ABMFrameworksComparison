@@ -15,10 +15,10 @@ end
 
 n_run = 100
 
-a = @benchmark run_model(rng, (100, 100), 200, 5.0) setup = (rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, (100, 100), 200, 5.0) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Agents.jl Flocking-small (ms): ", median_time * 1e-6)
 
-a = @benchmark run_model(rng, (150, 150), 400, 15.0) setup = (rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, (150, 150), 400, 15.0) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Agents.jl Flocking-large (ms): ", median_time * 1e-6)

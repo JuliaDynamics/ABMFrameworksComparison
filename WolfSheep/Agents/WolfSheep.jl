@@ -1,3 +1,5 @@
+using Agents
+
 @agent struct Wolf(GridAgent{2})
     energy::Float64
     const reproduction_prob::Float64
@@ -10,27 +12,26 @@ end
     const Δenergy::Float64
 end
 
-function predator_prey_model(
-    rng, n_sheep, n_wolves, dims, regrowth_time, sheep_reproduce, wolf_reproduce;
-    Δenergy_sheep = 5, Δenergy_wolf = 13,
-)
+function predator_prey_model(rng, n_sheep, n_wolves, dims,
+        regrowth_time, sheep_reproduce, wolf_reproduce;
+        Δenergy_sheep = 5, Δenergy_wolf = 13,)
     space = GridSpace(dims, periodic = false)
     properties = (fully_grown = falses(dims), countdown = zeros(Int, dims),
-                  regrowth_time = regrowth_time)
+        regrowth_time = regrowth_time)
     scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep})
     model = ABM(Union{Wolf, Sheep}, space; agent_step!, model_step!, scheduler,
-                properties, rng, warn=false)
+        properties, rng, warn = false)
     for _ in 1:n_sheep
-        energy = rand(abmrng(model), 0:(Δenergy_sheep*2-1))
+        energy = rand(abmrng(model), 0:(Δenergy_sheep * 2 - 1))
         add_agent!(Sheep, model, energy, sheep_reproduce, Δenergy_sheep)
     end
     for _ in 1:n_wolves
-        energy = rand(abmrng(model), 0:(Δenergy_wolf*2-1))
+        energy = rand(abmrng(model), 0:(Δenergy_wolf * 2 - 1))
         add_agent!(Wolf, model, energy, wolf_reproduce, Δenergy_wolf)
     end
     @inbounds for p in positions(model)
         fully_grown = rand(abmrng(model), Bool)
-        countdown = fully_grown ? regrowth_time : rand(abmrng(model), 0:regrowth_time-1)
+        countdown = fully_grown ? regrowth_time : rand(abmrng(model), 0:(regrowth_time - 1))
         model.countdown[p...] = countdown
         model.fully_grown[p...] = fully_grown
     end
@@ -38,7 +39,7 @@ function predator_prey_model(
 end
 
 function agent_step!(agent, model)
-    randomwalk!(agent, model; ifempty=false)
+    randomwalk!(agent, model; ifempty = false)
     agent.energy -= 1
     eat!(agent, model)
     if agent.energy < 0
@@ -57,13 +58,14 @@ function eat!(sheep::Sheep, model)
 end
 
 function eat!(wolf::Wolf, model)
-    is_sheep = (agent) -> agent isa Sheep
     dinner = random_agent_in_position(wolf.pos, model, is_sheep)
     if !isnothing(dinner)
         remove_agent!(dinner, model)
         wolf.energy += wolf.Δenergy
     end
 end
+
+is_sheep(agent) = agent isa Sheep
 
 function model_step!(model)
     @inbounds for p in positions(model)
