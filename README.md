@@ -18,7 +18,7 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.3.0 | Mesa 2.1.1 |
+ | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.4.0 | Mesa 2.1.4 |
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep (Time-Ratio, Small-Version) |        1        |    71.6x    |     13.1x      |    40.0x    |
 | WolfSheep (Time-Ratio, Large-Version)  |       1        |    24.0x    |      9.9x      |    30.2x    |
@@ -65,10 +65,10 @@ sudo chmod a+rwx ABM_Framework_Comparisons
 sudo chmod -R 777 ABM_Framework_Comparisons
 
 # install julia
-sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.2-linux-x86_64.tar.gz
-sudo tar zxvf julia-1.9.2-linux-x86_64.tar.gz
-export PATH=$PATH:$(pwd)"/julia-1.9.2/bin"
-printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.2/bin\"" >> ~/.bashrc
+sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.4-linux-x86_64.tar.gz
+sudo tar zxvf julia-1.9.4-linux-x86_64.tar.gz
+export PATH=$PATH:$(pwd)"/julia-1.9.4/bin"
+printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.4/bin\"" >> ~/.bashrc
 
 # install agents
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
@@ -79,14 +79,14 @@ sudo apt install default-jdk-headless
 
 # install mesa
 sudo apt install python3-pip
-pip install mesa==2.1.1
+pip install mesa==2.1.4
 
 # install netlogo
-sudo wget http://ccl.northwestern.edu/netlogo/6.3.0/NetLogo-6.3.0-64.tgz
-sudo tar -xzf NetLogo-6.3.0-64.tgz
+sudo wget http://ccl.northwestern.edu/netlogo/6.4.0/NetLogo-6.4.0-64.tgz
+sudo tar -xzf NetLogo-6.4.0-64.tgz
 
 # move netlogo inside repository
-sudo mv "NetLogo 6.3.0" netlogo
+sudo mv "NetLogo 6.4.0" netlogo
 sudo mv netlogo ABM_Framework_Comparisons
 
 # install bc tools
