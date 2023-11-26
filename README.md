@@ -20,14 +20,14 @@ These are the results of the latest comparison:
 
  | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.4.0 | Mesa 2.1.4 |
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
- | WolfSheep (Time-Ratio, Small-Version) |        1        |    71.6x    |     13.1x      |    40.0x    |
-| WolfSheep (Time-Ratio, Large-Version)  |       1        |    24.0x    |      9.9x      |    30.2x    |
+ | WolfSheep (Time-Ratio, Small-Version) |        1        |    81.7x    |     12.5x      |    44.0x    |
+| WolfSheep (Time-Ratio, Large-Version)  |       1         |    14.3x    |      6.8x      |    27.9x    |
 | WolfSheep (LOC) |     88          |    202        |  137 (871)        | 138 |
- |  Flocking (Time-Ratio, Small-Version)  |       1       |    18.7x   |     17.4x     |   183.3x    |
-|  Flocking (Time-Ratio, Large-Version)   |         1       |    3.1x   |     19.8x    |   209.7x    |
+ |  Flocking (Time-Ratio, Small-Version)  |        1        |    18.0x    |     13.9x      |   131.1x    |
+|  Flocking (Time-Ratio, Large-Version)   |         1        |    3.6x     |     20.3x      |   191.9x    |
 |   Flocking (LOC)       |       50     |      159     |    82 (689)   |   102       |
- | Schelling (Time-Ratio, Small-Version)   |       1        |    77.5x    |     23.7x      |    59.4x    |
-| Schelling (Time-Ratio, Large-Version)  |      1        |    6.9x     |     32.8x      |    68.4x    |
+ | Schelling (Time-Ratio, Small-Version)   |       1         |    80.6x    |     18.9x      |    47.1x    |
+| Schelling (Time-Ratio, Large-Version)  |      1         |    6.7x     |     21.1x      |    43.4x    |
 |    Schelling (LOC)      |       27          |      134   |   58 (743)      |     44    |
 
 ## How it works
