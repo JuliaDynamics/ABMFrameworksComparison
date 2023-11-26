@@ -86,7 +86,7 @@ sudo wget http://ccl.northwestern.edu/netlogo/6.4.0/NetLogo-6.4.0-64.tgz
 sudo tar -xzf NetLogo-6.4.0-64.tgz
 
 # move netlogo inside repository
-sudo mv "NetLogo 6.4.0" netlogo
+sudo mv "NetLogo-6.4.0-64" netlogo
 sudo mv netlogo ABM_Framework_Comparisons
 
 # install bc tools
