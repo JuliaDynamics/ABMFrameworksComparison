@@ -22,13 +22,13 @@ These are the results of the latest comparison:
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
  | WolfSheep (Time-Ratio, Small-Version) |        1        |    81.7x    |     12.5x      |    44.0x    |
 | WolfSheep (Time-Ratio, Large-Version)  |       1         |    14.3x    |      6.8x      |    27.9x    |
-| WolfSheep (LOC) |     88          |    202        |  137 (871)        | 138 |
+| WolfSheep (Lines of Code) |     88          |    202        |  137 (871)        | 138 |
  |  Flocking (Time-Ratio, Small-Version)  |        1        |    18.0x    |     13.9x      |   131.1x    |
 |  Flocking (Time-Ratio, Large-Version)   |         1        |    3.6x     |     20.3x      |   191.9x    |
-|   Flocking (LOC)       |       50     |      159     |    82 (689)   |   102       |
+|   Flocking (Lines of Code)       |       50     |      159     |    82 (689)   |   102       |
  | Schelling (Time-Ratio, Small-Version)   |       1         |    80.6x    |     18.9x      |    47.1x    |
 | Schelling (Time-Ratio, Large-Version)  |      1         |    6.7x     |     21.1x      |    43.4x    |
-|    Schelling (LOC)      |       27          |      134   |   58 (743)      |     44    |
+|    Schelling (Lines of Code)      |       27          |      134   |   58 (743)      |     44    |
 
 ## How it works
 
