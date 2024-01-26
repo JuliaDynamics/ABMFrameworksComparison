@@ -51,14 +51,7 @@ function agent_step!(agent, model)
     end
 end
 
-function eat!(animal, model)
-    if kindof(animal) === :Sheep
-        sheep_eat!(animal, model)
-    else
-        wolf_eat!(animal, model)
-    end
-    return
-end
+eat!(a, model) = kindof(a) === :Sheep ? sheep_eat!(a, model) : wolf_eat!(a, model)
 
 function sheep_eat!(sheep, model)
     if model.fully_grown[sheep.pos...]
