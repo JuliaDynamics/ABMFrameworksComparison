@@ -1,4 +1,4 @@
-using LinearAlgebra
+using Agents, LinearAlgebra
 
 @agent struct Bird(ContinuousAgent{2, Float64})
     const speed::Float64
