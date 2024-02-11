@@ -1,16 +1,15 @@
 using Agents
 
-@multiagent :opt_speed struct Animal(GridAgent{2})
-    @agent struct Wolf
-        energy::Float64
-        const reproduction_prob::Float64
-        const Δenergy::Float64
-    end
-    @agent struct Sheep
-        energy::Float64
-        const reproduction_prob::Float64
-        const Δenergy::Float64
-    end
+@agent struct Wolf(GridAgent{2})
+    energy::Float64
+    const reproduction_prob::Float64
+    const Δenergy::Float64
+end
+
+@agent struct Sheep(GridAgent{2})
+    energy::Float64
+    const reproduction_prob::Float64
+    const Δenergy::Float64
 end
 
 function predator_prey_model(rng, n_sheep, n_wolves, dims,
@@ -51,16 +50,14 @@ function agent_step!(agent, model)
     end
 end
 
-eat!(a, model) = kindof(a) === :Sheep ? sheep_eat!(a, model) : wolf_eat!(a, model)
-
-function sheep_eat!(sheep, model)
+function eat!(sheep::Sheep, model)
     if model.fully_grown[sheep.pos...]
         sheep.energy += sheep.Δenergy
         model.fully_grown[sheep.pos...] = false
     end
 end
 
-function wolf_eat!(wolf, model)
+function eat!(wolf::Wolf, model)
     dinner = random_agent_in_position(wolf.pos, model, is_sheep)
     if !isnothing(dinner)
         remove_agent!(dinner, model)
