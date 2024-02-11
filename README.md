@@ -25,7 +25,7 @@ These are the results of the latest comparison:
 | WolfSheep (Lines of Code) |     73          |    202        |  137 (871)        | 138 |
  |  Flocking (Time-Ratio, Small-Version)  |        1        |    18.0x    |     13.9x      |   131.1x    |
 |  Flocking (Time-Ratio, Large-Version)   |         1        |    3.6x     |     20.3x      |   191.9x    |
-|   Flocking (Lines of Code)       |       43     |      159     |    82 (689)   |   102       |
+|   Flocking (Lines of Code)       |       42     |      159     |    82 (689)   |   102       |
  | Schelling (Time-Ratio, Small-Version)   |       1         |    80.6x    |     18.9x      |    47.1x    |
 | Schelling (Time-Ratio, Large-Version)  |      1         |    6.7x     |     21.1x      |    43.4x    |
 |    Schelling (Lines of Code)      |       28          |      134   |   58 (743)      |     44    |
