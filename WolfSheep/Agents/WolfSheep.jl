@@ -1,15 +1,16 @@
 using Agents
 
-@agent struct Wolf(GridAgent{2})
-    energy::Float64
-    const reproduction_prob::Float64
-    const Δenergy::Float64
-end
-
-@agent struct Sheep(GridAgent{2})
-    energy::Float64
-    const reproduction_prob::Float64
-    const Δenergy::Float64
+@multiagent :opt_speed struct Animal(GridAgent{2})
+    @agent struct Wolf
+        energy::Float64
+        const reproduction_prob::Float64
+        const Δenergy::Float64
+    end
+    @agent struct Sheep
+        energy::Float64
+        const reproduction_prob::Float64
+        const Δenergy::Float64
+    end
 end
 
 function predator_prey_model(rng, n_sheep, n_wolves, dims,
@@ -18,8 +19,8 @@ function predator_prey_model(rng, n_sheep, n_wolves, dims,
     space = GridSpace(dims, periodic = false)
     properties = (fully_grown = falses(dims), countdown = zeros(Int, dims),
         regrowth_time = regrowth_time)
-    scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep})
-    model = ABM(Union{Wolf, Sheep}, space; agent_step!, model_step!, scheduler,
+    scheduler = Schedulers.ByProperty(kindof)
+    model = ABM(Animal, space; agent_step!, model_step!, scheduler,
         properties, rng, warn = false)
     for _ in 1:n_sheep
         energy = rand(abmrng(model), 0:(Δenergy_sheep * 2 - 1))
@@ -50,14 +51,16 @@ function agent_step!(agent, model)
     end
 end
 
-function eat!(sheep::Sheep, model)
+eat!(a, model) = kindof(a) === :Sheep ? sheep_eat!(a, model) : wolf_eat!(a, model)
+
+function sheep_eat!(sheep, model)
     if model.fully_grown[sheep.pos...]
         sheep.energy += sheep.Δenergy
         model.fully_grown[sheep.pos...] = false
     end
 end
 
-function eat!(wolf::Wolf, model)
+function wolf_eat!(wolf, model)
     dinner = random_agent_in_position(wolf.pos, model, is_sheep)
     if !isnothing(dinner)
         remove_agent!(dinner, model)
