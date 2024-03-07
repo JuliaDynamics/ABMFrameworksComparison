@@ -7,9 +7,9 @@
 
 This repository contains code used to compare performance and features between various agent based modelling **(ABM)** frameworks. Currently, frameworks compared are [Agents.jl](https://github.com/JuliaDynamics/Agents.jl), [NetLogo](https://github.com/NetLogo/NetLogo), [MASON](https://github.com/eclab/mason) and [Mesa](https://github.com/projectmesa/mesa). We happily welcome more frameworks to join the comparison.
 
-**This repository establishes objectively that Agents.jl is the fastest open source agent based modelling framework and that Agents.jl has the simplest source code for a given model specification, in comparison to all the other tested frameworks.**
+**This repository establishes objectively that Agents.jl is the fastest open source agent based modelling framework and that it has the simplest source code for a given model specification, in comparison to all the other tested frameworks.**
 
-This repository has been initiated and maintained by the developers of Agents.jl. However, it strongly welcomes contributions (in the form of Pull Requests) from developers or users of other modelling frameworks. Contributions may improve performance of a model implementation, or simplify the code of the implementation, provided that they still abide the model declaration, see below for more information. Note that this repository is fully open source, hence any Pull Request and discussion done here will be forever visible openly. Furthermore, we also welcome contributions that may implement a comparison across a new agent based model not yet considered in this comparison.
+This repository has been initiated and maintained by the developers of Agents.jl. However, it strongly welcomes contributions (in the form of Pull Requests) from developers or users of other modelling frameworks. Contributions may improve performance of a model implementation, or simplify the code of the implementation, provided that they still abide the model declaration, see below for more information. Furthermore, we also welcome contributions that may implement a comparison across a new agent based model not yet considered in this comparison.
 
 **The performance benchmark comparison is run automatically during continuous integration, and hence the comparison is updated after every pull request to this repo.**
 
