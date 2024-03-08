@@ -18,7 +18,7 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 5.17.1 | MASON 21.0 | Netlogo 6.4.0 | Mesa 2.1.4 |
+ | Model/Framework  | Agents.jl 6.0.0 | MASON 21.0 | Netlogo 6.4.0 | Mesa 2.1.4 |
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
 | WolfSheep (Time-Ratio, Small-Version)  |       1        |    93.0x    |     13.7x      |    47.9x    |
 | WolfSheep (Time-Ratio, Large-Version)   |       1        |    16.7x    |      7.2x      |    29.0x    |
