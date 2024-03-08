@@ -1,21 +1,22 @@
 using Agents
 
-@agent SchellingAgent GridAgent{2} begin
+@agent struct SchellingAgent(GridAgent{2})
     mood::Bool # whether the agent is happy in its position. (true = happy)
-    group::Int # The group of the agent,  determines mood as it interacts with neighbors
+    const group::Int # The group of the agent,  determines mood as it interacts with neighbors
 end
 
-function schelling(rng, numagents, griddims, min_to_be_happy, radius)
+function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = (min_to_be_happy = min_to_be_happy, radius = radius)
-    model = UnremovableABM(SchellingAgent, space; properties, scheduler = Schedulers.Randomly(), rng = rng)
+    model = StandardABM(SchellingAgent, space; agent_step!, properties, rng,
+        container = Vector, scheduler = Schedulers.Randomly())
     for n in 1:numagents
         add_agent_single!(model, false, n < numagents / 2 ? 1 : 2)
     end
-    return model, schelling_agent_step!, dummystep
+    return model
 end
 
-function schelling_agent_step!(agent, model)
+function agent_step!(agent, model)
     count_neighbors_same_group = 0
     for neighbor in nearby_agents(agent, model, model.radius)
         if agent.group == neighbor.group
