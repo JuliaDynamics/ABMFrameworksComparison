@@ -22,9 +22,9 @@ The model consists of: Sheeps, Wolves, and Grass. Sheeps and Wolfs are agents th
     - If the energy of the sheep is less than 1: die.
     - Else, if a random number is less than the reproduction probability: reproduce. (see below)
   - Wolves:
-    - perform 1 random walk.
-    - lose 1 energy.
-    - Eat a sheep: search its current box for sheeps. Eat one of the sheep if any, removing it from the model and increasing own energy by the Δ-energy.
+    - Perform 1 random walk.
+    - Lose 1 energy.
+    - Eat a sheep: search its current box for sheeps. Eat one of the sheeps if any, removing it from the model and increasing own energy by the Δ-energy.
     - If energy is less than 0, die (remove wolf from model).
     - Else, reproduce (see below).
   - Grass:
@@ -33,6 +33,7 @@ The model consists of: Sheeps, Wolves, and Grass. Sheeps and Wolfs are agents th
 - The simulation runs for 100 steps.
 
 ## Technical implementation
+
 The wolves and sheeps must be different agents, in the sense that they should be different types/classes/datastructures, this is done since this benchmark tries to analyze the performance of a multi-type ABM model. Grass can be modelled in whatever way each framework can do in the most performant way, to allow for optimizations regarding handling spatial properties.
 
 Defaults that are the same for small or large simulation:
