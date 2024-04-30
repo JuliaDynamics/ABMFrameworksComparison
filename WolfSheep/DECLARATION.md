@@ -24,7 +24,7 @@ The model consists of: Sheeps, Wolves, and Grass. Sheeps and Wolfs are agents th
   - Wolves:
     - perform 1 random walk.
     - lose 1 energy.
-    - Eat a sheep if possible: search all surrounding 9 boxes (including the one the wolf is in) for neighbors. If any neighbor is a sheep, eat the sheep, removing it from the model and increasing own energy by the Δ-energy.
+    - Eat a sheep: search its current box for sheeps. Eat one of the sheep if any, removing it from the model and increasing own energy by the Δ-energy.
     - If energy is less than 0, die (remove wolf from model).
     - Else, reproduce (see below).
   - Grass:
