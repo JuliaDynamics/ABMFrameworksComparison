@@ -1,4 +1,4 @@
-using Agents, Random
+using Agents
 
 @agent struct WealthAgent(NoSpaceAgent)
     wealth::Int
@@ -14,7 +14,7 @@ function wealth_model(; numagents = 100, initwealth = 1)
 end
 
 function agent_step!(agent, model)
-    agent.wealth == 0 && return
+    agent.wealth <= 0 && return
     agent.wealth -= 1
     random_agent(model).wealth += 1
 end
