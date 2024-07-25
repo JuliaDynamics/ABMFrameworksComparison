@@ -14,9 +14,8 @@ class MoneyAgent(mesa.Agent):
         # Verify agent has some wealth
         if self.wealth > 0:
             other_agent = self.random.choice(self.model.agents)
-            if other_agent is not None:
-                other_agent.wealth += 1
-                self.wealth -= 1
+            other_agent.wealth += 1
+            self.wealth -= 1
 
 
 class MoneyModel(mesa.Model):
