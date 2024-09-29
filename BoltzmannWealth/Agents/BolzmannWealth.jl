@@ -1,5 +1,6 @@
 using Agents
 
+
 @agent struct WealthAgent(NoSpaceAgent)
     wealth::Int
 end
