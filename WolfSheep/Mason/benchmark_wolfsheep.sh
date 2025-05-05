@@ -4,7 +4,7 @@ SEED=42
 RANDOM=$SEED
 N_RUN=100
 
-export CLASSPATH=WolfSheep/Mason:./mason.21.jar
+export CLASSPATH=WolfSheep/Mason:./mason.22.jar
 javac WolfSheep/Mason/Wsg_small.java WolfSheep/Mason/Wolf_small.java WolfSheep/Mason/Sheep_small.java
 javac WolfSheep/Mason/Wsg_large.java WolfSheep/Mason/Wolf_large.java WolfSheep/Mason/Sheep_large.java
 
