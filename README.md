@@ -64,10 +64,10 @@ sudo chmod a+rwx ABM_Framework_Comparisons
 sudo chmod -R 777 ABM_Framework_Comparisons
 
 # install julia
-sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.4-linux-x86_64.tar.gz
+sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.11.5-linux-x86_64.tar.gz
 sudo tar zxvf julia-1.9.4-linux-x86_64.tar.gz
-export PATH=$PATH:$(pwd)"/julia-1.9.4/bin"
-printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.4/bin\"" >> ~/.bashrc
+export PATH=$PATH:$(pwd)"/julia-1.11.5/bin"
+printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.11.5/bin\"" >> ~/.bashrc
 
 # install agents
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
