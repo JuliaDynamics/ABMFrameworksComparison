@@ -23,16 +23,13 @@ class SchellingAgent(CellAgent):
     def step(self):
         similar = 0
         r = self.model.radius
-        for neighbor in self.cell.get_neighborhood(radius=self.radius).agents:
+        for neighbor in self.cell.get_neighborhood(radius=self.model.radius).agents:
             if neighbor.type == self.type:
                 similar += 1
 
         # If unhappy, move:
         if similar < self.model.homophily:
             self.cell = self.model.grid.select_random_empty_cell()
-        else:
-            self.model.happy += 1
-
 
 class SchellingModel(Model):
     '''
@@ -50,7 +47,6 @@ class SchellingModel(Model):
         self.homophily = homophily
         self.radius = radius
         self.grid = OrthogonalMooreGrid((width, height), random=self.random, capacity=1)
-        self.happy = 0
 
         for cell in self.grid.all_cells:
             if self.random.random() < self.density:
@@ -61,5 +57,4 @@ class SchellingModel(Model):
         '''
         Run one step of the model.
         '''
-        self.happy = 0  # Reset counter of happy agents
         self.agents.shuffle_do("step")
