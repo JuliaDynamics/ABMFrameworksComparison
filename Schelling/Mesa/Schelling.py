@@ -1,5 +1,6 @@
 import random
 
+import mesa
 from mesa import Model
 from mesa.discrete_space import CellAgent, OrthogonalMooreGrid
 
