@@ -11,11 +11,11 @@ Replication of the model found in NetLogo:
 
 import math, mesa
 
-from mesa import model
+from mesa import Model
 from mesa.discrete_space import OrthogonalVonNeumannGrid
 from mesa.experimental.devs import ABMSimulator
 
-from agents import Sheep, Wolf, GrassPatch
+#from agents import Sheep, Wolf, GrassPatch
 
 class WolfSheep(Model):
     """
