@@ -10,8 +10,8 @@ sudo apt install default-jre-headless
 sudo apt install default-jdk-headless
 
 # install julia
-sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.10.2-linux-x86_64.tar.gz
-sudo tar zxvf julia-1.10.2-linux-x86_64.tar.gz
+sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.10/julia-1.11.5-linux-x86_64.tar.gz
+sudo tar zxvf julia-1.11.5-linux-x86_64.tar.gz
 export PATH=$PATH:$(pwd)"/julia-1.11.5/bin"
 printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.11.5/bin\"" >> ~/.bashrc
 
