@@ -48,7 +48,7 @@ end
 
 ; unhappy turtles try a new spot
 to move-unhappy-turtles
-  ask turtles with [ not happy? ]
+  ask turtles
     [ find-new-spot ]
 end
 
@@ -65,11 +65,6 @@ to update-turtles
     set total-nearby similar-nearby + other-nearby
     set happy? similar-nearby >= (%-similar-wanted * total-nearby / 100)
     if not happy? [ find-new-spot ]
-    ; add visualization here
-    if visualization = "old" [ set shape "default" set size 1.3 ]
-    if visualization = "square-x" [
-      ifelse happy? [ set shape "square" ] [ set shape "X" ]
-    ]
   ]
 end
 
