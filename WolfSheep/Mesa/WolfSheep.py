@@ -51,7 +51,9 @@ class WolfSheep(Model):
                                  once it is eaten
             sheep_gain_from_food: Energy sheep gain from grass, if enabled.
         """
-        super().__init__(seed=seed)    
+        super().__init__(seed=seed)  
+        self.simulator = simulator
+        self.simulator.setup(self)
         # Set parameters
         self.height = height
         self.width = width
