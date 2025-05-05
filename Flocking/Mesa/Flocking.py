@@ -8,11 +8,10 @@ Uses numpy arrays to represent vectors.
 import numpy as np
 
 from mesa import Model
-from mesa.space import ContinuousSpace
-from mesa.time import RandomActivation
+from mesa.examples.basic.boid_flockers.agents import Boid
+from mesa.experimental.continuous_space import ContinuousSpace
 
 from boid import Boid
-
 
 class BoidFlockers(Model):
     """
