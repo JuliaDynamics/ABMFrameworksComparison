@@ -65,7 +65,6 @@ class WolfSheep(Model):
         self.grass_regrowth_time = grass_regrowth_time
         self.sheep_gain_from_food = sheep_gain_from_food
 
-        self.schedule = RandomActivationByType(self)
         self.grid = OrthogonalVonNeumannGrid([self.height, self.width],
             torus=False, capacity=math.inf, random=self.random,
         )
