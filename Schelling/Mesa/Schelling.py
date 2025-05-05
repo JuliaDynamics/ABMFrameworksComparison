@@ -8,7 +8,7 @@ class SchellingAgent(CellAgent):
     '''
     Schelling segregation agent
     '''
-    def __init__(self, cell, model, agent_type):
+    def __init__(self, model, cell, agent_type):
         '''
          Create a new Schelling agent.
          Args:
