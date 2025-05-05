@@ -4,7 +4,7 @@ SEED=42
 RANDOM=$SEED
 N_RUN=100
 
-export CLASSPATH=Flocking/Mason:./mason.21.jar
+export CLASSPATH=Flocking/Mason:./mason.22.jar
 javac Flocking/Mason/Flocking_small.java Flocking/Mason/Flocker_small.java
 javac Flocking/Mason/Flocking_large.java Flocking/Mason/Flocker_large.java 
 
