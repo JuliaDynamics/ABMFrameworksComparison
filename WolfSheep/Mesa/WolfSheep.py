@@ -9,13 +9,15 @@ Replication of the model found in NetLogo:
     Northwestern University, Evanston, IL.
 """
 
-import mesa
+import math, mesa
+
+from mesa import model
+from mesa.discrete_space import OrthogonalVonNeumannGrid
+from mesa.experimental.devs import ABMSimulator
 
 from agents import Sheep, Wolf, GrassPatch
-from mesa.space import MultiGrid
-from mesa.time import RandomActivationByType
 
-class WolfSheep(mesa.Model):
+class WolfSheep(Model):
     """
     Wolf-Sheep Predation Model
     
@@ -49,7 +51,7 @@ class WolfSheep(mesa.Model):
                                  once it is eaten
             sheep_gain_from_food: Energy sheep gain from grass, if enabled.
         """
-        super().__init__(seed=seed)
+        super().__init__(seed=seed)    
         # Set parameters
         self.height = height
         self.width = width
@@ -62,35 +64,37 @@ class WolfSheep(mesa.Model):
         self.sheep_gain_from_food = sheep_gain_from_food
 
         self.schedule = RandomActivationByType(self)
-        self.grid = MultiGrid(self.height, self.width, torus=False)
+        self.grid = OrthogonalVonNeumannGrid([self.height, self.width],
+            torus=False, capacity=math.inf, random=self.random,
+        )
 
         # Create sheep:
-        for i in range(self.initial_sheep):
-            pos = (self.random.randrange(self.width), self.random.randrange(self.height))
-            energy = self.random.randrange(2 * self.sheep_gain_from_food)
-            sheep = Sheep(self.next_id(), pos, self, True, energy)
-            self.grid.place_agent(sheep, pos)
-            self.schedule.add(sheep)
+        Sheep.create_agents(
+            self,
+            initial_sheep,
+            energy=self.rng.random((initial_sheep,)) * 2 * sheep_gain_from_food,
+            cell=self.random.choices(self.grid.all_cells.cells, k=initial_sheep),
+        )
 
         # Create wolves
-        for i in range(self.initial_wolves):
-            pos = (self.random.randrange(self.width), self.random.randrange(self.height))
-            energy = self.random.randrange(2 * self.wolf_gain_from_food)
-            wolf = Wolf(self.next_id(), pos, self, True, energy)
-            self.grid.place_agent(wolf, pos)
-            self.schedule.add(wolf)
+        Wolf.create_agents(
+            self,
+            initial_wolves,
+            energy=self.rng.random((initial_wolves,)) * 2 * wolf_gain_from_food,
+            cell=self.random.choices(self.grid.all_cells.cells, k=initial_wolves),
+        )
         
         # Create grass patches
         possibly_fully_grown = [True, False]
-        for agent, pos in self.grid.coord_iter():
+        for cell in self.grid:
             fully_grown = self.random.choice(possibly_fully_grown)
-            if fully_grown:
-                countdown = self.grass_regrowth_time
-            else:
-                countdown = self.random.randrange(self.grass_regrowth_time)
-            patch = GrassPatch(self.next_id(), pos, self, fully_grown, countdown)
-            self.grid.place_agent(patch, pos)
-            self.schedule.add(patch)
+            countdown = (
+                0 if fully_grown else self.random.randrange(0, grass_regrowth_time)
+            )
+            GrassPatch(self, countdown, grass_regrowth_time, cell)
 
     def step(self):
-        self.schedule.step()
+        """Execute one step of the model."""
+        # First activate all sheep, then all wolves, both in random order
+        self.agents_by_type[Sheep].shuffle_do("step")
+        self.agents_by_type[Wolf].shuffle_do("step")
