@@ -9,7 +9,7 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
     space = GridSpaceSingle(griddims, periodic = false)
     properties = (min_to_be_happy = min_to_be_happy, radius = radius)
     model = StandardABM(SchellingAgent, space; agent_step!, properties, rng,
-        container = Vector, scheduler = Schedulers.Randomly())
+        container = StructVector, scheduler = Schedulers.Randomly())
     for n in 1:numagents
         add_agent_single!(model, false, n < numagents / 2 ? 1 : 2)
     end
