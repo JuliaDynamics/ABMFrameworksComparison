@@ -1,11 +1,10 @@
 import random
 
-from mesa import Model, Agent
-from mesa.time import RandomActivation
-from mesa.space import SingleGrid
+from mesa import Model
+from mesa.discrete_space import OrthogonalMooreGrid
+from mesa.discrete_space import CellAgent
 
-
-class SchellingAgent(Agent):
+class SchellingAgent(CellAgent):
     '''
     Schelling segregation agent
     '''
