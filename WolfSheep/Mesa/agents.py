@@ -42,10 +42,9 @@ class Animal(CellAgent):
         self.feed()
 
         # Handle death and reproduction
+        p_reproduce = self.model.wolf_reproduce if type(self) == Wolf else self.model.sheep_reproduce
         if self.energy < 0:
             self.remove()
-
-        p_reproduce = self.model.wolf_reproduce if type(self) == Wolf else self.model.sheep_reproduce
         elif self.random.random() < p_reproduce:
             self.spawn_offspring()
 
