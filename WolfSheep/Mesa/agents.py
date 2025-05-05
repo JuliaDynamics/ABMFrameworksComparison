@@ -1,110 +1,147 @@
-from mesa import Agent
-from random_walk import RandomWalker
+from mesa.discrete_space import CellAgent, FixedAgent
 
+class Animal(CellAgent):
+    """The base animal class."""
 
-class Sheep(RandomWalker):
-    """
-    A sheep that walks around, reproduces (asexually) and gets eaten.
+    def __init__(
+        self, model, energy=8, cell=None
+    ):
+        """Initialize an animal.
 
-    The init is the same as the RandomWalker.
-    """
-    
-    def __init__(self, unique_id, pos, model, moore, energy=None):
-        super().__init__(unique_id, pos, model, moore=moore)
+        Args:
+            model: Model instance
+            energy: Starting amount of energy
+            p_reproduce: Probability of reproduction (asexual)
+            energy_from_food: Energy obtained from 1 unit of food
+            cell: Cell in which the animal starts
+        """
+        super().__init__(model)
         self.energy = energy
+        self.cell = cell
+
+    def spawn_offspring(self):
+        """Create offspring by splitting energy and creating new instance."""
+        self.energy /= 2
+        self.__class__(
+            self.model,
+            self.energy,
+            self.cell,
+        )
+
+    def feed(self):
+        """Abstract method to be implemented by subclasses."""
 
     def step(self):
-        """
-        A model step. Move, then eat grass and reproduce.
-        """
-        self.random_move()
+        """Execute one step of the animal's behavior."""
+        # Move to random neighboring cell
+        self.move()
 
-        # Reduce energy
         self.energy -= 1
 
-        # If there is grass available, eat it
-        this_cell = self.model.grid.get_cell_list_contents(self.pos)
-        grass_patch = next(obj for obj in this_cell if isinstance(obj, GrassPatch))
+        # Try to feed
+        self.feed()
+
+        # Handle death and reproduction
+        if self.energy < 0:
+            self.remove()
+
+        p_reproduce = self.model.wolf_reproduce if type(self) == Wolf else self.model.sheep_reproduce
+        elif self.random.random() < p_reproduce:
+            self.spawn_offspring()
+
+
+class Sheep(Animal):
+    """A sheep that walks around, reproduces (asexually) and gets eaten."""
+
+    def feed(self):
+        """If possible, eat grass at current location."""
+        grass_patch = next(
+            obj for obj in self.cell.agents if isinstance(obj, GrassPatch)
+        )
         if grass_patch.fully_grown:
             self.energy += self.model.sheep_gain_from_food
             grass_patch.fully_grown = False
 
-        # Death
-        if self.energy < 0:
-            self.model.grid.remove_agent(self)
-            self.model.schedule.remove(self)
-        elif self.random.random() < self.model.sheep_reproduce:
-            # Create a new sheep:
-            self.energy /= 2
-            lamb = Sheep(
-                self.model.next_id(), self.pos, self.model, self.moore, self.energy
+    def move(self):
+        """Move towards a cell where there isn't a wolf, and preferably with grown grass."""
+        cells_without_wolves = self.cell.neighborhood.select(
+            lambda cell: not any(isinstance(obj, Wolf) for obj in cell.agents)
+        )
+        # If all surrounding cells have wolves, stay put
+        if len(cells_without_wolves) == 0:
+            return
+
+        # Among safe cells, prefer those with grown grass
+        cells_with_grass = cells_without_wolves.select(
+            lambda cell: any(
+                isinstance(obj, GrassPatch) and obj.fully_grown for obj in cell.agents
             )
-            self.model.grid.place_agent(lamb, self.pos)
-            self.model.schedule.add(lamb)
+        )
+        # Move to a cell with grass if available, otherwise move to any safe cell
+        target_cells = (
+            cells_with_grass if len(cells_with_grass) > 0 else cells_without_wolves
+        )
+        self.cell = target_cells.select_random_cell()
 
 
-class Wolf(RandomWalker):
-    """
-    A wolf that walks around, reproduces (asexually) and eats sheep.
-    """
-    
-    def __init__(self, unique_id, pos, model, moore, energy=None):
-        super().__init__(unique_id, pos, model, moore=moore)
-        self.energy = energy
+class Wolf(Animal):
+    """A wolf that walks around, reproduces (asexually) and eats sheep."""
 
-    def step(self):
-        self.random_move()
-        self.energy -= 1
-
-        # If there are sheep present, eat one
-        x, y = self.pos
-        this_cell = self.model.grid.get_cell_list_contents([self.pos])
-        sheep = [obj for obj in this_cell if isinstance(obj, Sheep)]
-        if len(sheep) > 0:
+    def feed(self):
+        """If possible, eat a sheep at current location."""
+        sheep = [obj for obj in self.cell.agents if isinstance(obj, Sheep)]
+        if sheep:  # If there are any sheep present
             sheep_to_eat = self.random.choice(sheep)
             self.energy += self.model.wolf_gain_from_food
+            sheep_to_eat.remove()
 
-            # Kill the sheep
-            self.model.grid.remove_agent(sheep_to_eat)
-            self.model.schedule.remove(sheep_to_eat)
-
-        # Death or reproduction
-        if self.energy < 0:
-            self.model.grid.remove_agent(self)
-            self.model.schedule.remove(self)
-        elif self.random.random() < self.model.wolf_reproduce:
-            # Create a new wolf cub
-            self.energy /= 2
-            cub = Wolf(
-                    self.model.next_id(), self.pos, self.model, self.moore, self.energy
-                )
-            self.model.grid.place_agent(cub, cub.pos)
-            self.model.schedule.add(cub)
+    def move(self):
+        """Move to a neighboring cell, preferably one with sheep."""
+        cells_with_sheep = self.cell.neighborhood.select(
+            lambda cell: any(isinstance(obj, Sheep) for obj in cell.agents)
+        )
+        target_cells = (
+            cells_with_sheep if len(cells_with_sheep) > 0 else self.cell.neighborhood
+        )
+        self.cell = target_cells.select_random_cell()
 
 
-class GrassPatch(Agent):
-    """
-    A patch of grass that grows at a fixed rate and it is eaten by sheep
-    """
+class GrassPatch(FixedAgent):
+    """A patch of grass that grows at a fixed rate and can be eaten by sheep."""
 
-    def __init__(self, unique_id, pos, model, fully_grown, countdown):
-        """
-        Creates a new patch of grass
+    @property
+    def fully_grown(self):
+        """Whether the grass patch is fully grown."""
+        return self._fully_grown
+
+    @fully_grown.setter
+    def fully_grown(self, value: bool) -> None:
+        """Set grass growth state and schedule regrowth if eaten."""
+        self._fully_grown = value
+
+        if not value:  # If grass was just eaten
+            self.model.simulator.schedule_event_relative(
+                setattr,
+                self.grass_regrowth_time,
+                function_args=[self, "fully_grown", True],
+            )
+
+    def __init__(self, model, countdown, grass_regrowth_time, cell):
+        """Create a new patch of grass.
 
         Args:
-            grown: (boolean) Whether the patch of grass is fully grown or not
-            countdown: Time for the patch of grass to be fully grown again
+            model: Model instance
+            countdown: Time until grass is fully grown again
+            grass_regrowth_time: Time needed to regrow after being eaten
+            cell: Cell to which this grass patch belongs
         """
-        super().__init__(unique_id, model)
-        self.fully_grown = fully_grown
-        self.countdown = countdown
-        self.pos = pos
+        super().__init__(model)
+        self._fully_grown = countdown == 0
+        self.grass_regrowth_time = grass_regrowth_time
+        self.cell = cell
 
-    def step(self):
+        # Schedule initial growth if not fully grown
         if not self.fully_grown:
-            if self.countdown <= 0:
-                # Set as fully grown
-                self.fully_grown = True
-                self.countdown = self.model.grass_regrowth_time
-            else:
-                self.countdown -= 1
+            self.model.simulator.schedule_event_relative(
+                setattr, countdown, function_args=[self, "fully_grown", True]
+            )
