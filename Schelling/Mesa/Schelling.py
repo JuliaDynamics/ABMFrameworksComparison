@@ -9,7 +9,7 @@ class SchellingAgent(Agent):
     '''
     Schelling segregation agent
     '''
-    def __init__(self, pos, model, agent_type):
+    def __init__(self, cell, model, agent_type):
         '''
          Create a new Schelling agent.
          Args:
@@ -17,20 +17,20 @@ class SchellingAgent(Agent):
             x, y: Agent initial location.
             agent_type: Indicator for the agent's type (minority=1, majority=0)
         '''
-        super().__init__(pos, model)
-        self.pos = pos
+        super().__init__(model)
+        self.cell = cell
         self.type = agent_type
 
     def step(self):
         similar = 0
         r = self.model.radius
-        for neighbor in self.model.grid.iter_neighbors(self.pos, moore=True, radius=r):
+        for neighbor in self.cell.get_neighborhood(radius=self.radius).agents:
             if neighbor.type == self.type:
                 similar += 1
 
         # If unhappy, move:
         if similar < self.model.homophily:
-            self.model.grid.move_to_empty(self)
+            self.cell = self.model.grid.select_random_empty_cell()
         else:
             self.model.happy += 1
 
@@ -50,29 +50,17 @@ class SchellingModel(Model):
         self.minority_pc = minority_pc
         self.homophily = homophily
         self.radius = radius
-
-        self.schedule = RandomActivation(self)
-        self.grid = SingleGrid(height, width, torus=True)
-
+        self.grid = OrthogonalMooreGrid((width, height), random=self.random, capacity=1)
         self.happy = 0
 
-        # Set up agents
-        # We use a grid iterator that returns
-        # the coordinates of a cell as well as
-        # its contents. (coord_iter)
-        for cont, pos in self.grid.coord_iter():
-            if random.random() < self.density:
-                if random.random() < self.minority_pc:
-                    agent_type = 1
-                else:
-                    agent_type = 0
-                agent = SchellingAgent(pos, self, agent_type)
-                self.grid.place_agent(agent, pos)
-                self.schedule.add(agent)
+        for cell in self.grid.all_cells:
+            if self.random.random() < self.density:
+                agent_type = 1 if self.random.random() < minority_pc else 0
+                SchellingAgent(self, cell, agent_type)
 
     def step(self):
         '''
         Run one step of the model.
         '''
         self.happy = 0  # Reset counter of happy agents
-        self.schedule.step()
+        self.agents.shuffle_do("step")
