@@ -9,7 +9,6 @@ public class Agent_large implements Steppable
     Int2D loc;
     public ObjectGrid2D neighbors;
     public int group;
-    public boolean mood;
     IntBag neighborsX;
     IntBag neighborsY;
 
