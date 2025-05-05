@@ -1,9 +1,8 @@
 import numpy as np
 
-from mesa import Agent
+from mesa.experimental.continuous_space import ContinuousSpaceAgent
 
-
-class Boid(Agent):
+class Boid(ContinuousSpaceAgent):
     """
     A Boid-style flocker agent.
 
@@ -47,35 +46,47 @@ class Boid(Agent):
 
         """
         super().__init__(unique_id, model)
-        self.pos = np.array(pos)
+        self.position = pos
         self.speed = speed
-        self.velocity = velocity
+        self.direction = velocity
         self.vision = vision
         self.separation = separation
         self.cohere_factor = cohere
         self.separate_factor = separate
         self.match_factor = match
+        self.neighbors = []
 
     def step(self):
         """
         Get the Boid's neighbors, compute the new vector, and move accordingly.
         """
 
-        neighbors = self.model.space.get_neighbors(self.pos, self.vision, False)
-        N = 0
-        match_vector, separation_vector, cohere = np.zeros((3, 2))
-        for neighbor in neighbors:
-            N += 1
-            heading = self.model.space.get_heading(self.pos, neighbor.pos)
-            cohere += heading
-            if self.model.space.get_distance(self.pos, neighbor.pos) < self.separation:
-                separation_vector -= heading
-            match_vector += neighbor.velocity
-        N = max(N, 1)
-        cohere = cohere * self.cohere_factor
-        separation_vector = separation_vector * self.separate_factor
-        match_vector = match_vector * self.match_factor
-        self.velocity += (cohere + separation_vector + match_vector) / N
-        self.velocity /= np.linalg.norm(self.velocity)
-        new_pos = self.pos + self.velocity * self.speed
-        self.model.space.move_agent(self, new_pos)
+        neighbors, distances = self.get_neighbors_in_radius(radius=self.vision)
+        self.neighbors = [n for n in neighbors if n is not self]
+
+        # If no neighbors, maintain current direction
+        if not neighbors:
+            self.position += self.direction * self.speed
+            return
+
+        delta = self.space.calculate_difference_vector(self.position, agents=neighbors)
+
+        cohere_vector = delta.sum(axis=0) * self.cohere_factor
+        separation_vector = (
+            -1 * delta[distances < self.separation].sum(axis=0) * self.separate_factor
+        )
+        match_vector = (
+            np.asarray([n.direction for n in neighbors]).sum(axis=0) * self.match_factor
+        )
+
+        # Update direction based on the three behaviors
+        self.direction += (cohere_vector + separation_vector + match_vector) / len(
+            neighbors
+        )
+
+        # Normalize direction vector
+        self.direction /= np.linalg.norm(self.direction)
+
+        # Move boid
+        self.position += self.direction * self.speed
+        
