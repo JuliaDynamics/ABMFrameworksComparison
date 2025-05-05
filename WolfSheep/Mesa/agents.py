@@ -34,7 +34,7 @@ class Animal(CellAgent):
     def step(self):
         """Execute one step of the animal's behavior."""
         # Move to random neighboring cell
-        self.move()
+        self.cell = self.cell.neighborhood.select_random_cell()
 
         self.energy -= 1
 
@@ -62,28 +62,6 @@ class Sheep(Animal):
             self.energy += self.model.sheep_gain_from_food
             grass_patch.fully_grown = False
 
-    def move(self):
-        """Move towards a cell where there isn't a wolf, and preferably with grown grass."""
-        cells_without_wolves = self.cell.neighborhood.select(
-            lambda cell: not any(isinstance(obj, Wolf) for obj in cell.agents)
-        )
-        # If all surrounding cells have wolves, stay put
-        if len(cells_without_wolves) == 0:
-            return
-
-        # Among safe cells, prefer those with grown grass
-        cells_with_grass = cells_without_wolves.select(
-            lambda cell: any(
-                isinstance(obj, GrassPatch) and obj.fully_grown for obj in cell.agents
-            )
-        )
-        # Move to a cell with grass if available, otherwise move to any safe cell
-        target_cells = (
-            cells_with_grass if len(cells_with_grass) > 0 else cells_without_wolves
-        )
-        self.cell = target_cells.select_random_cell()
-
-
 class Wolf(Animal):
     """A wolf that walks around, reproduces (asexually) and eats sheep."""
 
@@ -94,17 +72,6 @@ class Wolf(Animal):
             sheep_to_eat = self.random.choice(sheep)
             self.energy += self.model.wolf_gain_from_food
             sheep_to_eat.remove()
-
-    def move(self):
-        """Move to a neighboring cell, preferably one with sheep."""
-        cells_with_sheep = self.cell.neighborhood.select(
-            lambda cell: any(isinstance(obj, Sheep) for obj in cell.agents)
-        )
-        target_cells = (
-            cells_with_sheep if len(cells_with_sheep) > 0 else self.cell.neighborhood
-        )
-        self.cell = target_cells.select_random_cell()
-
 
 class GrassPatch(FixedAgent):
     """A patch of grass that grows at a fixed rate and can be eaten by sheep."""
