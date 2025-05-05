@@ -1,8 +1,7 @@
 import random
 
 from mesa import Model
-from mesa.discrete_space import OrthogonalMooreGrid
-from mesa.discrete_space import CellAgent
+from mesa.discrete_space import CellAgent, OrthogonalMooreGrid
 
 class SchellingAgent(CellAgent):
     '''
