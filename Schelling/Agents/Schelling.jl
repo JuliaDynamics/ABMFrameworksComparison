@@ -1,8 +1,7 @@
 using Agents
 
 @agent struct SchellingAgent(GridAgent{2})
-    mood::Bool # whether the agent is happy in its position. (true = happy)
-    const group::Int # The group of the agent,  determines mood as it interacts with neighbors
+    const group::Int # The group of the agent
 end
 
 function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
@@ -11,7 +10,7 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
     model = StandardABM(SchellingAgent, space; agent_step!, properties, rng,
         container = Vector, scheduler = Schedulers.Randomly())
     for n in 1:numagents
-        add_agent_single!(model, false, n < numagents / 2 ? 1 : 2)
+        add_agent_single!(model, n < numagents / 2 ? 1 : 2)
     end
     return model
 end
@@ -24,8 +23,7 @@ function agent_step!(agent, model)
         end
     end
     if count_neighbors_same_group ≥ model.min_to_be_happy
-        agent.mood = true
-    else
         move_agent_single!(agent, model)
     end
+    return
 end
