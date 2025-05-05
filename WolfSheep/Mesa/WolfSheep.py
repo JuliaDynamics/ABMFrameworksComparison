@@ -15,7 +15,7 @@ from mesa import Model
 from mesa.discrete_space import OrthogonalVonNeumannGrid
 from mesa.experimental.devs import ABMSimulator
 
-#from agents import Sheep, Wolf, GrassPatch
+from agents import Sheep, Wolf, GrassPatch
 
 class WolfSheep(Model):
     """
