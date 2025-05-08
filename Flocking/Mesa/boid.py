@@ -23,7 +23,7 @@ class Boid(ContinuousSpaceAgent):
         model,
         position,
         speed,
-        velocity,
+        direction,
         vision,
         separation,
         cohere=0.03,
@@ -48,7 +48,7 @@ class Boid(ContinuousSpaceAgent):
         super().__init__(unique_id, model)
         self.position = position
         self.speed = speed
-        self.direction = velocity
+        self.direction = direction
         self.vision = vision
         self.separation = separation
         self.cohere_factor = cohere
