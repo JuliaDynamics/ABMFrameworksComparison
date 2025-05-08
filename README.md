@@ -78,7 +78,7 @@ sudo apt install default-jdk-headless
 
 # install mesa
 sudo apt install python3-pip
-pip install mesa==3.1.5
+pip install mesa==3.2.0
 
 # install netlogo
 sudo wget http://ccl.northwestern.edu/netlogo/6.4.0/NetLogo-6.4.0-64.tgz
