@@ -4,7 +4,7 @@ SEED=42
 RANDOM=$SEED
 N_RUN=100
 
-export CLASSPATH=Schelling/Mason:./mason.21.jar
+export CLASSPATH=Schelling/Mason:./mason.22.jar
 javac Schelling/Mason/Schelling_small.java Schelling/Mason/Agent_small.java
 javac Schelling/Mason/Schelling_large.java Schelling/Mason/Agent_large.java
 

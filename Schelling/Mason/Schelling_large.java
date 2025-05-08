@@ -59,12 +59,12 @@ public class Schelling_large extends SimState
             double d = this.random.nextDouble();
             Int2D pos = (Int2D)this.fillSpaces.objs[i];
             if (d < 0.5) {
-                Agent_large agent = new Agent_large(pos.x, pos.y, 1, false);
+                Agent_large agent = new Agent_large(pos.x, pos.y, 1);
                 this.neighbors.field[pos.x][pos.y] = agent;
                 array_agents[count] = agent;
             }
             else {
-                Agent_large agent = new Agent_large(pos.x, pos.y, 2, false);
+                Agent_large agent = new Agent_large(pos.x, pos.y, 2);
                 this.neighbors.field[pos.x][pos.y] = agent;
                 array_agents[count] = agent;
             }

@@ -9,14 +9,12 @@ public class Agent_small implements Steppable
     Int2D loc;
     public ObjectGrid2D neighbors;
     public int group;
-    public boolean mood;
     IntBag neighborsX;
     IntBag neighborsY;
 
-    public Agent_small(final int x, final int y, final int group, final boolean mood) {
+    public Agent_small(final int x, final int y, final int group) {
         this.loc = new Int2D(x, y);
         this.group = group;
-        this.mood = mood;
         this.neighborsX = new IntBag(9);
         this.neighborsY = new IntBag(9);
     }
@@ -43,10 +41,7 @@ public class Agent_small implements Steppable
             }
         }
         
-        if (val >= threshold) {
-            this.mood = true;     
-            }
-        else {
+        if (val < threshold) {
             final int newLocIndex = state.random.nextInt(sch.emptySpaces.numObjs);
             final Int2D newLoc = (Int2D)sch.emptySpaces.objs[newLocIndex];
             sch.emptySpaces.objs[newLocIndex] = this.loc;

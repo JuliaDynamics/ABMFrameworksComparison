@@ -8,11 +8,9 @@ Uses numpy arrays to represent vectors.
 import numpy as np
 
 from mesa import Model
-from mesa.space import ContinuousSpace
-from mesa.time import RandomActivation
+from mesa.experimental.continuous_space import ContinuousSpace
 
 from boid import Boid
-
 
 class BoidFlockers(Model):
     """
@@ -22,7 +20,7 @@ class BoidFlockers(Model):
     def __init__(
         self,
         seed,
-        population,
+        population_size,
         width,
         height,
         vision,
@@ -45,36 +43,50 @@ class BoidFlockers(Model):
             cohere, separate, match: factors for the relative importance of
                     the three drives.        """
         super().__init__(seed=seed)
-        self.population = population
-        self.vision = vision
-        self.speed = speed
-        self.separation = separation
-        self.schedule = RandomActivation(self)
-        self.space = ContinuousSpace(width, height, True)
-        self.factors = dict(cohere=cohere, separate=separate, match=match)
-        self.make_agents()
 
-    def make_agents(self):
-        """
-        Create self.population agents, with random positions and starting headings.
-        """
-        for i in range(self.population):
-            x = self.random.random() * self.space.x_max
-            y = self.random.random() * self.space.y_max
-            pos = np.array((x, y))
-            velocity = np.random.random(2) * 2 - 1
-            boid = Boid(
-                i,
-                self,
-                pos,
-                self.speed,
-                velocity,
-                self.vision,
-                self.separation,
-                **self.factors
-            )
-            self.space.place_agent(boid, pos)
-            self.schedule.add(boid)
+        # Set up the space
+        self.space = ContinuousSpace(
+            [[0, width], [0, height]],
+            torus=True,
+            random=self.random,
+            n_agents=population_size,
+        )
+
+        # Create and place the Boid agents
+        positions = self.rng.random(size=(population_size, 2)) * self.space.size
+        directions = self.rng.uniform(-1, 1, size=(population_size, 2))
+        Boid.create_agents(
+            self,
+            population_size,
+            self.space,
+            position=positions,
+            direction=directions,
+            cohere=cohere,
+            separate=separate,
+            match=match,
+            speed=speed,
+            vision=vision,
+            separation=separation,
+        )
+
+        # For tracking statistics
+        self.average_heading = None
+        self.update_average_heading()
+
+    def update_average_heading(self):
+        """Calculate the average heading (direction) of all Boids."""
+        if not self.agents:
+            self.average_heading = 0
+            return
+
+        headings = np.array([agent.direction for agent in self.agents])
+        mean_heading = np.mean(headings, axis=0)
+        self.average_heading = np.arctan2(mean_heading[1], mean_heading[0])
 
     def step(self):
-        self.schedule.step()
+        """Run one step of the model.
+
+        All agents are activated in random order using the AgentSet shuffle_do method.
+        """
+        self.agents.shuffle_do("step")
+        self.update_average_heading()

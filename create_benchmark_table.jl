@@ -31,7 +31,7 @@ for m in models
     end
 end
 
-columns = ["Model/Framework", "Agents.jl 5.15.0", "MASON 21.0", "Netlogo 6.3.0", "Mesa 2.1.0"]
+columns = ["Model/Framework", "Agents.jl 6.2.10", "MASON 22.0", "Netlogo 6.4.0", "Mesa 3.2.0"]
 results = mapreduce(permutedims, vcat, [vcat([m], [ifelse(frameworks_comparison[m][f] != 0, frameworks_comparison[m][f], ".") for f in frameworks]) for m in models])
 conf = set_pt_conf(tf = tf_markdown, alignment = :c)
 table = pretty_table_with_conf(conf, results; header = columns)

@@ -17,17 +17,17 @@ Our conclusions following the objective benchmarks of this repository is that **
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 6.0.0 | MASON 21.0 | Netlogo 6.4.0 | Mesa 2.1.4 |
+ | Model/Framework  | Agents.jl 6.2.10 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
-| WolfSheep (Time-Ratio, Small-Version)  |       1        |    93.0x    |     13.7x      |    47.9x    |
-| WolfSheep (Time-Ratio, Large-Version)   |       1        |    16.7x    |      7.2x      |    29.0x    |
-| WolfSheep (Lines of Code) |     73          |    202        |  137 (871)        | 138 |
- |  Flocking (Time-Ratio, Small-Version)  |       1        |    24.3x    |     19.2x      |   174.8x    |
-|  Flocking (Time-Ratio, Large-Version)  |       1        |    4.6x     |     26.2x      |   249.7x    |
-|   Flocking (Lines of Code)       |       42     |      159     |    82 (689)   |   102       |
- | Schelling (Time-Ratio, Small-Version)  |       1        |    92.1x    |     22.3x      |    53.7x    |
-| Schelling (Time-Ratio, Large-Version)   |       1        |    7.9x     |     25.1x      |    49.5x    |
-|    Schelling (Lines of Code)      |       28          |      134   |   58 (743)      |     44    |
+| WolfSheep (Time-Ratio, Small-Version)  |       1        |    73.3x    |     12.8x      |    12.4x    |
+| WolfSheep (Time-Ratio, Large-Version)   |       1        |    17.1x    |      6.1x      |    4.9x     |
+| WolfSheep (Lines of Code) |     73          |    202        |  137 (871)        | 118 |
+ |  Flocking (Time-Ratio, Small-Version)  |       1        |    17.7x    |     17.1x      |   184.1x    |
+|  Flocking (Time-Ratio, Large-Version)  |       1        |    2.8x     |     19.0x      |    62.7x    |
+|   Flocking (Lines of Code)       |       42     |      159     |    82 (689)   |   94       |
+ | Schelling (Time-Ratio, Small-Version)  |       1       |    43.3x    |     12.5x      |    32.3x    |
+| Schelling (Time-Ratio, Large-Version)   |       1        |    3.7x     |     13.5x     |    23.4x    |
+|    Schelling (Lines of Code)      |       26          |      129   |   54 (739)      |     33    |
 
 ## How it works
 
@@ -64,10 +64,10 @@ sudo chmod a+rwx ABM_Framework_Comparisons
 sudo chmod -R 777 ABM_Framework_Comparisons
 
 # install julia
-sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.9.4-linux-x86_64.tar.gz
+sudo wget https://julialang-s3.julialang.org/bin/linux/x64/1.9/julia-1.11.5-linux-x86_64.tar.gz
 sudo tar zxvf julia-1.9.4-linux-x86_64.tar.gz
-export PATH=$PATH:$(pwd)"/julia-1.9.4/bin"
-printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.9.4/bin\"" >> ~/.bashrc
+export PATH=$PATH:$(pwd)"/julia-1.11.5/bin"
+printf "\nexport PATH=\"\$PATH:"$(pwd)"/julia-1.11.5/bin\"" >> ~/.bashrc
 
 # install agents
 julia --project=ABM_Framework_Comparisons -e 'using Pkg; Pkg.instantiate()'
@@ -78,7 +78,7 @@ sudo apt install default-jdk-headless
 
 # install mesa
 sudo apt install python3-pip
-pip install mesa==2.1.4
+pip install mesa==3.2.0
 
 # install netlogo
 sudo wget http://ccl.northwestern.edu/netlogo/6.4.0/NetLogo-6.4.0-64.tgz
