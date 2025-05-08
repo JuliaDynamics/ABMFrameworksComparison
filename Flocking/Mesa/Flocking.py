@@ -8,7 +8,6 @@ Uses numpy arrays to represent vectors.
 import numpy as np
 
 from mesa import Model
-from mesa.examples.basic.boid_flockers.agents import Boid
 from mesa.experimental.continuous_space import ContinuousSpace
 
 from boid import Boid
