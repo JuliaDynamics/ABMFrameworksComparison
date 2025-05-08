@@ -19,8 +19,8 @@ class Boid(ContinuousSpaceAgent):
 
     def __init__(
         self,
-        unique_id,
         model,
+        space,
         position,
         speed,
         direction,
@@ -45,7 +45,7 @@ class Boid(ContinuousSpaceAgent):
             match: the relative importance of matching neighbors' headings
 
         """
-        super().__init__(unique_id, model)
+        super().__init__(space, model)
         self.position = position
         self.speed = speed
         self.direction = direction
