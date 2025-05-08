@@ -17,7 +17,7 @@ Our conclusions following the objective benchmarks of this repository is that **
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 6.0.0 | MASON 21.0 | Netlogo 6.4.0 | Mesa 2.1.4 |
+ | Model/Framework  | Agents.jl 6.2.10 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
 | WolfSheep (Time-Ratio, Small-Version)  |       1        |    73.3x    |     12.8x      |    12.4x    |
 | WolfSheep (Time-Ratio, Large-Version)   |       1        |    17.1x    |      6.1x      |    4.9x     |
