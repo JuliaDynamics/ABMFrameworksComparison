@@ -21,7 +21,7 @@ class Boid(ContinuousSpaceAgent):
         self,
         unique_id,
         model,
-        pos,
+        position,
         speed,
         velocity,
         vision,
@@ -46,7 +46,7 @@ class Boid(ContinuousSpaceAgent):
 
         """
         super().__init__(unique_id, model)
-        self.position = pos
+        self.position = position
         self.speed = speed
         self.direction = velocity
         self.vision = vision
