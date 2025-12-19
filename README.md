@@ -11,8 +11,6 @@ This repository contains code used to compare performance and features between v
 
 This repository has been initiated and maintained by the developers of Agents.jl. However, it strongly welcomes contributions (in the form of Pull Requests) from developers or users of other modelling frameworks. Contributions may improve performance of a model implementation, or simplify the code of the implementation, provided that they still abide the model declaration, see below for more information. Furthermore, we also welcome contributions that may implement a comparison across a new agent based model not yet considered in this comparison.
 
-Our conclusions following the objective benchmarks of this repository is that **Agents.jl is the fastest open source general purpose agent based modelling framework and that it has the simplest source code** for a given model specification, in comparison to the other tested frameworks in this repository. You are more than welcomed to dispute the claim by adding more frameworks to this comparison or improving the implementations of existing frameworks!
-
 ## Latest results
 
 These are the results of the latest comparison:
@@ -96,3 +94,4 @@ cd ABM_Framework_Comparisons
 ```
 
 If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
+
