@@ -16,6 +16,7 @@ public class Flocking_small extends SimState
     public double consistency;
     public double momentum;
     public double neighborhood;
+    public long startTime;
 
     public Flocking_small(final long seed) {
         super(seed);
@@ -45,6 +46,14 @@ public class Flocking_small extends SimState
             ++count;
         }
         this.schedule.scheduleRepeating(new RandomSequence(array_agents));
+        this.startTime = System.nanoTime();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        long endTime = System.nanoTime();
+        System.out.println("JobTime: " + (endTime - this.startTime));
     }
 
     public static void main(final String[] args) {
