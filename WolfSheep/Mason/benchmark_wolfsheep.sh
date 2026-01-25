@@ -9,31 +9,17 @@ javac WolfSheep/Mason/Wsg_small.java WolfSheep/Mason/Wolf_small.java WolfSheep/M
 javac WolfSheep/Mason/Wsg_large.java WolfSheep/Mason/Wolf_large.java WolfSheep/Mason/Sheep_large.java
 
 n_run_model_small () {
-    times=()
-    for i in $( seq 1 $N_RUN )
-    do
-        startt=`date +%s%N`
-        java Wsg_small -seed $((RANDOM % 10000 + 1)) -for 100 -quiet
-        endt=`date +%s%N`
-        times+=(`expr $endt - $startt`)
-    done
-    readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+    times=($(java Wsg_small -seed $((RANDOM % 10000 + 1)) -for 100 -repeat $N_RUN -quiet | grep "JobTime:" | awk '{print $2}'))
+    readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort -n)
     echo -n "Mason WolfSheep-small (ms): "
-    echo "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]} * 0.000001" | bc
+    echo "${sorted[(`expr $N_RUN / 2`)]} * 0.000001" | bc
 }
 
 n_run_model_large () {
-    times=()
-    for i in $( seq 1 $N_RUN )
-    do
-        startt=`date +%s%N`
-        java Wsg_large -seed $((RANDOM % 10000 + 1)) -for 100 -quiet
-        endt=`date +%s%N`
-        times+=(`expr $endt - $startt`)
-    done
-    readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort)
+    times=($(java Wsg_large -seed $((RANDOM % 10000 + 1)) -for 100 -repeat $N_RUN -quiet | grep "JobTime:" | awk '{print $2}'))
+    readarray -t sorted < <(printf '%s\n' "${times[@]}" | sort -n)
     echo -n "Mason WolfSheep-large (ms): "
-    echo "${sorted[(`expr $N_RUN / 2 + $N_RUN % 2`)]} * 0.000001" | bc
+    echo "${sorted[(`expr $N_RUN / 2`)]} * 0.000001" | bc
 }
 
 n_run_model_small
