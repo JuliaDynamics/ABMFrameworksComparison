@@ -17,14 +17,14 @@ These are the results of the latest comparison:
 
  | Model/Framework  | Agents.jl 6.2.10 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
 |:------------------|:---------------:|:------------:|:------------:|:---------------:|
-| WolfSheep (Time-Ratio, Small-Version)  |       1        |    73.3x    |     12.8x      |    12.4x    |
-| WolfSheep (Time-Ratio, Large-Version)   |       1        |    17.1x    |      6.1x      |    4.9x     |
+| WolfSheep (Time-Ratio, Small-Version)  |       1        |    5.3x    |     12.8x      |    12.4x    |
+| WolfSheep (Time-Ratio, Large-Version)   |       1        |    6.0x    |      6.1x      |    4.9x     |
 | WolfSheep (Lines of Code) |     73          |    202        |  137 (871)        | 118 |
- |  Flocking (Time-Ratio, Small-Version)  |       1        |    17.7x    |     17.1x      |   184.1x    |
-|  Flocking (Time-Ratio, Large-Version)  |       1        |    2.8x     |     19.0x      |    62.7x    |
+ |  Flocking (Time-Ratio, Small-Version)  |       1        |    1.4x    |     17.1x      |   184.1x    |
+|  Flocking (Time-Ratio, Large-Version)  |       1        |    0.6x     |     19.0x      |    62.7x    |
 |   Flocking (Lines of Code)       |       42     |      159     |    82 (689)   |   94       |
- | Schelling (Time-Ratio, Small-Version)  |       1       |    43.3x    |     12.5x      |    32.3x    |
-| Schelling (Time-Ratio, Large-Version)   |       1        |    3.7x     |     13.5x     |    23.4x    |
+ | Schelling (Time-Ratio, Small-Version)  |       1       |    1.0x    |     12.5x      |    32.3x    |
+| Schelling (Time-Ratio, Large-Version)   |       1        |    1.3x      |     13.5x     |    23.4x    |
 |    Schelling (Lines of Code)      |       26          |      129   |   54 (739)      |     33    |
 
 ## How it works
@@ -94,4 +94,5 @@ cd ABM_Framework_Comparisons
 ```
 
 If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
+
 
