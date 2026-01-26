@@ -5,8 +5,7 @@ import sim.field.grid.ObjectGrid2D;
 import sim.engine.SimState;
 import sim.engine.RandomSequence;
 
-public class Schelling_large extends SimState
-{
+public class Schelling_large extends SimState {
     public int gridHeight;
     public int gridWidth;
     public int neighborhood;
@@ -18,11 +17,12 @@ public class Schelling_large extends SimState
     public ObjectGrid2D neighbors;
     public Bag emptySpaces;
     public Bag fillSpaces;
-    
+    public long startTime;
+
     public Schelling_large(final long seed) {
         this(seed, 100, 100);
     }
-    
+
     public Schelling_large(final long seed, final int width, final int height) {
         super(seed);
         this.neighborhood = 2;
@@ -35,17 +35,16 @@ public class Schelling_large extends SimState
         this.gridWidth = width;
         this.gridHeight = height;
     }
-        
+
     public void start() {
         super.start();
         for (int x = 0; x < this.gridWidth; ++x) {
             for (int y = 0; y < this.gridHeight; ++y) {
                 final double d = this.random.nextDouble();
                 if (d < this.redProbability + this.blueProbability) {
-                    this.fillSpaces.add((Object)new Int2D(x, y));
-                }
-                else {
-                    this.emptySpaces.add((Object)new Int2D(x, y));
+                    this.fillSpaces.add((Object) new Int2D(x, y));
+                } else {
+                    this.emptySpaces.add((Object) new Int2D(x, y));
                 }
             }
         }
@@ -57,13 +56,12 @@ public class Schelling_large extends SimState
 
         for (int i = 0; i < this.fillSpaces.numObjs; ++i) {
             double d = this.random.nextDouble();
-            Int2D pos = (Int2D)this.fillSpaces.objs[i];
+            Int2D pos = (Int2D) this.fillSpaces.objs[i];
             if (d < 0.5) {
                 Agent_large agent = new Agent_large(pos.x, pos.y, 1);
                 this.neighbors.field[pos.x][pos.y] = agent;
                 array_agents[count] = agent;
-            }
-            else {
+            } else {
                 Agent_large agent = new Agent_large(pos.x, pos.y, 2);
                 this.neighbors.field[pos.x][pos.y] = agent;
                 array_agents[count] = agent;
@@ -72,12 +70,18 @@ public class Schelling_large extends SimState
         }
 
         this.schedule.scheduleRepeating(new RandomSequence(array_agents));
+        this.startTime = System.nanoTime();
     }
-    
+
+    @Override
+    public void finish() {
+        super.finish();
+        long endTime = System.nanoTime();
+        System.out.println("JobTime: " + (endTime - this.startTime));
+    }
+
     public static void main(final String[] args) {
-        doLoop((Class)Schelling_large.class, args);
+        doLoop((Class) Schelling_large.class, args);
         System.exit(0);
     }
 }
-
-
