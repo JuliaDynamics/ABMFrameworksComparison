@@ -40,7 +40,7 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, r)
         pos = pop!(grid.empty_positions)
         entity = new_entity!(world, (pos, Group(group)))
         grid.grid[pos.x, pos.y] = entity
-        all_entities[i] = entity
+        all_entities[n] = entity
     end
     add_resource!(world, SchellingBuffers(all_entities))
     add_resource!(world, Range([(x, y) for x in -r:r for y in -r:r if (x != 0 || y != 0)]))
