@@ -25,7 +25,7 @@ for m in models
             frameworks_comparison[m][f] = 1
         else
             frameworks_times[m][f] == 0.0 && continue
-            v = round(frameworks_times[m][f]/frameworks_times[m]["Agents.jl"], digits=1)
+            v = round(frameworks_times[m][f]/frameworks_times[m]["Agents.jl"], digits=2)
             frameworks_comparison[m][f] = v
         end
     end

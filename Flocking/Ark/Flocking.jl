@@ -33,7 +33,7 @@ function SpatialGrid(extent, cell_size)
     return SpatialGrid(entities, extent, cell_size, rows, cols)
 end
 
-function get_direction(from, to, extent) where {D}
+function get_direction(from, to, extent)
     direct_dir = to .- from
     inverse_dir = direct_dir .- sign.(direct_dir) .* extent
     return map((x, y) -> abs(x) <= abs(y) ? x : y, direct_dir, inverse_dir)

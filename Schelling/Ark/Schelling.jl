@@ -72,10 +72,10 @@ function schelling_step!(world::World, rng)
                 if neighbor_entity != zero_entity
                     n_group, = get_components(world, neighbor_entity, (Group,))
                     if n_group.id == group.id
-                    count_neighbors_same_group += 1
+                        count_neighbors_same_group += 1
+                    end
                 end
             end
-        end
         end
         
         if count_neighbors_same_group >= props.min_to_be_happy
