@@ -33,19 +33,16 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, r)
     add_resource!(world, grid)
     add_resource!(world, (min_to_be_happy = min_to_be_happy, radius = r, dims = griddims))
     
+    all_entities = Entity[]
+    resize!(all_entities, numagents)
     for n in 1:numagents
         group = n <= numagents / 2 ? 1 : 2
         pos = pop!(grid.empty_positions)
         entity = new_entity!(world, (pos, Group(group)))
         grid.grid[pos.x, pos.y] = entity
-    end
-    
-    all_entities = Entity[]
-    for (entities,) in Query(world, (Position,))
-        append!(all_entities, entities)
+        all_entities[i] = entity
     end
     add_resource!(world, SchellingBuffers(all_entities))
-
     add_resource!(world, Range([(x, y) for x in -r:r for y in -r:r if (x != 0 || y != 0)]))
 
     return world
