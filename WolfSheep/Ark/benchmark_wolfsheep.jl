@@ -15,10 +15,10 @@ end
 
 n_run = 100
 
-a = @benchmark run_model(rng, 100, 50, (20, 20), 20, 0.1, 0.1) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, 60, 40, (25, 25), 20, 0.2, 0.1) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Ark.jl WolfSheep-small (ms): ", median_time * 1e-6)
 
-a = @benchmark run_model(rng, 200, 100, (40, 40), 10, 0.2, 0.2) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, 1000, 500, (100, 100), 10, 0.4, 0.2) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Ark.jl WolfSheep-large (ms): ", median_time * 1e-6)
