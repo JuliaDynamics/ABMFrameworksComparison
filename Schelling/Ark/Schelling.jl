@@ -78,7 +78,7 @@ function schelling_step!(world::World, rng)
             end
         end
         
-        if count_neighbors_same_group >= props.min_to_be_happy
+        if count_neighbors_same_group < props.min_to_be_happy
             idx = rand(rng, 1:nempty)
             new_pos_x, new_pos_y = grid.empty_positions[idx]
                 

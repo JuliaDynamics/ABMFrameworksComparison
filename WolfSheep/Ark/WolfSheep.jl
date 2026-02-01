@@ -69,9 +69,11 @@ function wolfsheep_model(rng, n_sheep, n_wolves, dims,
 end
 
 function random_walk(pos, dims, rng)
-    nx = pos.x + rand(rng, -1:1)
-    ny = pos.y + rand(rng, -1:1)
-    return Position(clamp(nx, 1, dims[1]), clamp(ny, 1, dims[2]))
+    offsets = ((-1,-1), (-1,0), (-1,1), (0,-1), (0,1), (1,-1), (1,0), (1,1))
+    off = rand(rng, offsets)
+    nx = clamp(pos.x + off[1], 1, dims[1])
+    ny = clamp(pos.y + off[2], 1, dims[2])
+    return Position(nx, ny)
 end
 
 function swap_remove!(v::Vector{Entity}, x::Entity)
