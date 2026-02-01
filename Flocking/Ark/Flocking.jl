@@ -59,7 +59,7 @@ function flocking_model(rng, extent, n_birds, visual_distance;
     
     all_entities = Entity[]
     resize!(all_entities, n_birds)
-    for _ in 1:n_birds
+    for i in 1:n_birds
         pos = SVector{2, Float64}(rand(rng, Float64) * extent[1], rand(rng, Float64) * extent[2])
         vel = SVector{2, Float64}(rand(rng, Float64) * 2 - 1, rand(rng, Float64) * 2 - 1)
         entity = new_entity!(world, (Position(pos), Velocity(vel), params))
