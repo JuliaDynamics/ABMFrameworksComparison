@@ -10,12 +10,12 @@ struct Range
 end
 
 struct Group
-    id::Int
+    id::Int8
 end
 
 struct SchellingGrid
     grid::Array{Entity, 2}
-    empty_positions::Vector{Tuple{Int, Int}}
+    empty_positions::Vector{Position}
 end
 
 struct SchellingBuffers
@@ -26,7 +26,7 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, r)
     world = World(Position, Group)
     
     grid_data = fill(zero_entity, griddims)
-    empty_positions = [(x, y) for x in 1:griddims[1] for y in 1:griddims[2]]
+    empty_positions = [Position(x, y) for x in 1:griddims[1] for y in 1:griddims[2]]
     shuffle!(rng, empty_positions)
     
     grid = SchellingGrid(grid_data, empty_positions)
@@ -35,9 +35,9 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, r)
     
     for n in 1:numagents
         group = n <= numagents / 2 ? 1 : 2
-        pos_tuple = pop!(grid.empty_positions)
-        entity = new_entity!(world, (Position(pos_tuple...), Group(group)))
-        grid.grid[pos_tuple...] = entity
+        pos = pop!(grid.empty_positions)
+        entity = new_entity!(world, (pos, Group(group)))
+        grid.grid[pos.x, pos.y] = entity
     end
     
     all_entities = Entity[]
@@ -71,23 +71,20 @@ function schelling_step!(world::World, rng)
                 neighbor_entity = grid.grid[nx, ny]
                 if neighbor_entity != zero_entity
                     n_group, = get_components(world, neighbor_entity, (Group,))
-                    if n_group.id == group.id
-                        count_neighbors_same_group += 1
-                    end
+                    count_neighbors_same_group += (n_group.id == group.id)
                 end
             end
         end
         
         if count_neighbors_same_group < props.min_to_be_happy
             idx = rand(rng, 1:nempty)
-            new_pos_x, new_pos_y = grid.empty_positions[idx]
-                
+            new_pos = grid.empty_positions[idx]
+            grid.empty_positions[idx] = pos
+
             grid.grid[pos.x, pos.y] = zero_entity
-            grid.grid[new_pos_x, new_pos_y] = entity
-                
-            grid.empty_positions[idx] = (pos.x, pos.y)
-                
-            set_components!(world, entity, (Position(new_pos_x, new_pos_y),))
+            grid.grid[new_pos.x, new_pos.y] = entity
+      
+            set_components!(world, entity, (new_pos,))
         end
     end
 end
