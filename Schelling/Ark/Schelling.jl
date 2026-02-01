@@ -6,7 +6,7 @@ struct Position
 end
 
 struct Range
-    offsets::Vector{Int}
+    offsets::Vector{Tuple{Int,Int}}
 end
 
 struct Group
@@ -22,7 +22,7 @@ struct SchellingBuffers
     entities::Vector{Entity}
 end
 
-function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
+function schelling_model(rng, numagents, griddims, min_to_be_happy, r)
     world = World(Position, Group)
     
     grid_data = fill(zero_entity, griddims)
@@ -31,7 +31,7 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
     
     grid = SchellingGrid(grid_data, empty_positions)
     add_resource!(world, grid)
-    add_resource!(world, (min_to_be_happy = min_to_be_happy, radius = radius, dims = griddims))
+    add_resource!(world, (min_to_be_happy = min_to_be_happy, radius = r, dims = griddims))
     
     for n in 1:numagents
         group = n <= numagents / 2 ? 1 : 2
@@ -46,7 +46,7 @@ function schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
     end
     add_resource!(world, SchellingBuffers(all_entities))
 
-    add_resource!(world, Range([x for x in -radius:radius if x != 0]))
+    add_resource!(world, Range([(x, y) for x in -r:r for y in -r:r if (x != 0 || y != 0)]))
 
     return world
 end
@@ -65,7 +65,7 @@ function schelling_step!(world::World, rng)
         pos, group = get_components(world, entity, (Position, Group))
         
         count_neighbors_same_group = 0
-        for dx in offsets, dy in offsets
+        for (dx, dy) in offsets
             nx, ny = pos.x + dx, pos.y + dy
             if 1 <= nx <= props.dims[1] && 1 <= ny <= props.dims[2]
                 neighbor_entity = grid.grid[nx, ny]
