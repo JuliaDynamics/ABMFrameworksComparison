@@ -10,7 +10,7 @@ rng_model() = Xoshiro(rand(rng_seed, 1:10000))
 
 function run_model(rng, numagents, griddims, min_to_be_happy, radius)
     world = schelling_model(rng, numagents, griddims, min_to_be_happy, radius)
-    step!(world, rng, 100)
+    step!(world, rng, 20)
 end
 
 n_run = 100
