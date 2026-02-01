@@ -15,10 +15,10 @@ end
 
 n_run = 100
 
-a = @benchmark run_model(rng, 1000, (50, 50), 3, 1) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, 1000, (40, 40), 3, 1) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Ark.jl Schelling-small (ms): ", median_time * 1e-6)
 
-a = @benchmark run_model(rng, 2000, (100, 100), 10, 5) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
+a = @benchmark run_model(rng, 8000, (100, 100), 8, 2) setup=(rng = rng_model()) evals=1 samples=n_run seconds=1e6
 median_time = sort(a.times)[n_run ÷ 2 + n_run % 2]
 println("Ark.jl Schelling-large (ms): ", median_time * 1e-6)
