@@ -5,6 +5,9 @@
 echo "Benchmarking Agents.jl"
 julia --project=@. ./Flocking/Agents/benchmark_flocking.jl
 
+echo "Benchmarking Ark.jl"
+julia --project=@. ./Flocking/Ark/benchmark_flocking.jl
+
 echo "Benchmarking Mason"
 bash ./Flocking/Mason/benchmark_flocking.sh
 

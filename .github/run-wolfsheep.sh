@@ -5,6 +5,9 @@
 echo "Benchmarking Agents.jl"
 julia --project=@. ./WolfSheep/Agents/benchmark_wolfsheep.jl
 
+echo "Benchmarking Ark.jl"
+julia --project=@. ./WolfSheep/Ark/benchmark_wolfsheep.jl
+
 echo "Benchmarking Mason"
 bash ./WolfSheep/Mason/benchmark_wolfsheep.sh
 

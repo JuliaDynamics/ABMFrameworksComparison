@@ -1,9 +1,6 @@
 # Agent based modelling frameworks comparison
 
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8016506.svg)](https://doi.org/10.5281/zenodo.8016506)
-
-
 
 This repository contains code used to compare performance and features between various agent based modelling **(ABM)** frameworks. Currently, frameworks compared are [Agents.jl](https://github.com/JuliaDynamics/Agents.jl), [NetLogo](https://github.com/NetLogo/NetLogo), [MASON](https://github.com/eclab/mason) and [Mesa](https://github.com/projectmesa/mesa). We happily welcome more frameworks to join the comparison.
 
@@ -79,7 +76,7 @@ sudo apt install python3-pip
 pip install mesa==3.2.0
 
 # install netlogo
-sudo wget http://ccl.northwestern.edu/netlogo/6.4.0/NetLogo-6.4.0-64.tgz
+sudo wget https://downloads.netlogo.org/6.4.0/NetLogo-6.4.0-64.tgz
 sudo tar -xzf NetLogo-6.4.0-64.tgz
 
 # move netlogo inside repository
