@@ -20,8 +20,8 @@ These are the results of the latest comparison:
 |  Flocking-small (Time-Ratio)  |       1.0        |     1.1      |    1.42    |     15.37     |   159.29   |
 |  Flocking-large (Time-Ratio)  |       1.0        |     0.56     |    0.61    |     19.14     |    59.5    |
 |   Flocking (Lines of Code)       |       42     |   124  | 159     |    82 (689)   |   94       |
-| Schelling-small (Time-Ratio)  |       1.0        |     2.01     |    1.05    |     10.1      |    27.1    |
-| Schelling-large (Time-Ratio)  |       1.0        |     1.51     |    1.26    |     12.26     |   18.97    |
+| Schelling-small (Time-Ratio)  |       1.0        |     3.2     |    1.19     |     11.39      |    29.73    |
+| Schelling-large (Time-Ratio)  |       1.0        |     3.23     |    1.51    |     14.33     |   26.66    |
 |    Schelling (Lines of Code)      |       26          | 78 |    129   |   54 (739)      |     33    |
 
 ## How it works
@@ -91,6 +91,7 @@ cd ABM_Framework_Comparisons
 ```
 
 If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
+
 
 
 
