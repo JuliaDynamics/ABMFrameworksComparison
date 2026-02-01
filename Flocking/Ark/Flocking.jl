@@ -57,17 +57,15 @@ function flocking_model(rng, extent, n_birds, visual_distance;
 
     params = BirdParams(speed, cohere_factor, separation, separate_factor, match_factor, visual_distance)
     
+    all_entities = Entity[]
+    resize!(all_entities, n_birds)
     for _ in 1:n_birds
         pos = SVector{2, Float64}(rand(rng, Float64) * extent[1], rand(rng, Float64) * extent[2])
         vel = SVector{2, Float64}(rand(rng, Float64) * 2 - 1, rand(rng, Float64) * 2 - 1)
-        new_entity!(world, (Position(pos), Velocity(vel), params))
+        entity = new_entity!(world, (Position(pos), Velocity(vel), params))
+        all_entities[i] = entity
     end
-    
-    entities_to_process = Entity[]
-    for (entities,) in Query(world, (Position,))
-        append!(entities_to_process, entities)
-    end
-    add_resource!(world, FlockingBuffers(entities_to_process))
+    add_resource!(world, FlockingBuffers(all_entities))
 
     grid = SpatialGrid(SVector{2, Float64}(extent), spacing)
     for (entities, positions) in Query(world, (Position,))
