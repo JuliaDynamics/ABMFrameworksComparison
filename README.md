@@ -17,9 +17,9 @@ These are the results of the latest comparison:
 | WolfSheep-small (Time-Ratio)  |       1.0        |     0.39     |    5.29    |     9.94      |    9.38    |
 | WolfSheep-large (Time-Ratio)  |       1.0        |     0.24     |    7.8     |     4.81      |    3.28    |
 | WolfSheep (Lines of Code) |     73          |   149 | 202        |  137 (871)        | 118 |
-|  Flocking-small (Time-Ratio)  |       1.0        |     1.1      |    1.42    |     15.37     |   159.29   |
-|  Flocking-large (Time-Ratio)  |       1.0        |     0.56     |    0.61    |     19.14     |    59.5    |
-|   Flocking (Lines of Code)       |       42     |   124  | 159     |    82 (689)   |   94       |
+|  Flocking-small (Time-Ratio)  |       1.0        |      0.75       |    1.42    |     15.37     |   159.29   |
+|  Flocking-large (Time-Ratio)  |       1.0        |     0.4     |    0.61    |     19.14     |    59.5    |
+|   Flocking (Lines of Code)       |       42     |   137  | 159     |    82 (689)   |   94       |
 | Schelling-small (Time-Ratio)  |       1.0        |     0.67     |    1.19     |     11.39      |    29.73    |
 | Schelling-large (Time-Ratio)  |       1.0        |     0.68     |    1.51    |     14.33     |   26.66    |
 |    Schelling (Lines of Code)      |       26          | 78 |    129   |   54 (739)      |     33    |
@@ -91,6 +91,7 @@ cd ABM_Framework_Comparisons
 ```
 
 If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
+
 
 
 
