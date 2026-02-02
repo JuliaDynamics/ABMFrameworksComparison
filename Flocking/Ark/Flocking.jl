@@ -49,6 +49,19 @@ struct FlockingBuffers
     entities::Vector{Entity}
 end
 
+struct Range
+    offsets::Vector{Vector{Tuple{Int, Int}}}
+end
+
+function compute_offsets(range, r)
+    if isassigned(range.offsets, r)
+        return range.offsets[r]
+    else
+        resize!(range.offsets, r)
+        return range.offsets[r] = [(x, y) for x in -r:r for y in -r:r if x^2 + y^2 <= r^2]
+    end
+end
+
 function flocking_model(rng, extent, n_birds, visual_distance;
         speed = 1.0, cohere_factor = 0.03, separation = 1.0, separate_factor = 0.015,
         match_factor = 0.05, spacing = visual_distance / 1.5,)
@@ -75,7 +88,8 @@ function flocking_model(rng, extent, n_birds, visual_distance;
         end
     end
     add_resource!(world, grid)
-
+    add_resource!(world, Range(Vector{Tuple{Int, Int}}[]))
+    
     return world
 end
 
@@ -89,6 +103,7 @@ end
 
 function flocking_step!(world::World, rng)
     grid = get_resource(world, SpatialGrid)
+    range = get_resource(world, Range)
     buffers = get_resource(world, FlockingBuffers)
     
     entities = buffers.entities
@@ -104,7 +119,7 @@ function flocking_step!(world::World, rng)
         row, col = get_cell(grid, pos)
         radius = ceil(Int, param.visual_distance / grid.cell_size)
 
-        for dr in -radius:radius, dc in -radius:radius
+        for (dr, dc) in compute_offsets(range, radius)
             r, c = mod1(row + dr, grid.rows), mod1(col + dc, grid.cols)
             for neighbor_entity in grid.entities[r, c]
                 if neighbor_entity == entity
