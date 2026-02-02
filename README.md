@@ -1,11 +1,8 @@
 # Agent based modelling frameworks comparison
 
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8016506.svg)](https://doi.org/10.5281/zenodo.8016506)
 
-
-
-This repository contains code used to compare performance and features between various agent based modelling **(ABM)** frameworks. Currently, frameworks compared are [Agents.jl](https://github.com/JuliaDynamics/Agents.jl), [NetLogo](https://github.com/NetLogo/NetLogo), [MASON](https://github.com/eclab/mason) and [Mesa](https://github.com/projectmesa/mesa). We happily welcome more frameworks to join the comparison.
+This repository contains code used to compare performance and features between various agent based modelling **(ABM)** frameworks. Currently, frameworks compared are [Agents.jl](https://github.com/JuliaDynamics/Agents.jl), [Ark.jl](https://github.com/ark-ecs/Ark.jl), [NetLogo](https://github.com/NetLogo/NetLogo), [MASON](https://github.com/eclab/mason) and [Mesa](https://github.com/projectmesa/mesa). We happily welcome more frameworks to join the comparison.
 
 **The performance benchmark comparison is run automatically during continuous integration, and hence the comparison is updated after every pull request to this repo.**
 
@@ -15,17 +12,17 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
- | Model/Framework  | Agents.jl 6.2.10 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
-|:------------------|:---------------:|:------------:|:------------:|:---------------:|
-| WolfSheep (Time-Ratio, Small-Version)  |       1        |    5.3x    |     12.8x      |    12.4x    |
-| WolfSheep (Time-Ratio, Large-Version)   |       1        |    6.0x    |      6.1x      |    4.9x     |
-| WolfSheep (Lines of Code) |     73          |    202        |  137 (871)        | 118 |
- |  Flocking (Time-Ratio, Small-Version)  |       1        |    1.4x    |     17.1x      |   184.1x    |
-|  Flocking (Time-Ratio, Large-Version)  |       1        |    0.6x     |     19.0x      |    62.7x    |
-|   Flocking (Lines of Code)       |       42     |      159     |    82 (689)   |   94       |
- | Schelling (Time-Ratio, Small-Version)  |       1       |    1.0x    |     12.5x      |    32.3x    |
-| Schelling (Time-Ratio, Large-Version)   |       1        |    1.3x      |     13.5x     |    23.4x    |
-|    Schelling (Lines of Code)      |       26          |      129   |   54 (739)      |     33    |
+| Model/Framework  | Agents.jl 6.2.10 | Ark.jl 0.3.2 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
+|:------------------:|:------------------:|:--------------:|:------------:|:---------------:|:------------:|
+| WolfSheep-small (Time-Ratio)  |       1.0        |     0.39     |    5.29    |     9.94      |    9.38    |
+| WolfSheep-large (Time-Ratio)  |       1.0        |     0.24     |    7.8     |     4.81      |    3.28    |
+| WolfSheep (Lines of Code) |     73          |   149 | 202        |  137 (871)        | 118 |
+|  Flocking-small (Time-Ratio)  |       1.0        |      0.75       |    1.42    |     15.37     |   159.29   |
+|  Flocking-large (Time-Ratio)  |       1.0        |     0.4     |    0.61    |     19.14     |    59.5    |
+|   Flocking (Lines of Code)       |       42     |   137  | 159     |    82 (689)   |   94       |
+| Schelling-small (Time-Ratio)  |       1.0        |     0.67     |    1.19     |     11.39      |    29.73    |
+| Schelling-large (Time-Ratio)  |       1.0        |     0.68     |    1.51    |     14.33     |   26.66    |
+|    Schelling (Lines of Code)      |       26          | 78 |    129   |   54 (739)      |     33    |
 
 ## How it works
 
@@ -79,7 +76,7 @@ sudo apt install python3-pip
 pip install mesa==3.2.0
 
 # install netlogo
-sudo wget http://ccl.northwestern.edu/netlogo/6.4.0/NetLogo-6.4.0-64.tgz
+sudo wget https://downloads.netlogo.org/6.4.0/NetLogo-6.4.0-64.tgz
 sudo tar -xzf NetLogo-6.4.0-64.tgz
 
 # move netlogo inside repository
@@ -94,5 +91,9 @@ cd ABM_Framework_Comparisons
 ```
 
 If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
+
+
+
+
 
 

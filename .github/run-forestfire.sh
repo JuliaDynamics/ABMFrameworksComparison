@@ -5,6 +5,9 @@
 echo "Benchmarking Agents.jl"
 julia --project=@. ./ForestFire/Agents/benchmark_forestfire.jl
 
+echo "Benchmarking Ark.jl"
+julia --project=@. ./ForestFire/Ark/benchmark_forestfire.jl
+
 echo "Benchmarking Mason"
 bash ./ForestFire/Mason/benchmark_forestfire.sh
 

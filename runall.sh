@@ -7,6 +7,11 @@ julia --project=@. WolfSheep/Agents/benchmark_wolfsheep.jl
 julia --project=@. Flocking/Agents/benchmark_flocking.jl
 julia --project=@. Schelling/Agents/benchmark_schelling.jl
 
+echo "Benchmarking Ark.jl"
+julia --project=@. WolfSheep/Ark/benchmark_wolfsheep.jl
+julia --project=@. Flocking/Ark/benchmark_flocking.jl
+julia --project=@. Schelling/Ark/benchmark_schelling.jl
+
 echo "Benchmarking Mason"
 bash WolfSheep/Mason/benchmark_wolfsheep.sh
 bash Flocking/Mason/benchmark_flocking.sh

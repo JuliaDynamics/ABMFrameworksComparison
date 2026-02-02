@@ -1,6 +1,6 @@
 using PrettyTables
 
-frameworks = ["Agents.jl", "Mason", "NetLogo", "Mesa"]
+frameworks = ["Agents.jl", "Ark.jl", "Mason", "NetLogo", "Mesa"]
 
 models = ["WolfSheep-small", "WolfSheep-large", 
           "Flocking-small", "Flocking-large", 
@@ -25,13 +25,13 @@ for m in models
             frameworks_comparison[m][f] = 1
         else
             frameworks_times[m][f] == 0.0 && continue
-            v = round(frameworks_times[m][f]/frameworks_times[m]["Agents.jl"], digits=1)
+            v = round(frameworks_times[m][f]/frameworks_times[m]["Agents.jl"], digits=2)
             frameworks_comparison[m][f] = v
         end
     end
 end
 
-columns = ["Model/Framework", "Agents.jl 6.2.10", "MASON 22.0", "Netlogo 6.4.0", "Mesa 3.2.0"]
+columns = ["Model/Framework", "Agents.jl 6.2.10", "Ark.jl 0.3.2", "MASON 22.0", "Netlogo 6.4.0", "Mesa 3.2.0"]
 results = mapreduce(permutedims, vcat, [vcat([m], [ifelse(frameworks_comparison[m][f] != 0, frameworks_comparison[m][f], ".") for f in frameworks]) for m in models])
 conf = set_pt_conf(tf = tf_markdown, alignment = :c)
 table = pretty_table_with_conf(conf, results; header = columns)

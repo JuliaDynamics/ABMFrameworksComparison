@@ -22,7 +22,7 @@ function agent_step!(agent, model)
             count_neighbors_same_group += 1
         end
     end
-    if count_neighbors_same_group ≥ model.min_to_be_happy
+    if count_neighbors_same_group < model.min_to_be_happy
         move_agent_single!(agent, model)
     end
     return
