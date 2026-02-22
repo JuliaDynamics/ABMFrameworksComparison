@@ -86,7 +86,7 @@ function swap_remove!(v::Vector{Entity}, x::Entity)
 end
 
 function sheep_step!(world::World, rng, entities, params, grass, sheep_grid)
-    for entity in entities
+    @unchecked for entity in entities
         pos, energy_comp = get_components(world, entity, (Position, Energy))
         energy = energy_comp.e
         
@@ -118,7 +118,7 @@ function sheep_step!(world::World, rng, entities, params, grass, sheep_grid)
 end
 
 function wolf_step!(world::World, rng, entities, params, sheep_grid)
-    for entity in entities
+    @unchecked for entity in entities
         pos, energy_comp = get_components(world, entity, (Position, Energy))
         energy = energy_comp.e
         
