@@ -12,7 +12,7 @@ This repository has been initiated and maintained by the developers of Agents.jl
 
 These are the results of the latest comparison:
 
-| Model/Framework  | Agents.jl 6.2.10 | Ark.jl 0.3.2 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
+| Model/Framework  | Agents.jl 6.2.10 | Ark.jl 0.4.0 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
 |:------------------:|:------------------:|:--------------:|:------------:|:---------------:|:------------:|
 | WolfSheep-small (Time-Ratio)  |       1.0        |     **0.34**     |    5.29    |     9.94      |    9.38    |
 | WolfSheep-large (Time-Ratio)  |       1.0        |     **0.14**     |    7.8     |     4.81      |    3.28    |
@@ -91,6 +91,7 @@ cd ABM_Framework_Comparisons
 ```
 
 If you are using WSL make sure that you move to a folder inside the subsystem before running these commands.
+
 
 
 
