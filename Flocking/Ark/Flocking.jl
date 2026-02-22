@@ -109,7 +109,7 @@ function flocking_step!(world::World, rng)
     entities = buffers.entities
     shuffle!(rng, entities)
     
-    for entity in entities
+    @unchecked for entity in entities
         pos_comp, vel_comp, param = get_components(world, entity, (Position, Velocity, BirdParams))
         pos, vel = pos_comp.p, vel_comp.v
         
