@@ -58,7 +58,7 @@ function schelling_step!(world::World, rng)
     all_entities = buffers.entities
     shuffle!(rng, all_entities)
     
-    @inbounds for entity in all_entities
+    @inbounds @unchecked for entity in all_entities
         pos, group = get_components(world, entity, (Position, Group))
         
         count_neighbors_same_group = 0
