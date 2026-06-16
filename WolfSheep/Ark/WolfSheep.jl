@@ -78,7 +78,7 @@ end
 
 function swap_remove!(v::Vector{Entity}, x::Entity)
     idx = findfirst(==(x), v)
-    if idx !== nothing
+    @inbounds if idx !== nothing
         v[idx] = v[end]
         pop!(v)
     end
@@ -86,7 +86,7 @@ function swap_remove!(v::Vector{Entity}, x::Entity)
 end
 
 function sheep_step!(world::World, rng, entities, params, grass, sheep_grid)
-    @unchecked for entity in entities
+    @inbounds @unchecked for entity in entities
         pos, energy_comp = get_components(world, entity, (Position, Energy))
         energy = energy_comp.e
         
@@ -118,7 +118,7 @@ function sheep_step!(world::World, rng, entities, params, grass, sheep_grid)
 end
 
 function wolf_step!(world::World, rng, entities, params, sheep_grid)
-    @unchecked for entity in entities
+    @inbounds @unchecked for entity in entities
         pos, energy_comp = get_components(world, entity, (Position, Energy))
         energy = energy_comp.e
         
@@ -129,7 +129,7 @@ function wolf_step!(world::World, rng, entities, params, sheep_grid)
         if !isempty(potential_dinner)
             dinner_idx = rand(rng, 1:length(potential_dinner))
             dinner = potential_dinner[dinner_idx]
-            potential_dinner[dinner_idx] = potential_dinner[end]
+            potential_dinner[dinner_idx] = potential_dinner[lastindex(potential_dinner)]
             pop!(potential_dinner)
             remove_entity!(world, dinner)
             energy += params.Δenergy_wolf
@@ -171,7 +171,7 @@ function wolfsheep_step!(world::World, rng)
         end
     end
     
-    for i in 1:params.dims[1], j in 1:params.dims[2]
+    @inbounds for i in 1:params.dims[1], j in 1:params.dims[2]
         if !grass.fully_grown[i, j]
             if grass.countdown[i, j] <= 0
                 grass.fully_grown[i, j] = true
