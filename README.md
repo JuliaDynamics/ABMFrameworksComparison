@@ -14,14 +14,14 @@ These are the results of the latest comparison:
 
 | Model/Framework  | Agents.jl 6.2.10 | Ark.jl 0.5.1 | MASON 22.0 | Netlogo 6.4.0 | Mesa 3.2.0 |
 |:------------------:|:------------------:|:--------------:|:------------:|:---------------:|:------------:|
-| WolfSheep-small (Time-Ratio)  |       1.0        |     **0.34**     |    5.29    |     9.94      |    9.38    |
-| WolfSheep-large (Time-Ratio)  |       1.0        |     **0.14**     |    7.8     |     4.81      |    3.28    |
+| WolfSheep-small (Time-Ratio)  |       1.0        |     **0.36**     |    5.29    |     9.94      |    9.38    |
+| WolfSheep-large (Time-Ratio)  |       1.0        |     **0.17**     |    7.8     |     4.81      |    3.28    |
 | WolfSheep (Lines of Code) |     **73**          |   149 | 202        |  137 (871)        | 118 |
-|  Flocking-small (Time-Ratio)  |       1.0        |      **0.73**       |    1.42    |     15.37     |   159.29   |
+|  Flocking-small (Time-Ratio)  |       1.0        |      **0.74**       |    1.42    |     15.37     |   159.29   |
 |  Flocking-large (Time-Ratio)  |       1.0        |     **0.36**     |    0.61    |     19.14     |    59.5    |
 |   Flocking (Lines of Code)       |       **42**     |   137  | 159     |    82 (689)   |   94       |
-| Schelling-small (Time-Ratio)  |       1.0        |     **0.61**     |    1.19     |     11.39      |    29.73    |
-| Schelling-large (Time-Ratio)  |       1.0        |     **0.59**     |    1.51    |     14.33     |   26.66    |
+| Schelling-small (Time-Ratio)  |       1.0        |     **0.85**     |    1.19     |     11.39      |    29.73    |
+| Schelling-large (Time-Ratio)  |       1.0        |     **0.99**     |    1.51    |     14.33     |   26.66    |
 |    Schelling (Lines of Code)      |       **26**          | 78 |    129   |   54 (739)      |     33    |
 
 ## How it works
