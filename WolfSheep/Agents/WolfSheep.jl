@@ -19,7 +19,7 @@ function predator_prey_model(rng, n_sheep, n_wolves, dims,
     properties = (fully_grown = falses(dims), countdown = zeros(Int, dims),
         regrowth_time = regrowth_time)
     scheduler = Schedulers.ByType(true, true, Union{Wolf, Sheep})
-    model = ABM(Union{Wolf, Sheep}, space; agent_step!, model_step!, scheduler,
+    model = StandardABM(Union{Wolf, Sheep}, space; agent_step!, model_step!, scheduler,
         properties, rng, warn = false)
     for _ in 1:n_sheep
         energy = rand(abmrng(model), 0:(Δenergy_sheep * 2 - 1))
